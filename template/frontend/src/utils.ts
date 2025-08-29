@@ -1,1 +1,1 @@
-export { get } from '@kevinmarrec/cloudstack-vue'
+export { get } from '@vueuse/core'

@@ -22,6 +22,7 @@ export default {
     },
     'template/frontend': {
       entry: ['src/main.ts'],
+      ignoreDependencies: ['uno.css'],
     },
   },
 } satisfies KnipConfig

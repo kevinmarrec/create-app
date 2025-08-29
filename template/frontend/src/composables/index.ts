@@ -1,2 +1,2 @@
-export { useHead } from '@kevinmarrec/cloudstack-vue/head'
-export { useI18n } from '@kevinmarrec/cloudstack-vue/i18n'
+export { useI18n } from '@kevinmarrec/vue-i18n'
+export { useHead } from '@unhead/vue'

@@ -1,4 +1,4 @@
-/// <reference types="@kevinmarrec/cloudstack-vite-config/client" />
+/// <reference types="vite/client" />
 
 interface ImportMetaEnv {
   readonly VITE_API_URL: string
