@@ -1,10 +1,11 @@
-import { url } from '@backend/config/database'
+import { casing, url } from '@backend/config/database'
 import { logger } from '@backend/logger'
 import { drizzle } from 'drizzle-orm/bun-sqlite'
 
 import * as schema from './schema'
 
 export const db = drizzle(url, {
+  casing,
   schema,
   logger: {
     logQuery: (query, params) => {
