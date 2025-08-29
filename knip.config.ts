@@ -1,0 +1,27 @@
+import type { KnipConfig } from 'knip'
+
+// Required for Knip to pass
+Object.assign(import.meta.env, {
+  DATABASE_URL: 'foo.db',
+})
+
+export default {
+  stylelint: false,
+  workspaces: {
+    '.': {
+      entry: ['*.config.ts'],
+    },
+    'template': {
+      entry: ['*.config.ts'],
+    },
+    'template/backend': {
+      drizzle: {
+        config: ['src/config/drizzle.ts'],
+      },
+      ignoreDependencies: ['pino-pretty'],
+    },
+    'template/frontend': {
+      entry: ['src/main.ts'],
+    },
+  },
+} satisfies KnipConfig

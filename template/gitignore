@@ -1,0 +1,17 @@
+*.db*
+*.local
+*.log
+*.sqlite
+.cache
+.DS_Store
+.env.prod*
+.eslintcache
+.idea
+.stylelintcache
+.temp
+.vite*
+coverage
+dev-dist
+dist
+node_modules
+tmp

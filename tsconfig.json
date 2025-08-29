@@ -1,0 +1,13 @@
+{
+  "extends": "@kevinmarrec/tsconfig",
+  "compilerOptions": {
+    "paths": {
+      "@backend/*": ["./template/backend/src/*"],
+      "@frontend/*": ["./template/frontend/src/*"]
+    }
+  },
+  "exclude": [
+    "**/coverage/**",
+    "**/dist/**"
+  ]
+}

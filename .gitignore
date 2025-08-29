@@ -1,0 +1,15 @@
+*.db*
+*.local
+*.log
+.cache
+.DS_Store
+.env.prod*
+.eslintcache
+.idea
+.stylelintcache
+.temp
+coverage
+dev-dist
+dist
+node_modules
+tmp

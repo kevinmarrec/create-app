@@ -1,0 +1,49 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // Disable the default formatter
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+  "editor.gotoLocation.multipleDefinitions": "goto",
+
+  "eslint.runtime": "node",
+
+  // Silent the stylistic rules in your IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off" },
+    { "rule": "*-indent", "severity": "off" },
+    { "rule": "*-spacing", "severity": "off" },
+    { "rule": "*-spaces", "severity": "off" },
+    { "rule": "*-order", "severity": "off" },
+    { "rule": "*-dangle", "severity": "off" },
+    { "rule": "*-newline", "severity": "off" },
+    { "rule": "*quotes", "severity": "off" },
+    { "rule": "*semi", "severity": "off" }
+  ],
+
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "css",
+    "scss",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml"
+  ],
+
+  "javascript.format.semicolons": "remove",
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.format.semicolons": "remove",
+  "typescript.preferences.quoteStyle": "single",
+
+  "vitest.rootConfig": "vitest.config.ts"
+}

@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-and-test:
+    name: Check & Test
+    runs-on: ubuntu-latest
+    if: |
+      !startsWith(github.event.head_commit.message, 'chore: release')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check unused files, dependencies, and exports
+        run: bun run check:unused
+
+      - name: Lint
+        run: bun run check:eslint && bun run check:stylelint
+
+      - name: Type check
+        run: bun run check:types
+
+      - name: Unit tests
+        run: bun run test:coverage

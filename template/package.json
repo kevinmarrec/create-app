@@ -1,0 +1,35 @@
+{
+  "name": "app",
+  "type": "module",
+  "private": true,
+  "packageManager": "bun@1.2.21",
+  "engines": {
+    "node": "lts/*"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
+    "check:eslint": "eslint . --cache",
+    "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
+    "check:types": "vue-tsc --noEmit",
+    "check:unused": "knip -n",
+    "dev": "bun scripts/dev.ts",
+    "lint": "bun run check:eslint && bun run check:stylelint",
+    "lint:inspect": "bunx @eslint/config-inspector"
+  },
+  "devDependencies": {
+    "@kevinmarrec/eslint-config": "^1.0.0",
+    "@kevinmarrec/stylelint-config": "^1.0.0",
+    "@kevinmarrec/tsconfig": "^1.0.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.34.0",
+    "knip": "^5.63.0",
+    "stylelint": "^16.23.1",
+    "taze": "^19.3.0",
+    "typescript": "~5.9.2",
+    "vue-tsc": "^3.0.6"
+  }
+}

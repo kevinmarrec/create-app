@@ -1,0 +1,18 @@
+{
+  "vue-sfc-init": {
+    "scope": "vue",
+    "prefix": "init",
+    "body": [
+      "<script setup lang=\"ts\">",
+			"",
+      "</script>",
+      "",
+      "<template>",
+			"  <div>",
+      "    ${0:Content}",
+			"  </div>",
+      "</template>",
+			""
+    ]
+  }
+}

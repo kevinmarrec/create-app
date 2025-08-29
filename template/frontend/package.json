@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode static",
+    "build:analyze": "vite build --mode analyze",
+    "preview": "vite preview --open"
+  },
+  "dependencies": {
+    "@orpc/client": "^1.8.5",
+    "@orpc/tanstack-query": "1.6.4",
+    "@tanstack/vue-query": "^5.85.5",
+    "unocss": "^66.4.2",
+    "vue": "^3.5.20"
+  },
+  "devDependencies": {
+    "@kevinmarrec/cloudstack-vite-config": "^1.0.0-rc.15",
+    "@kevinmarrec/cloudstack-vue": "^1.0.0-rc.15",
+    "@kevinmarrec/unocss-config": "^1.0.0",
+    "vite": "^7.1.3"
+  }
+}
