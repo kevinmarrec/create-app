@@ -6,7 +6,7 @@ useHead({
   title: () => t('title'),
 })
 
-const { session, signUp, signIn, signOut } = useAuth()
+const { user, signUp, signIn, signOut } = useAuth()
 </script>
 
 <template>
@@ -15,14 +15,15 @@ const { session, signUp, signIn, signOut } = useAuth()
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
       </h1>
-      <pre>{{ session }}</pre>
-      <button @click="() => signUp({ email: 'test45@test.com', password: 'password1234', name: 'test' })">
+      <pre>{{ user }}</pre>
+      <pre>{{ signUp.error }}</pre>
+      <button @click="signUp.mutate({ email: 'test45@test.com', password: 'password1234', name: 'test' })">
         Sign Up
       </button>
-      <button @click="() => signIn({ email: 'test45@test.com', password: 'password1234' })">
+      <button @click="signIn.mutate({ email: 'test45@test.com', password: 'password1234' })">
         Sign In
       </button>
-      <button @click="() => signOut({})">
+      <button @click="signOut.mutate">
         Sign Out
       </button>
     </div>

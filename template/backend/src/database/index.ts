@@ -7,7 +7,7 @@ import * as schema from './schema'
 export const db = drizzle(url, {
   casing,
   schema,
-  logger: {
+  logger: import.meta.env.NODE_ENV === 'development' && {
     logQuery: (query, params) => {
       let msg = `[SQL] ${query}`
       msg += params.length ? ` [${params}]` : ''

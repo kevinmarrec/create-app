@@ -4,26 +4,26 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 export function useAuth() {
   const qc = useQueryClient()
 
-  const { data: session } = useQuery(orpc.auth.getSession.queryOptions({
+  const { data: user } = useQuery(orpc.auth.getCurrentUser.queryOptions({
     retry: false,
   }))
 
-  const { mutateAsync: signUp } = useMutation(orpc.auth.signUp.mutationOptions({
-    onSuccess: () => qc.invalidateQueries({ queryKey: orpc.auth.getSession.queryKey() }),
+  const signUp = useMutation(orpc.auth.signUp.mutationOptions({
+    onSuccess: () => qc.invalidateQueries({ queryKey: orpc.auth.getCurrentUser.queryKey() }),
   }))
 
-  const { mutateAsync: signIn } = useMutation(orpc.auth.signIn.mutationOptions({
-    onSuccess: () => qc.invalidateQueries({ queryKey: orpc.auth.getSession.queryKey() }),
+  const signIn = useMutation(orpc.auth.signIn.mutationOptions({
+    onSuccess: () => qc.invalidateQueries({ queryKey: orpc.auth.getCurrentUser.queryKey() }),
   }))
 
-  const { mutateAsync: signOut } = useMutation(orpc.auth.signOut.mutationOptions({
+  const signOut = useMutation(orpc.auth.signOut.mutationOptions({
     onSuccess: () => {
-      qc.setQueryData<null>(orpc.auth.getSession.queryKey(), null)
+      qc.setQueryData<null>(orpc.auth.getCurrentUser.queryKey(), null)
     },
   }))
 
   return {
-    session,
+    user,
     signUp,
     signIn,
     signOut,
