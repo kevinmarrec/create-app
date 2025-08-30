@@ -2,13 +2,14 @@ import * as v from 'valibot'
 
 const schema = v.object({
   cors: v.object({
+    credentials: v.optional(v.boolean(), false),
     origin: v.optional(
       v.pipe(
         v.string(),
         v.minLength(1),
         v.transform(value => value.split(',')),
       ),
-      '*',
+      'http://localhost:5173',
     ),
   }),
   hostname: v.optional(
@@ -16,7 +17,7 @@ const schema = v.object({
       v.string(),
       v.minLength(1),
     ),
-    'localhost',
+    '0.0.0.0',
   ),
   port: v.optional(v.pipe(
     v.string(),
@@ -29,6 +30,7 @@ const schema = v.object({
 
 const config = v.parse(schema, {
   cors: {
+    credentials: true,
     origin: import.meta.env.ALLOWED_ORIGINS,
   },
   hostname: import.meta.env.HOST,

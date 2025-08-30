@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { useHead, useI18n } from '@frontend/composables'
-import { useWelcome } from '@frontend/queries'
+import { useAuth, useHead, useI18n } from '@frontend/composables'
 
 const { t } = useI18n()
-
 useHead({
   title: () => t('title'),
 })
 
-const { data: message } = useWelcome('world')
+const { user, signUp, signIn, signOut } = useAuth()
 </script>
 
 <template>
@@ -17,9 +15,17 @@ const { data: message } = useWelcome('world')
       <h1 class="text-4xl font-bold">
         {{ t('body.message') }}
       </h1>
-      <h2 class="text-2xl text-gray-500">
-        {{ message }}
-      </h2>
+      <pre>{{ user }}</pre>
+      <pre>{{ signUp.error }}</pre>
+      <button @click="signUp.mutate({ email: 'test45@test.com', password: 'password1234', name: 'test' })">
+        Sign Up
+      </button>
+      <button @click="signIn.mutate({ email: 'test45@test.com', password: 'password1234' })">
+        Sign In
+      </button>
+      <button @click="signOut.mutate">
+        Sign Out
+      </button>
     </div>
   </div>
 </template>
