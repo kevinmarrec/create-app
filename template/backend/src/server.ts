@@ -1,9 +1,10 @@
 import process from 'node:process'
 
+import { auth } from './auth'
 import { hostname, port } from './config/server'
+import { db } from './database'
 import { logger } from './logger'
 import { rpcHandler } from './orpc'
-import { createContext } from './orpc/context'
 
 const server = Bun.serve({
   hostname,
@@ -11,7 +12,11 @@ const server = Bun.serve({
   async fetch(request) {
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',
-      context: createContext(),
+      context: {
+        auth,
+        db,
+        logger,
+      },
     })
 
     if (matched)
