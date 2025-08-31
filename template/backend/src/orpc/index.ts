@@ -22,6 +22,10 @@ export const rpcHandler = new RPCHandler(router, {
         })
       }
 
+      if (error instanceof ORPCError) {
+        throw error
+      }
+
       logger.error(error)
     }),
   ],
