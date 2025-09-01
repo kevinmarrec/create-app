@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
-    "@kevinmarrec/eslint-config": "^1.0.0",
+    "@kevinmarrec/eslint-config": "^1.1.0",
     "@kevinmarrec/stylelint-config": "^1.0.0",
     "@kevinmarrec/tsconfig": "^1.0.0",
     "@types/bun": "^1.2.21",
@@ -58,7 +58,7 @@
     "eslint": "^9.34.0",
     "knip": "^5.63.0",
     "stylelint": "^16.23.1",
-    "taze": "^19.3.0",
+    "taze": "^19.4.0",
     "tsdown": "^0.14.2",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4",
