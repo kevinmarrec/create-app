@@ -1,26 +1,27 @@
-import { db } from '@backend/database'
-import { logger } from '@backend/logger'
 import { betterAuth } from 'better-auth'
-import { drizzleAdapter } from 'better-auth/adapters/drizzle'
+import { type DB, drizzleAdapter } from 'better-auth/adapters/drizzle'
+import type { BaseLogger } from 'pino'
 
-export const auth = betterAuth({
-  database: drizzleAdapter(db, {
-    provider: 'sqlite',
-    usePlural: true,
-  }),
-  logger: {
-    log: (level, message) => {
-      logger[level](message)
+export function createBetterAuth<T extends { db: DB, logger: BaseLogger }>({ db, logger }: T) {
+  return betterAuth({
+    database: drizzleAdapter(db, {
+      provider: 'sqlite',
+      usePlural: true,
+    }),
+    logger: {
+      log: (level, message) => {
+        logger[level](message)
+      },
     },
-  },
-  emailAndPassword: {
-    enabled: true,
-  },
-  // Can be removed when upgrading to v1.3.8
-  telemetry: {
-    enabled: false,
-  },
-})
+    emailAndPassword: {
+      enabled: true,
+    },
+    // Can be removed when upgrading to v1.3.8
+    telemetry: {
+      enabled: false,
+    },
+  })
+}
 
-export type Auth = typeof auth
-export type Session = typeof auth.$Infer.Session
+export type Auth = ReturnType<typeof createBetterAuth>
+export type Session = Auth['$Infer']['Session']

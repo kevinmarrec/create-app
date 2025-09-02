@@ -1,17 +1,16 @@
+import { authed, pub } from '@backend/orpc/builder'
 import { authMiddleware } from '@backend/orpc/middlewares/auth'
 import { copyHeaders } from '@backend/utils/headers'
 import * as v from 'valibot'
 
-import { authed, base } from '../builder'
-
-export const getCurrentUser = base
+export const getCurrentUser = pub
   .use(authMiddleware)
   .handler(async ({ context }) => context.user)
 
 export const secure = authed
   .handler(async ({ context }) => context.user)
 
-export const signUp = base
+export const signUp = pub
   .input(v.object({
     name: v.string(),
     email: v.pipe(v.string(), v.email()),
@@ -29,7 +28,7 @@ export const signUp = base
     return response.user
   })
 
-export const signIn = base
+export const signIn = pub
   .input(v.object({
     email: v.pipe(v.string(), v.email()),
     password: v.string(),
@@ -46,7 +45,7 @@ export const signIn = base
     return response.user
   })
 
-export const signOut = base
+export const signOut = pub
   .handler(async ({ context: { auth, reqHeaders, resHeaders } }) => {
     const { headers, response } = await auth.api.signOut({
       headers: reqHeaders ?? new Headers(),

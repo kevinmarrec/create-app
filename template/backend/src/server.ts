@@ -1,10 +1,12 @@
 import process from 'node:process'
 
-import { auth } from './auth'
+import { createBetterAuth } from './auth'
 import { hostname, port } from './config/server'
 import { db } from './database'
 import { logger } from './logger'
 import { rpcHandler } from './orpc'
+
+const auth = createBetterAuth({ db, logger })
 
 const server = Bun.serve({
   hostname,
