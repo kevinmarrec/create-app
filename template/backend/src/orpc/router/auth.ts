@@ -1,13 +1,10 @@
-import { authed, pub } from '@backend/orpc/builder'
+import { pub } from '@backend/orpc/builder'
 import { authMiddleware } from '@backend/orpc/middlewares/auth'
 import { copyHeaders } from '@backend/utils/headers'
 import * as v from 'valibot'
 
 export const getCurrentUser = pub
   .use(authMiddleware)
-  .handler(async ({ context }) => context.user)
-
-export const secure = authed
   .handler(async ({ context }) => context.user)
 
 export const signUp = pub

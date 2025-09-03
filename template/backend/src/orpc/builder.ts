@@ -9,5 +9,6 @@ export const pub = os
     UNAUTHORIZED: { status: 401 },
   })
 
+/** @beta */
 export const authed = pub
   .use(requiredAuthMiddleware)
