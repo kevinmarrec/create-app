@@ -16,10 +16,6 @@ export function createBetterAuth<T extends { db: DB, logger: BaseLogger }>({ db,
     emailAndPassword: {
       enabled: true,
     },
-    // Can be removed when upgrading to v1.3.8
-    telemetry: {
-      enabled: false,
-    },
   })
 }
 
