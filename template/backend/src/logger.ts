@@ -1,9 +1,7 @@
 import pino from 'pino'
 
-import { level } from './config/logger'
-
 export const logger = pino({
-  level,
+  level: import.meta.env.LOG_LEVEL ?? 'info',
   base: {},
 })
 

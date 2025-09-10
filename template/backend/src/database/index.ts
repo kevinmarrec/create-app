@@ -1,11 +1,10 @@
-import { casing, url } from '@backend/config/database'
 import { logger } from '@backend/logger'
 import { drizzle } from 'drizzle-orm/bun-sqlite'
 
 import * as schema from './schema'
 
-export const db = drizzle(url, {
-  casing,
+export const db = drizzle(import.meta.env.DATABASE_URL, {
+  casing: 'snake_case',
   schema,
   logger: import.meta.env.NODE_ENV === 'development' && {
     logQuery: (query, params) => {

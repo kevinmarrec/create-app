@@ -1,7 +1,6 @@
 import process from 'node:process'
 
 import { createBetterAuth } from './auth'
-import { hostname, port } from './config/server'
 import { db } from './database'
 import { logger } from './logger'
 import { rpcHandler } from './orpc'
@@ -9,8 +8,8 @@ import { rpcHandler } from './orpc'
 const auth = createBetterAuth({ db, logger })
 
 const server = Bun.serve({
-  hostname,
-  port,
+  hostname: import.meta.env.HOST ?? '0.0.0.0',
+  port: import.meta.env.PORT ?? 4000,
   async fetch(request) {
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',

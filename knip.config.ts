@@ -15,9 +15,6 @@ export default {
       entry: ['*.config.ts'],
     },
     'template/backend': {
-      drizzle: {
-        config: ['src/config/drizzle.ts'],
-      },
       ignoreDependencies: ['pino-pretty'],
     },
     'template/frontend': {

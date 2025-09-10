@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "bun --watch --no-clear-screen src/server.ts",
     "build": "bun build src/server.ts --compile --minify --sourcemap --outfile dist/server",
-    "db:generate": "bun --bun run drizzle-kit generate --config src/config/drizzle.ts",
-    "db:migrate": "bun --bun run drizzle-kit migrate --config src/config/drizzle.ts"
+    "db:generate": "bun --bun run drizzle-kit generate",
+    "db:migrate": "bun --bun run drizzle-kit migrate"
   },
   "dependencies": {
     "@orpc/server": "^1.8.6",
