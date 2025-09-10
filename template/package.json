@@ -21,14 +21,14 @@
     "lint:inspect": "bunx @eslint/config-inspector"
   },
   "devDependencies": {
-    "@kevinmarrec/eslint-config": "^1.1.0",
+    "@kevinmarrec/eslint-config": "^1.2.0",
     "@kevinmarrec/stylelint-config": "^1.1.0",
     "@kevinmarrec/tsconfig": "^1.0.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.35.0",
     "knip": "^5.63.1",
-    "stylelint": "^16.23.1",
-    "taze": "^19.5.0",
+    "stylelint": "^16.24.0",
+    "taze": "^19.6.0",
     "typescript": "~5.9.2",
     "vue-tsc": "^3.0.6"
   }
