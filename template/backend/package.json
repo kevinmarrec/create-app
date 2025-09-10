@@ -3,8 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch --no-clear-screen src/server.ts",
-    "build": "bun build src/server.ts --compile --minify --sourcemap --outfile dist/server",
+    "dev": "bun --watch --no-clear-screen src/main.ts",
+    "build": "bun build src/main.ts --compile --minify --sourcemap --outfile dist/server",
     "db:generate": "bun --bun run drizzle-kit generate",
     "db:migrate": "bun --bun run drizzle-kit migrate"
   },

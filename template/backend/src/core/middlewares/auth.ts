@@ -1,5 +1,5 @@
 import type { Session } from '@backend/auth'
-import type { Context } from '@backend/orpc/context'
+import type { Context } from '@backend/core/context'
 import { copyHeaders } from '@backend/utils/headers'
 import { ORPCError, os } from '@orpc/server'
 

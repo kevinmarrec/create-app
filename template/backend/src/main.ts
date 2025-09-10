@@ -1,9 +1,9 @@
 import process from 'node:process'
 
 import { createBetterAuth } from './auth'
+import { rpcHandler } from './core'
 import { db } from './database'
-import { logger } from './logger'
-import { rpcHandler } from './orpc'
+import { logger } from './utils/logger'
 
 const auth = createBetterAuth({ db, logger })
 

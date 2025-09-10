@@ -2,7 +2,7 @@ import { betterAuth } from 'better-auth'
 import { type DB, drizzleAdapter } from 'better-auth/adapters/drizzle'
 import type { BaseLogger } from 'pino'
 
-export function createBetterAuth<T extends { db: DB, logger: BaseLogger }>({ db, logger }: T) {
+export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger }) {
   return betterAuth({
     database: drizzleAdapter(db, {
       provider: 'sqlite',

@@ -1,5 +1,5 @@
-import { pub } from '@backend/orpc/builder'
-import { authMiddleware } from '@backend/orpc/middlewares/auth'
+import { pub } from '@backend/core/builder'
+import { authMiddleware } from '@backend/core/middlewares/auth'
 import { copyHeaders } from '@backend/utils/headers'
 import * as v from 'valibot'
 

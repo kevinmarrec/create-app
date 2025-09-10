@@ -1,4 +1,4 @@
-import { logger } from '@backend/logger'
+import { logger } from '@backend/utils/logger'
 import { drizzle } from 'drizzle-orm/bun-sqlite'
 
 import * as schema from './schema'
