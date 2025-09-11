@@ -6,11 +6,11 @@ import * as schema from './schema'
 export const db = drizzle(import.meta.env.DATABASE_URL, {
   casing: 'snake_case',
   schema,
-  logger: import.meta.env.NODE_ENV === 'development' && {
+  logger: {
     logQuery: (query, params) => {
       let msg = `[SQL] ${query}`
       msg += params.length ? ` [${params}]` : ''
-      logger.info(msg)
+      logger.debug(msg)
     },
   },
 })
