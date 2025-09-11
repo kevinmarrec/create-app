@@ -1,4 +1,4 @@
-import type { Router, RouterClient } from '@backend/orpc/router'
+import type { Router, RouterClient } from '@backend/core/router'
 import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
 import { createTanstackQueryUtils } from '@orpc/tanstack-query'
