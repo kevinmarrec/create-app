@@ -9,7 +9,7 @@ export const rpcHandler = new RPCHandler(router, {
   plugins: [
     new CORSPlugin({
       credentials: true,
-      origin: origin => origin,
+      maxAge: 7200, // 2 hours https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Max-Age
     }),
     new RequestHeadersPlugin(),
     new ResponseHeadersPlugin(),
