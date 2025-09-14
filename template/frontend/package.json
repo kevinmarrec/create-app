@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@kevinmarrec/vue-i18n": "^1.0.0",
-    "@orpc/client": "^1.8.7",
+    "@orpc/client": "^1.8.8",
     "@orpc/tanstack-query": "1.6.4",
     "@tanstack/vue-query": "^5.87.4",
     "@unhead/vue": "^2.0.14",
@@ -28,7 +28,7 @@
     "beasties": "^0.3.5",
     "rollup-plugin-visualizer": "^6.0.3",
     "vite": "^7.1.5",
-    "vite-plugin-vue-devtools": "^8.0.1",
+    "vite-plugin-vue-devtools": "^8.0.2",
     "vite-ssg": "^28.1.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
