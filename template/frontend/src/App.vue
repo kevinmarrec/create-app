@@ -27,29 +27,29 @@ const password = ref('')
             <div>
               <label for="email" class="text-sm text-gray-700 font-medium mb-2 block dark:text-gray-300">
                 Email
-                <input
-                  id="email"
-                  v-model="email"
-                  type="email"
-                  class="px-3 py-2 border border-gray-300 rounded-md w-full shadow-sm dark:text-white focus:outline-none dark:border-gray-600 focus:border-blue-500 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your email"
-                  required
-                >
               </label>
+              <input
+                id="email"
+                v-model="email"
+                type="email"
+                class="px-3 py-2 border border-gray-300 rounded-md w-full shadow-sm dark:text-white focus:outline-none dark:border-gray-600 focus:border-blue-500 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your email"
+                required
+              >
             </div>
 
             <div>
               <label for="password" class="text-sm text-gray-700 font-medium mb-2 block dark:text-gray-300">
                 Password
-                <input
-                  id="password"
-                  v-model="password"
-                  type="password"
-                  class="px-3 py-2 border border-gray-300 rounded-md w-full shadow-sm dark:text-white focus:outline-none dark:border-gray-600 focus:border-blue-500 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your password"
-                  required
-                >
               </label>
+              <input
+                id="password"
+                v-model="password"
+                type="password"
+                class="px-3 py-2 border border-gray-300 rounded-md w-full shadow-sm dark:text-white focus:outline-none dark:border-gray-600 focus:border-blue-500 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your password"
+                required
+              >
             </div>
 
             <div v-if="signIn.error" class="text-sm text-red-600 dark:text-red-400">
