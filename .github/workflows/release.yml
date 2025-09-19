@@ -15,7 +15,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -36,10 +36,11 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Publish
-        run: npm publish --provenance --access public --tag ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --tag ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
 
       - name: Create release notes
         run: bunx changelogithub

@@ -9,25 +9,25 @@
     "preview": "vite preview --open"
   },
   "dependencies": {
-    "@kevinmarrec/vue-i18n": "^1.0.0",
+    "@kevinmarrec/vue-i18n": "^1.1.0",
     "@orpc/client": "^1.8.9",
     "@orpc/tanstack-query": "1.6.4",
-    "@tanstack/vue-query": "^5.87.4",
-    "@unhead/vue": "^2.0.14",
+    "@tanstack/vue-query": "^5.89.0",
+    "@unhead/vue": "^2.0.17",
     "@vueuse/core": "^13.9.0",
     "unocss": "^66.5.1",
     "vue": "^3.5.21"
   },
   "devDependencies": {
-    "@kevinmarrec/unocss-config": "^1.2.0",
-    "@kevinmarrec/vite-plugin-dark-mode": "^1.0.0",
+    "@kevinmarrec/unocss-config": "^1.3.0",
+    "@kevinmarrec/vite-plugin-dark-mode": "^1.1.0",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
-    "@unhead/addons": "^2.0.14",
+    "@unhead/addons": "^2.0.17",
     "@unocss/vite": "^66.5.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "beasties": "^0.3.5",
     "rollup-plugin-visualizer": "^6.0.3",
-    "vite": "^7.1.5",
+    "vite": "^7.1.6",
     "vite-plugin-vue-devtools": "^8.0.2",
     "vite-ssg": "^28.1.0",
     "vite-tsconfig-paths": "^5.1.4"
