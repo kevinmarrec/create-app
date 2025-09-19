@@ -20,4 +20,3 @@ export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger })
 }
 
 export type Auth = ReturnType<typeof createBetterAuth>
-export type Session = Auth['$Infer']['Session']

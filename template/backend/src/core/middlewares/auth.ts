@@ -1,4 +1,3 @@
-import type { Session } from '@backend/auth'
 import type { Context } from '@backend/core/context'
 import { copyHeaders } from '@backend/utils/headers'
 import { ORPCError, os } from '@orpc/server'
@@ -6,14 +5,12 @@ import { ORPCError, os } from '@orpc/server'
 export const authMiddleware = os
   .$context<Context>()
   .middleware(async ({ context, next }) => {
-    const response = await context.auth.api.getSession({
+    const { headers, response: session } = await context.auth.api.getSession({
       headers: context.reqHeaders ?? new Headers(),
-      asResponse: true,
+      returnHeaders: true,
     })
 
-    const session = await response.json() as Session | null
-
-    copyHeaders(response.headers, context.resHeaders)
+    copyHeaders(headers, context.resHeaders)
 
     return next({
       context: {
