@@ -14,7 +14,6 @@
     "@orpc/tanstack-query": "1.6.4",
     "@tanstack/vue-query": "^5.89.0",
     "@unhead/vue": "^2.0.17",
-    "@vueuse/core": "^13.9.0",
     "unocss": "^66.5.1",
     "vue": "^3.5.21"
   },
