@@ -1,9 +1,9 @@
-import { welcome } from './welcome'
+import * as auth from './auth'
 
 export type { RouterClient } from '@orpc/server'
 
 export const router = {
-  welcome,
+  auth,
 }
 
 export type Router = typeof router

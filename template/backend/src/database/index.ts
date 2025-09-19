@@ -1,16 +1,16 @@
-import { url } from '@backend/config/database'
-import { logger } from '@backend/logger'
+import { logger } from '@backend/utils/logger'
 import { drizzle } from 'drizzle-orm/bun-sqlite'
 
 import * as schema from './schema'
 
-export const db = drizzle(url, {
+export const db = drizzle(import.meta.env.DATABASE_URL, {
+  casing: 'snake_case',
   schema,
   logger: {
     logQuery: (query, params) => {
       let msg = `[SQL] ${query}`
       msg += params.length ? ` [${params}]` : ''
-      logger.info(msg)
+      logger.debug(msg)
     },
   },
 })

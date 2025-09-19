@@ -3,13 +3,14 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch --no-clear-screen src/server.ts",
-    "build": "bun build src/server.ts --compile --minify --sourcemap --outfile dist/server",
-    "db:generate": "bun --bun run drizzle-kit generate --config src/config/drizzle.ts",
-    "db:migrate": "bun --bun run drizzle-kit migrate --config src/config/drizzle.ts"
+    "dev": "bun --watch --no-clear-screen src/main.ts",
+    "build": "bun build src/main.ts --compile --minify --sourcemap --outfile dist/server",
+    "db:generate": "bun --bun run drizzle-kit generate --config src/database/drizzle.config.ts",
+    "db:migrate": "bun --bun run drizzle-kit migrate --config src/database/drizzle.config.ts"
   },
   "dependencies": {
     "@orpc/server": "^1.8.9",
+    "better-auth": "^1.3.12",
     "drizzle-orm": "^0.44.5",
     "pino": "^9.10.0",
     "valibot": "^1.1.0"

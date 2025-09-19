@@ -1,12 +1,11 @@
 import { sqliteTable } from 'drizzle-orm/sqlite-core'
 
-// https://www.better-auth.com/docs/concepts/database#user
-export const users = sqliteTable('users', t => ({
+// https://www.better-auth.com/docs/concepts/database#verification
+export const verifications = sqliteTable('verifications', t => ({
   id: t.text().primaryKey(),
-  name: t.text().notNull(),
-  email: t.text().notNull().unique(),
-  emailVerified: t.integer({ mode: 'boolean' }).notNull().default(false),
-  image: t.text(),
+  identifier: t.text().notNull(),
+  value: t.text().notNull(),
+  expiresAt: t.integer({ mode: 'timestamp' }).notNull(),
   createdAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
   updatedAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()).$onUpdate(() => new Date()),
 }))
