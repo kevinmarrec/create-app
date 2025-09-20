@@ -8,46 +8,7 @@ on:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      contents: write
-      id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version-file: package.json
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          registry-url: https://registry.npmjs.org
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build
-        run: bun run build
-
-      - name: Update npm
-        run: npm install -g npm@latest
-
-      - name: Publish
-        run: npm publish --access public --tag ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
-
-      - name: Create release notes
-        run: bunx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cleanup skipped workflow runs on main branch
-        run: gh run list --workflow ci.yml --branch main --status skipped --json databaseId --jq '.[].databaseId' | xargs -rn 1 gh run delete
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: kevinmarrec/workflows/.github/workflows/release.yml@v1
+    with:
+      publish: true
+      workflow-cleanup: ci.yml

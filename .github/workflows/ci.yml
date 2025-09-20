@@ -15,21 +15,8 @@ jobs:
     if: |
       !startsWith(github.event.head_commit.message, 'chore: release')
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version-file: package.json
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
+      - name: Setup Bun
+        uses: kevinmarrec/workflows/setup-bun@v1
 
       - name: Check unused files, dependencies, and exports
         run: bun run check:unused
