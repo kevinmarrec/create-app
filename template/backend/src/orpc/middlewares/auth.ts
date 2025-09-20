@@ -1,5 +1,4 @@
-import type { Context } from '@backend/core/context'
-import { copyHeaders } from '@backend/utils/headers'
+import type { Context } from '@backend/orpc'
 import { ORPCError, os } from '@orpc/server'
 
 export const authMiddleware = os
@@ -10,7 +9,7 @@ export const authMiddleware = os
       returnHeaders: true,
     })
 
-    copyHeaders(headers, context.resHeaders)
+    headers.forEach((v, k) => context.resHeaders?.append(k, v))
 
     return next({
       context: {

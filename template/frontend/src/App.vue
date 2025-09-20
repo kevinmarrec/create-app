@@ -52,8 +52,8 @@ const password = ref('')
               >
             </div>
 
-            <div v-if="signIn.error" class="text-sm text-red-600 dark:text-red-400">
-              {{ signIn.error }}
+            <div v-if="signIn.error.value || signUp.error.value" class="text-sm text-red-600 dark:text-red-400">
+              {{ signIn.error.value || signUp.error.value }}
             </div>
 
             <div class="flex space-x-3">

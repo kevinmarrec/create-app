@@ -1,6 +1,5 @@
-import { pub } from '@backend/core/builder'
-import { authMiddleware } from '@backend/core/middlewares/auth'
-import { copyHeaders } from '@backend/utils/headers'
+import { pub } from '@backend/orpc'
+import { authMiddleware } from '@backend/orpc/middlewares'
 import * as v from 'valibot'
 
 export const getCurrentUser = pub
@@ -20,7 +19,7 @@ export const signUp = pub
       returnHeaders: true,
     })
 
-    copyHeaders(headers, resHeaders)
+    headers.forEach((v, k) => resHeaders?.append(k, v))
 
     return response.user
   })
@@ -37,7 +36,7 @@ export const signIn = pub
       returnHeaders: true,
     })
 
-    copyHeaders(headers, resHeaders)
+    headers.forEach((v, k) => resHeaders?.append(k, v))
 
     return response.user
   })
@@ -49,7 +48,7 @@ export const signOut = pub
       returnHeaders: true,
     })
 
-    copyHeaders(headers, resHeaders)
+    headers.forEach((v, k) => resHeaders?.append(k, v))
 
     return response
   })

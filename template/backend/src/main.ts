@@ -1,11 +1,13 @@
 import process from 'node:process'
 
-import { createBetterAuth } from './auth'
-import { rpcHandler } from './core'
-import { db } from './database'
-import { logger } from './utils/logger'
+import { createBetterAuth } from '@backend/auth'
+import { db } from '@backend/database'
+import { createRpcHandler } from '@backend/orpc'
+import { router } from '@backend/orpc/router'
+import { logger } from '@backend/utils/logger'
 
 const auth = createBetterAuth({ db, logger })
+const rpcHandler = createRpcHandler(router)
 
 const server = Bun.serve({
   hostname: import.meta.env.HOST ?? '0.0.0.0',

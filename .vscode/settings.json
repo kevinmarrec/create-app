@@ -41,7 +41,6 @@
     "jsonc",
     "yaml"
   ],
-
   "css.validate": false,
   "scss.validate": false,
 
@@ -50,6 +49,10 @@
     "scss",
     "vue"
   ],
+
+  "material-icon-theme.folders.associations": {
+    "orpc": "context"
+  },
 
   "javascript.format.semicolons": "remove",
   "javascript.preferences.quoteStyle": "single",
