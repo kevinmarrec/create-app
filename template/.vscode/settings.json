@@ -51,6 +51,10 @@
     "vue"
   ],
 
+  "material-icon-theme.folders.associations": {
+    "orpc": "context"
+  },
+
   "javascript.format.semicolons": "remove",
   "javascript.preferences.quoteStyle": "single",
   "typescript.format.semicolons": "remove",
