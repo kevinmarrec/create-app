@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "@libsql/client": "^0.15.15",
-    "@types/bun": "^1.2.22",
-    "drizzle-kit": "^0.31.4",
+    "@types/bun": "^1.2.23",
+    "drizzle-kit": "^0.31.5",
     "pino-pretty": "^13.1.1"
   }
 }
