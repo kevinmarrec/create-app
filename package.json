@@ -58,7 +58,7 @@
     "bumpp": "^10.2.3",
     "eslint": "^9.36.0",
     "knip": "^5.64.1",
-    "stylelint": "^16.24.0",
+    "stylelint": "^16.25.0",
     "taze": "^19.7.0",
     "tsdown": "^0.15.6",
     "typescript": "^5.9.3",
