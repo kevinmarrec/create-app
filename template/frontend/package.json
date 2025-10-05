@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@kevinmarrec/vue-i18n": "^1.1.1",
-    "@orpc/client": "^1.8.9",
-    "@orpc/tanstack-query": "1.9.2",
+    "@orpc/client": "^1.9.3",
+    "@orpc/tanstack-query": "1.9.3",
     "@tanstack/vue-query": "^5.90.2",
     "@unhead/vue": "^2.0.17",
     "unocss": "^66.5.2",

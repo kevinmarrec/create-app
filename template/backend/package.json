@@ -9,8 +9,8 @@
     "db:migrate": "bun --bun run drizzle-kit migrate --config src/database/drizzle/config.ts"
   },
   "dependencies": {
-    "@orpc/server": "^1.9.2",
-    "better-auth": "^1.3.25",
+    "@orpc/server": "^1.9.3",
+    "better-auth": "^1.3.26",
     "drizzle-orm": "^0.44.6",
     "pino": "^10.0.0",
     "valibot": "^1.1.0"
