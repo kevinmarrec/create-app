@@ -25,11 +25,11 @@
     "@kevinmarrec/stylelint-config": "^1.2.1",
     "@kevinmarrec/tsconfig": "^1.1.0",
     "concurrently": "^9.2.1",
-    "eslint": "^9.36.0",
-    "knip": "^5.64.1",
+    "eslint": "^9.37.0",
+    "knip": "^5.64.2",
     "stylelint": "^16.25.0",
     "taze": "^19.7.0",
     "typescript": "~5.9.3",
-    "vue-tsc": "^3.1.0"
+    "vue-tsc": "^3.1.1"
   }
 }
