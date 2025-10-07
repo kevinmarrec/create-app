@@ -21,7 +21,7 @@
     "@kevinmarrec/unocss-config": "^1.3.2",
     "@kevinmarrec/vite-plugin-dark-mode": "^1.1.1",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
-    "@unhead/addons": "^2.0.17",
+    "@unhead/addons": "^2.0.18",
     "@unocss/vite": "^66.5.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "beasties": "^0.3.5",
