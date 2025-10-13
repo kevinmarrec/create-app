@@ -18,7 +18,8 @@
     "check:unused": "knip -n",
     "dev": "bun scripts/dev.ts",
     "lint": "bun run check:eslint && bun run check:stylelint",
-    "lint:inspect": "bunx @eslint/config-inspector"
+    "lint:inspect": "bunx @eslint/config-inspector",
+    "update": "bunx taze -I -rwi"
   },
   "devDependencies": {
     "@kevinmarrec/eslint-config": "^1.5.1",
@@ -28,7 +29,6 @@
     "eslint": "^9.37.0",
     "knip": "^5.64.3",
     "stylelint": "^16.25.0",
-    "taze": "^19.7.0",
     "typescript": "~5.9.3",
     "vue-tsc": "^3.1.1"
   }

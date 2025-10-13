@@ -39,6 +39,7 @@
     "lint:inspect": "bunx @eslint/config-inspector",
     "playground": "bun --cwd template dev",
     "release": "bumpp",
+    "update": "bunx taze -I -rwi",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
   },
@@ -59,7 +60,6 @@
     "eslint": "^9.37.0",
     "knip": "^5.64.3",
     "stylelint": "^16.25.0",
-    "taze": "^19.7.0",
     "tsdown": "^0.15.6",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4",
