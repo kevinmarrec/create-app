@@ -5,6 +5,11 @@ import { ref } from 'vue'
 const { t } = useI18n()
 useHead({
   title: () => t('title'),
+  link: [{
+    rel: 'preconnect',
+    href: new URL(import.meta.env.VITE_API_URL).origin,
+    crossorigin: '',
+  }],
 })
 
 const { user, signUp, signIn, signOut } = useAuth()
