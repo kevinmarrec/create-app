@@ -12,7 +12,7 @@
     "@kevinmarrec/vue-i18n": "^1.1.1",
     "@orpc/client": "^1.9.3",
     "@orpc/tanstack-query": "1.9.3",
-    "@tanstack/vue-query": "^5.90.2",
+    "@tanstack/vue-query": "^5.90.3",
     "@unhead/vue": "^2.0.19",
     "unocss": "^66.5.3",
     "vue": "^3.5.22"
