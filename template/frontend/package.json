@@ -15,7 +15,7 @@
     "@tanstack/query-core": "^5.90.3",
     "@tanstack/vue-query": "^5.90.3",
     "@unhead/vue": "^2.0.19",
-    "unocss": "^66.5.3",
+    "unocss": "^66.5.4",
     "vue": "^3.5.22"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
     "@kevinmarrec/vite-plugin-dark-mode": "^1.1.2",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unhead/addons": "^2.0.19",
-    "@unocss/vite": "^66.5.3",
+    "@unocss/vite": "^66.5.4",
     "@vitejs/plugin-vue": "^6.0.1",
     "beasties": "^0.3.5",
     "rollup-plugin-visualizer": "^6.0.4",
