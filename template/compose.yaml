@@ -16,7 +16,7 @@ services:
     <<: *common
     depends_on:
       - backend
-    image: imbios/bun-node:22-alpine
+    image: imbios/bun-node:24-alpine
     command: [bun, --cwd, frontend, dev, --host, 0.0.0.0]
     ports:
       - 5173:5173
