@@ -1,0 +1,6 @@
+{
+  "name": "example",
+  "compatibility_date": "2025-10-01",
+  "assets": { "directory": "./dist" },
+  "routes": [{ "pattern": "example.com", "custom_domain": true }]
+}
