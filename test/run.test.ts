@@ -64,6 +64,7 @@ describe('run', () => {
     expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Scaffolded project'))
     expect(await exists(resolveProjectPath('package.json'))).toBe(true)
     expect(await exists(resolveProjectPath('.gitignore'))).toBe(true)
+    expect(await exists(resolveProjectPath('.npmrc'))).toBe(true)
   })
 
   it('create-app [DIRECTORY] (directory does not exist)', async () => {
