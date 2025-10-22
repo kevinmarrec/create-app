@@ -41,7 +41,7 @@
     "release": "bumpp",
     "update": "bunx taze -I -rwi",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@clack/prompts": "^0.11.0",
