@@ -72,8 +72,9 @@ Options:
   const targetDir = resolve(cwd, projectName)
 
   // Overwrite check
+  const warnOverwrite = !(await fs.emptyCheck(targetDir) || options.force)
 
-  if (!((await fs.emptyCheck(targetDir) || options.force))) {
+  if (warnOverwrite) {
     await log.warn(`${targetDir === cwd ? 'Current directory' : `Target directory ${c.blue(targetDir)}`} is not empty`)
 
     const shouldOverwrite = await confirm({
