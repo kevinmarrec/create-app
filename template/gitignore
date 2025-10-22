@@ -10,6 +10,7 @@
 .stylelintcache
 .temp
 .vite*
+.wrangler
 coverage
 dev-dist
 dist
