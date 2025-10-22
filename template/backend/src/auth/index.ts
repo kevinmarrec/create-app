@@ -5,7 +5,7 @@ import type { BaseLogger } from 'pino'
 export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger }) {
   return betterAuth({
     database: drizzleAdapter(db, {
-      provider: 'sqlite',
+      provider: 'pg',
       usePlural: true,
     }),
     logger: {

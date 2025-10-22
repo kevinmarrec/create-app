@@ -1,11 +1,11 @@
-import { sqliteTable } from 'drizzle-orm/sqlite-core'
+import { pgTable } from 'drizzle-orm/pg-core'
 
 // https://www.better-auth.com/docs/concepts/database#verification
-export const verifications = sqliteTable('verifications', t => ({
+export const verifications = pgTable('verifications', t => ({
   id: t.text().primaryKey(),
   identifier: t.text().notNull(),
   value: t.text().notNull(),
-  expiresAt: t.integer({ mode: 'timestamp' }).notNull(),
-  createdAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
-  updatedAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()).$onUpdate(() => new Date()),
+  expiresAt: t.timestamp().notNull(),
+  createdAt: t.timestamp().notNull().defaultNow(),
+  updatedAt: t.timestamp().notNull().defaultNow().$onUpdate(() => new Date()),
 }))
