@@ -36,7 +36,7 @@ Usage: create-app [OPTIONS...] [DIRECTORY]
 Options:
   -f, --force     Create the project even if the directory is not empty.
   -h, --help      Display this help message.
-  --version       Display the version number of this CLI.
+  -v, --version       Display the version number of this CLI.
 `)
     process.exit(0)
   }
