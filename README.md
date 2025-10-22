@@ -12,7 +12,7 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh) & [Vue](https://vuejs.or
 
 ## Usage
 
-> Requires [Bun](https://bun.sh) v1.2 _or later_.
+> Requires [Bun](https://bun.sh) v1.3 _or later_.
 
 ```sh
 bun create @kevinmarrec/app
