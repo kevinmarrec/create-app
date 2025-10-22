@@ -1,12 +1,12 @@
-import { sqliteTable } from 'drizzle-orm/sqlite-core'
+import { pgTable } from 'drizzle-orm/pg-core'
 
 // https://www.better-auth.com/docs/concepts/database#user
-export const users = sqliteTable('users', t => ({
+export const users = pgTable('users', t => ({
   id: t.text().primaryKey(),
   name: t.text().notNull(),
   email: t.text().notNull().unique(),
-  emailVerified: t.integer({ mode: 'boolean' }).notNull().default(false),
+  emailVerified: t.boolean().notNull().default(false),
   image: t.text(),
-  createdAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
-  updatedAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()).$onUpdate(() => new Date()),
+  createdAt: t.timestamp().notNull().defaultNow(),
+  updatedAt: t.timestamp().notNull().defaultNow().$onUpdate(() => new Date()),
 }))

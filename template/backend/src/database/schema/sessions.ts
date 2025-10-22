@@ -1,15 +1,15 @@
-import { sqliteTable } from 'drizzle-orm/sqlite-core'
+import { pgTable } from 'drizzle-orm/pg-core'
 
 import { users } from './users'
 
 // https://www.better-auth.com/docs/concepts/database#session
-export const sessions = sqliteTable('sessions', t => ({
+export const sessions = pgTable('sessions', t => ({
   id: t.text().primaryKey(),
   userId: t.text().notNull().references(() => users.id, { onDelete: 'cascade' }),
   token: t.text().notNull().unique(),
-  expiresAt: t.integer({ mode: 'timestamp' }).notNull(),
+  expiresAt: t.timestamp().notNull(),
   ipAddress: t.text(),
   userAgent: t.text(),
-  createdAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
-  updatedAt: t.integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()).$onUpdate(() => new Date()),
+  createdAt: t.timestamp().notNull().defaultNow(),
+  updatedAt: t.timestamp().notNull().defaultNow().$onUpdate(() => new Date()),
 }))
