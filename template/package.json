@@ -11,7 +11,7 @@
     "frontend"
   ],
   "scripts": {
-    "check": "bun run check:unused && bun run check:eslint && bun run check:stylelint && bun run check:types",
+    "check": "bun run check:eslint && bun run check:stylelint && bun run check:unused && bun run check:types",
     "check:eslint": "eslint . --cache",
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
     "check:types": "vue-tsc --noEmit",

@@ -16,11 +16,11 @@ jobs:
       - name: Setup Bun
         uses: kevinmarrec/workflows/setup-bun@v1
 
+      - name: Lint
+        run: bun run lint
+
       - name: Check unused files, dependencies, and exports
         run: bun run check:unused
-
-      - name: Lint
-        run: bun run check:eslint && bun run check:stylelint
 
       - name: Type check
         run: bun run check:types
