@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    reporters: ['verbose', 'github-actions'],
+    reporters: ['verbose'],
     coverage: {
       include: ['src/**/*.ts'],
       reporter: ['text', 'text-summary', 'json', 'json-summary'],
