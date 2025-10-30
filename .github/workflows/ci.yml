@@ -35,3 +35,19 @@ jobs:
         with:
           file-coverage-mode: all
           comment-on: none
+  template-size:
+    name: Analyze template build size
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Bun
+        uses: kevinmarrec/workflows/setup-bun@v1
+
+      - name: Check backend build size
+        run: |
+          echo "## Backend" >> $GITHUB_STEP_SUMMARY
+          bun run bin/build-stats.md.ts template/backend >> $GITHUB_STEP_SUMMARY
+
+      - name: Check frontend build size
+        run: |
+          echo "## Frontend" >> $GITHUB_STEP_SUMMARY
+          bun run bin/build-stats.md.ts template/frontend >> $GITHUB_STEP_SUMMARY
