@@ -22,9 +22,9 @@
     "update": "bunx taze -I -rwi"
   },
   "devDependencies": {
-    "@kevinmarrec/eslint-config": "^1.5.3",
-    "@kevinmarrec/stylelint-config": "^1.2.2",
-    "@kevinmarrec/tsconfig": "^1.1.0",
+    "@kevinmarrec/eslint-config": "^1.5.4",
+    "@kevinmarrec/stylelint-config": "^1.5.4",
+    "@kevinmarrec/tsconfig": "^1.5.4",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.0",
     "knip": "^5.66.4",
