@@ -51,9 +51,9 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
-    "@kevinmarrec/eslint-config": "^1.5.3",
-    "@kevinmarrec/stylelint-config": "^1.2.2",
-    "@kevinmarrec/tsconfig": "^1.1.0",
+    "@kevinmarrec/eslint-config": "^1.5.4",
+    "@kevinmarrec/stylelint-config": "^1.5.4",
+    "@kevinmarrec/tsconfig": "^1.5.4",
     "@types/bun": "^1.3.1",
     "@vitest/coverage-v8": "^4.0.6",
     "bumpp": "^10.3.1",
