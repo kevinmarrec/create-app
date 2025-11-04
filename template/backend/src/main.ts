@@ -12,6 +12,25 @@ const rpcHandler = createRpcHandler(router)
 const server = Bun.serve({
   hostname: import.meta.env.HOST ?? '0.0.0.0',
   port: import.meta.env.PORT ?? 4000,
+  routes: {
+    '/auth/*': async (req) => {
+      if (req.method === 'OPTIONS') {
+        return new Response('OK', { headers: {
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET, HEAD, PUT, POST, DELETE, PATCH',
+          'Access-Control-Allow-Origin': req.headers.get('origin') ?? '*',
+          'Access-Control-Max-Age': '7200',
+        } })
+      }
+
+      const response = await auth.handler(req)
+
+      response.headers.append('Access-Control-Allow-Credentials', 'true')
+      response.headers.append('Access-Control-Allow-Origin', req.headers.get('origin') ?? '*')
+
+      return response
+    },
+  },
   async fetch(request) {
     const { matched, response } = await rpcHandler.handle(request, {
       prefix: '/rpc',

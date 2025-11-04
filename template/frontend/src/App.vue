@@ -12,7 +12,7 @@ useHead({
   }],
 })
 
-const { user, signUp, signIn, signOut } = useAuth()
+const { user, signUp, signUp2, signIn, signOut } = useAuth()
 
 const email = ref('')
 const password = ref('')
@@ -74,7 +74,7 @@ const password = ref('')
               <button
                 :disabled="signUp.isPending.value"
                 class="text-white font-medium px-4 py-2 rounded-md bg-green-600 flex-1 transition-colors duration-200 disabled:bg-green-400 hover:bg-green-700"
-                @click="signUp.mutate({ email, password, name: 'User' })"
+                @click="signUp2.mutate({ email, password })"
               >
                 <span v-if="signUp.isPending.value">Signing Up...</span>
                 <span v-else>Sign Up</span>
