@@ -12,7 +12,7 @@ useHead({
   }],
 })
 
-const { user, signUp, signIn, signOut, foo } = useAuth()
+const { user, signIn, signUp, signOut } = useAuth()
 
 const email = ref('')
 const password = ref('')
@@ -57,26 +57,28 @@ const password = ref('')
               >
             </div>
 
-            <div class="flex space-x-3">
-              <button
-                class="text-white font-medium px-4 py-2 rounded-md bg-blue-600 flex-1 transition-colors duration-200 disabled:bg-blue-400 hover:bg-blue-700"
-                @click="signIn({ email, password })"
-              >
-                Sign In
-              </button>
-
-              <button
-                class="text-white font-medium px-4 py-2 rounded-md bg-green-600 flex-1 transition-colors duration-200 disabled:bg-green-400 hover:bg-green-700"
-                @click="signUp({ email, password, name: 'User' })"
-              >
-                Sign Up
-              </button>
+            <div v-if="signIn.error.value || signUp.error.value" class="text-sm text-red-600 dark:text-red-400">
+              {{ signIn.error.value || signUp.error.value }}
             </div>
 
-            <div>
-              <p>
-                {{ foo }}
-              </p>
+            <div class="flex space-x-3">
+              <button
+                :disabled="signIn.isPending.value"
+                class="text-white font-medium px-4 py-2 rounded-md bg-blue-600 flex-1 transition-colors duration-200 disabled:bg-blue-400 hover:bg-blue-700"
+                @click="signIn.mutate({ email, password })"
+              >
+                <span v-if="signIn.isPending.value">Signing In...</span>
+                <span v-else>Sign In</span>
+              </button>
+
+              <button
+                :disabled="signUp.isPending.value"
+                class="text-white font-medium px-4 py-2 rounded-md bg-green-600 flex-1 transition-colors duration-200 disabled:bg-green-400 hover:bg-green-700"
+                @click="signUp.mutate({ email, password, name: 'User' })"
+              >
+                <span v-if="signUp.isPending.value">Signing Up...</span>
+                <span v-else>Sign Up</span>
+              </button>
             </div>
           </form>
         </div>
@@ -100,10 +102,12 @@ const password = ref('')
           </div>
 
           <button
+            :disabled="signOut.isPending.value"
             class="text-white font-medium px-4 py-2 rounded-md bg-red-600 w-full transition-colors duration-200 disabled:bg-red-400 hover:bg-red-700"
-            @click="signOut()"
+            @click="signOut.mutate()"
           >
-            Sign Out
+            <span v-if="signOut.isPending.value">Signing Out...</span>
+            <span v-else>Sign Out</span>
           </button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { orpc } from '@frontend/lib/orpc'
-import { useQuery } from '@tanstack/vue-query'
+import { useMutation, useQuery } from '@tanstack/vue-query'
 import { createAuthClient } from 'better-auth/vue'
 import { computed } from 'vue'
 
@@ -12,16 +12,31 @@ export const authClient = createAuthClient({
 
 const session = authClient.useSession()
 
+function createAuthMutation<T extends (...args: any[]) => any>(fn: T) {
+  return useMutation({
+    mutationFn: async (input: Parameters<T>[0]) => {
+      return fn(input, {
+        onError: ({ error }: any) => {
+          throw error
+        },
+      })
+    },
+  })
+}
+
 export function useAuth() {
-  const { data: foo } = useQuery(orpc.foo.foo.queryOptions({
-    retry: false,
-  }))
+  const signIn = createAuthMutation(authClient.signIn.email)
+  const signUp = createAuthMutation(authClient.signUp.email)
+  const signOut = createAuthMutation(authClient.signOut)
+
+  const foo = useQuery(orpc.foo.foo.queryOptions()).data
+  const user = computed(() => session.value.data?.user)
 
   return {
-    user: computed(() => session.value.data?.user),
-    signUp: authClient.signUp.email,
-    signIn: authClient.signIn.email,
-    signOut: authClient.signOut,
+    signIn,
+    signUp,
+    signOut,
     foo,
+    user,
   }
 }
