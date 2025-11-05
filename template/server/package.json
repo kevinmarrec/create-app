@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "server",
   "type": "module",
   "private": true,
   "scripts": {

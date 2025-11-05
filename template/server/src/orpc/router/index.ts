@@ -1,4 +1,4 @@
-import { authed, pub } from '@backend/orpc'
+import { authed, pub } from '@server/orpc'
 import * as v from 'valibot'
 
 export type { RouterClient } from '@orpc/server'

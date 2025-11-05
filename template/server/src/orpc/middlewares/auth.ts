@@ -1,5 +1,5 @@
-import type { Context } from '@backend/orpc'
 import { ORPCError, os } from '@orpc/server'
+import type { Context } from '@server/orpc'
 
 export const authMiddleware = os
   .$context<Context>()

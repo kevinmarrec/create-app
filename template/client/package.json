@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "client",
   "type": "module",
   "private": true,
   "scripts": {
