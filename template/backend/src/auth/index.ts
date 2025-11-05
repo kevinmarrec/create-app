@@ -4,8 +4,8 @@ import type { BaseLogger } from 'pino'
 
 export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger }) {
   return betterAuth({
-    trustedOrigins: ['http://localhost:5173'],
     basePath: '/auth',
+    trustedOrigins: import.meta.env.ALLOWED_ORIGINS.split(','),
     database: drizzleAdapter(db, {
       provider: 'pg',
       usePlural: true,

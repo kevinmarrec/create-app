@@ -4,7 +4,7 @@ import { RPCLink } from '@orpc/client/fetch'
 import { createTanstackQueryUtils } from '@orpc/tanstack-query'
 
 const link = new RPCLink({
-  url: import.meta.env.VITE_API_URL,
+  url: `${import.meta.env.VITE_API_URL}/rpc`,
   fetch: (request, init) =>
     globalThis.fetch(request, {
       ...init,

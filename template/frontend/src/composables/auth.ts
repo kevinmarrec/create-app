@@ -3,7 +3,7 @@ import { createAuthClient } from 'better-auth/vue'
 import { computed } from 'vue'
 
 const authClient = createAuthClient({
-  baseURL: `http://localhost:4000/auth`,
+  baseURL: `${import.meta.env.VITE_API_URL}/auth`,
   fetchOptions: {
     credentials: 'include',
   },
