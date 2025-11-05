@@ -1,5 +1,6 @@
-import { authed, pub } from '@server/orpc'
 import * as v from 'valibot'
+
+import { authed, pub } from '~/server/orpc'
 
 export type { RouterClient } from '@orpc/server'
 

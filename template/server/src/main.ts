@@ -1,11 +1,11 @@
 import process from 'node:process'
 
-import { createBetterAuth } from '@server/auth'
-import { db } from '@server/database'
-import { createRpcHandler } from '@server/orpc'
-import { router } from '@server/orpc/router'
-import { cors } from '@server/utils/cors'
-import { logger } from '@server/utils/logger'
+import { createBetterAuth } from '~/server/auth'
+import { db } from '~/server/database'
+import { createRpcHandler } from '~/server/orpc'
+import { router } from '~/server/orpc/router'
+import { cors } from '~/server/utils/cors'
+import { logger } from '~/server/utils/logger'
 
 const auth = createBetterAuth({ db, logger })
 const rpcHandler = createRpcHandler(router)
