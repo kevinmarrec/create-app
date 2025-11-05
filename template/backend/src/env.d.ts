@@ -1,6 +1,6 @@
 interface ImportMetaEnv {
-  readonly BETTER_AUTH_SECRET: string
-  readonly BETTER_AUTH_URL: string
+  readonly ALLOWED_ORIGINS: string
+  readonly AUTH_SECRET: string
   readonly DATABASE_URL: string
   readonly LOG_LEVEL: string
   readonly NODE_ENV: string

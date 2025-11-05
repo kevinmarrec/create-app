@@ -18,7 +18,10 @@ export default {
     },
     'frontend': {
       entry: ['src/main.ts'],
-      ignoreDependencies: ['uno.css'],
+      ignoreDependencies: [
+        '@vueuse/core',
+        'uno.css',
+      ],
     },
   },
 } satisfies KnipConfig
