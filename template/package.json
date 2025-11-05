@@ -7,8 +7,8 @@
     "node": "lts/*"
   },
   "workspaces": [
-    "backend",
-    "frontend"
+    "client",
+    "server"
   ],
   "scripts": {
     "check": "bun run check:eslint && bun run check:stylelint && bun run check:unused && bun run check:types",
@@ -16,7 +16,7 @@
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
     "check:types": "vue-tsc --noEmit",
     "check:unused": "knip -n",
-    "dev": "bun scripts/dev.ts",
+    "dev": "bun .scripts/dev.ts",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
     "update": "bunx taze -I -rwi"

@@ -10,17 +10,19 @@ export default {
     '.': {
       entry: ['*.config.ts'],
     },
-    'backend': {
-      drizzle: {
-        config: 'src/database/drizzle/config.ts',
-      },
-      ignoreDependencies: ['pino-pretty'],
-    },
-    'frontend': {
+    'client': {
       entry: ['src/main.ts'],
       ignoreDependencies: [
         '@vueuse/core',
         'uno.css',
+      ],
+    },
+    'server': {
+      drizzle: {
+        config: 'src/database/drizzle/config.ts',
+      },
+      ignoreDependencies: [
+        'pino-pretty',
       ],
     },
   },

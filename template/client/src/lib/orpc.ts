@@ -1,7 +1,7 @@
-import type { Router, RouterClient } from '@backend/orpc/router'
 import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
 import { createTanstackQueryUtils } from '@orpc/tanstack-query'
+import type { Router, RouterClient } from '@server/orpc/router'
 
 const link = new RPCLink({
   url: `${import.meta.env.VITE_API_URL}/rpc`,

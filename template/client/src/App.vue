@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuth, useContent, useHead, useI18n } from '@frontend/composables'
+import { useAuth, useContent, useHead, useI18n } from '@client/composables'
 import { ref } from 'vue'
 
 const { t } = useI18n()

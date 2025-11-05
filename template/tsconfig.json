@@ -2,8 +2,8 @@
   "extends": "@kevinmarrec/tsconfig",
   "compilerOptions": {
     "paths": {
-      "@backend/*": ["./backend/src/*"],
-      "@frontend/*": ["./frontend/src/*"]
+      "@client/*": ["./client/src/*"],
+      "@server/*": ["./server/src/*"]
     }
   },
   "exclude": ["**/dist/**"]

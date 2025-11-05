@@ -1,4 +1,4 @@
-import { orpc } from '@frontend/lib/orpc'
+import { orpc } from '@client/lib/orpc'
 import { useQuery } from '@tanstack/vue-query'
 
 export function useContent() {

@@ -1,5 +1,5 @@
-import { logger } from '@backend/utils/logger'
 import { PGlite } from '@electric-sql/pglite'
+import { logger } from '@server/utils/logger'
 import { drizzle } from 'drizzle-orm/pglite'
 
 import * as schema from './schema'
