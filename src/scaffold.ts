@@ -9,6 +9,4 @@ export async function scaffold(root: string) {
 
   // Copy template
   await fs.cp(join(import.meta.dirname, '../template'), root, { recursive: true })
-  await fs.rename(join(root, 'gitignore'), join(root, '.gitignore'))
-  await fs.rename(join(root, 'npmrc'), join(root, '.npmrc'))
 }

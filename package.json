@@ -26,7 +26,9 @@
   },
   "files": [
     "dist",
-    "template"
+    "template",
+    "template/.gitignore",
+    "template/.npmrc"
   ],
   "scripts": {
     "build": "tsdown --no-fixed-extension",
