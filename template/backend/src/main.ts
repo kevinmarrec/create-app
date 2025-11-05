@@ -9,30 +9,30 @@ import { logger } from '@backend/utils/logger'
 const auth = createBetterAuth({ db, logger })
 const rpcHandler = createRpcHandler(router)
 
-const server = Bun.serve({
-  hostname: import.meta.env.HOST ?? '0.0.0.0',
-  port: import.meta.env.PORT ?? 4000,
-  routes: {
-    '/auth/*': async (req) => {
-      if (req.method === 'OPTIONS') {
-        return new Response('OK', { headers: {
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Access-Control-Allow-Methods': 'GET, HEAD, PUT, POST, DELETE, PATCH',
-          'Access-Control-Allow-Origin': req.headers.get('origin') ?? '*',
-          'Access-Control-Max-Age': '7200',
-        } })
-      }
+function cors(handler: (req: Request) => Promise<Response>) {
+  return async (req: Request) => {
+    const response = req.method === 'OPTIONS'
+      ? new Response(undefined, { status: 204 })
+      : await handler(req)
 
-      const response = await auth.handler(req)
+    if (req.method === 'OPTIONS') {
+      response.headers.append('Access-Control-Allow-Headers', 'Content-Type')
+      response.headers.append('Access-Control-Allow-Methods', 'GET, HEAD, PUT, POST, DELETE, PATCH')
+    }
 
-      response.headers.append('Access-Control-Allow-Credentials', 'true')
-      response.headers.append('Access-Control-Allow-Origin', req.headers.get('origin') ?? '*')
+    response.headers.append('Access-Control-Allow-Credentials', 'true')
+    response.headers.append('Access-Control-Allow-Origin', req.headers.get('origin') ?? '')
 
-      return response
-    },
-  },
-  async fetch(request) {
-    const { matched, response } = await rpcHandler.handle(request, {
+    return response
+  }
+}
+
+const routes = {
+  '/auth/*': cors(async (req) => {
+    return await auth.handler(req)
+  }),
+  '/rpc/*': cors(async (req) => {
+    const { matched, response } = await rpcHandler.handle(req, {
       prefix: '/rpc',
       context: {
         auth,
@@ -45,7 +45,13 @@ const server = Bun.serve({
       return response
 
     return new Response('Not found', { status: 404 })
-  },
+  }),
+}
+
+const server = Bun.serve({
+  hostname: import.meta.env.HOST ?? '0.0.0.0',
+  port: import.meta.env.PORT ?? 4000,
+  routes,
   error(error) {
     logger.error(error)
     return new Response('Internal Server Error', { status: 500 })

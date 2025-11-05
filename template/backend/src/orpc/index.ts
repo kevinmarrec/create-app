@@ -26,12 +26,17 @@ export interface Context extends RequestHeadersPluginContext, ResponseHeadersPlu
 export function createRpcHandler<T extends Context>(router: Router<any, T>) {
   return new RPCHandler<T>(router, {
     plugins: [
-      new CORSPlugin({
-        credentials: true,
-        maxAge: 7200, // 2 hours https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Max-Age
-      }),
+      // new CORSPlugin({
+      //   credentials: true,
+      //   // maxAge: 7200, // 2 hours https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Max-Age
+      // }),
       new RequestHeadersPlugin(),
       new ResponseHeadersPlugin(),
+    ],
+    rootInterceptors: [
+      async (interceptorOptions) => {
+        return interceptorOptions.next()
+      },
     ],
     clientInterceptors: [
       onError((error, { context }) => {
