@@ -1,6 +1,5 @@
 import { betterAuth } from 'better-auth'
 import { type DB, drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { passkey } from 'better-auth/plugins/passkey'
 import type { BaseLogger } from 'pino'
 
 export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger }) {
@@ -20,9 +19,6 @@ export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger })
     emailAndPassword: {
       enabled: true,
     },
-    plugins: [
-      passkey(),
-    ],
   })
 }
 

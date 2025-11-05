@@ -4,30 +4,20 @@ import { ORPCError, os } from '@orpc/server'
 export const authMiddleware = os
   .$context<Context>()
   .middleware(async ({ context, next }) => {
-    const { headers, response: session } = await context.auth.api.getSession({
-      headers: context.reqHeaders ?? new Headers(),
+    const { response: session, headers } = await context.auth.api.getSession({
+      headers: context.reqHeaders,
       returnHeaders: true,
     })
 
     headers.forEach((v, k) => context.resHeaders?.append(k, v))
 
-    return next({
-      context: {
-        user: session ? session.user : null,
-      },
-    })
-  })
-
-export const requiredAuthMiddleware = authMiddleware
-  .concat(async ({ context, next }) => {
-    if (!context.user) {
+    if (!session) {
       throw new ORPCError('UNAUTHORIZED')
     }
 
     return next({
       context: {
-        user: context.user,
+        user: session.user,
       },
     })
-  },
-  )
+  })

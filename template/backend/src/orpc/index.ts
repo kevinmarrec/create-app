@@ -1,6 +1,6 @@
 import type { Auth } from '@backend/auth'
 import type { Database } from '@backend/database'
-import { requiredAuthMiddleware } from '@backend/orpc/middlewares'
+import { authMiddleware } from '@backend/orpc/middlewares'
 import type { Logger } from '@backend/utils/logger'
 import { onError, ORPCError, os, type Router } from '@orpc/server'
 import { RPCHandler } from '@orpc/server/fetch'
@@ -57,4 +57,4 @@ export const pub = os
 
 /** @beta */
 export const authed = pub
-  .use(requiredAuthMiddleware)
+  .use(authMiddleware)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuth, useHead, useI18n } from '@frontend/composables'
+import { useAuth, useContent, useHead, useI18n } from '@frontend/composables'
 import { ref } from 'vue'
 
 const { t } = useI18n()
@@ -13,6 +13,7 @@ useHead({
 })
 
 const { user, signIn, signUp, signOut } = useAuth()
+const { publicContent, privateContent } = useContent()
 
 const email = ref('')
 const password = ref('')
@@ -99,12 +100,18 @@ const password = ref('')
             <p class="text-gray-600 mt-2 dark:text-gray-400">
               {{ user.email }}
             </p>
+            <p class="text-gray-600 mt-2 dark:text-gray-400">
+              {{ publicContent }}
+            </p>
+            <p class="text-gray-600 mt-2 dark:text-gray-400">
+              {{ privateContent }}
+            </p>
           </div>
 
           <button
             :disabled="signOut.isPending.value"
             class="text-white font-medium px-4 py-2 rounded-md bg-red-600 w-full transition-colors duration-200 disabled:bg-red-400 hover:bg-red-700"
-            @click="signOut.mutate()"
+            @click="signOut.mutate({})"
           >
             <span v-if="signOut.isPending.value">Signing Out...</span>
             <span v-else>Sign Out</span>
