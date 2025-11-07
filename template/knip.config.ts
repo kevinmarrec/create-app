@@ -14,7 +14,6 @@ export default {
       entry: ['src/main.ts'],
       ignoreDependencies: [
         '@vueuse/core',
-        'uno.css',
       ],
     },
     'server': {

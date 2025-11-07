@@ -4,7 +4,7 @@ import { ViteSSG } from 'vite-ssg/single-page'
 
 import App from './App.vue'
 
-import 'uno.css'
+import 'virtual:uno.css'
 
 export const createApp = ViteSSG(App, async ({ app }) => {
   const i18n = await createI18n({
