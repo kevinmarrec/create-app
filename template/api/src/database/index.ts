@@ -1,7 +1,7 @@
 import { PGlite } from '@electric-sql/pglite'
 import { drizzle } from 'drizzle-orm/pglite'
 
-import { logger } from '~/server/utils/logger'
+import { logger } from '~/api/utils/logger'
 
 import * as schema from './schema'
 

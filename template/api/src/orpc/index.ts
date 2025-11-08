@@ -1,6 +1,6 @@
 import { os } from '@orpc/server'
 
-import { authMiddleware } from '~/server/orpc/middlewares'
+import { authMiddleware } from '~/api/orpc/middlewares'
 
 import type { Context } from './context'
 

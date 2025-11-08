@@ -18,8 +18,8 @@
   ],
   "workspaces": [
     "template",
-    "template/client",
-    "template/server"
+    "template/api",
+    "template/app"
   ],
   "bin": {
     "create-app": "dist/index.js"

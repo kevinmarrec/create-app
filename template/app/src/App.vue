@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { useAuth, useContent, useHead, useI18n } from '~/client/composables'
+import { useAuth, useContent, useHead, useI18n } from '~/app/composables'
 
 const { t } = useI18n()
 useHead({
