@@ -27,7 +27,7 @@
     "@kevinmarrec/tsconfig": "^1.5.4",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
-    "knip": "^5.67.1",
+    "knip": "^5.68.0",
     "stylelint": "^16.25.0",
     "typescript": "~5.9.3",
     "vue-tsc": "^3.1.3"
