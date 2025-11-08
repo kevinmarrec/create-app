@@ -5,7 +5,7 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["imbios/bun-node"],
-      "allowedVersions": "24"
+      "allowedVersions": "<25"
     }
   ]
 }
