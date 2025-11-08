@@ -5,18 +5,18 @@ x-common: &common
   user: 1000:1000
 
 services:
-  server:
+  api:
     <<: *common
     image: oven/bun:1-alpine
-    command: [bun, --cwd, server, dev]
+    command: [bun, --cwd, api, dev]
     ports:
       - 4000:4000
 
-  client:
+  app:
     <<: *common
     depends_on:
-      - server
+      - api
     image: imbios/bun-node:22-alpine
-    command: [bun, --cwd, client, dev, --host, 0.0.0.0]
+    command: [bun, --cwd, app, dev, --host, 0.0.0.0]
     ports:
       - 5173:5173

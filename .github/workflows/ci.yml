@@ -42,12 +42,12 @@ jobs:
       - name: Setup Bun
         uses: kevinmarrec/workflows/setup-bun@v1
 
-      - name: Check client build size
+      - name: Check api build size
         run: |
-          echo "## Client" >> $GITHUB_STEP_SUMMARY
-          bun run bin/build-stats.md.ts template/client >> $GITHUB_STEP_SUMMARY
+          echo "## API" >> $GITHUB_STEP_SUMMARY
+          bun run bin/build-stats.md.ts template/api >> $GITHUB_STEP_SUMMARY
 
-      - name: Check server build size
+      - name: Check app build size
         run: |
-          echo "## Server" >> $GITHUB_STEP_SUMMARY
-          bun run bin/build-stats.md.ts template/server >> $GITHUB_STEP_SUMMARY
+          echo "## App" >> $GITHUB_STEP_SUMMARY
+          bun run bin/build-stats.md.ts template/app >> $GITHUB_STEP_SUMMARY

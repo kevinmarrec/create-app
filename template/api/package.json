@@ -1,10 +1,10 @@
 {
-  "name": "server",
+  "name": "api",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "bun --watch --no-clear-screen src/main.ts",
-    "build": "bun build src/main.ts --compile --minify --sourcemap --outfile dist/server",
+    "build": "bun build src/main.ts --compile --minify --sourcemap --outfile dist/api",
     "db:generate": "bun --bun run drizzle-kit generate --config src/database/drizzle/config.ts",
     "db:migrate": "bun --bun run drizzle-kit migrate --config src/database/drizzle/config.ts"
   },

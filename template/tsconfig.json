@@ -2,8 +2,8 @@
   "extends": "@kevinmarrec/tsconfig",
   "compilerOptions": {
     "paths": {
-      "~/client/*": ["./client/src/*"],
-      "~/server/*": ["./server/src/*"]
+      "~/api/*": ["./api/src/*"],
+      "~/app/*": ["./app/src/*"]
     }
   },
   "exclude": ["**/dist/**"]

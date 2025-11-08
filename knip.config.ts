@@ -14,18 +14,18 @@ export default {
     'template': {
       entry: ['*.config.ts'],
     },
-    'template/client': {
-      entry: ['src/main.ts'],
-      ignoreDependencies: [
-        '@vueuse/core',
-      ],
-    },
-    'template/server': {
+    'template/api': {
       drizzle: {
         config: 'src/database/drizzle/config.ts',
       },
       ignoreDependencies: [
         'pino-pretty',
+      ],
+    },
+    'template/app': {
+      entry: ['src/main.ts'],
+      ignoreDependencies: [
+        '@vueuse/core',
       ],
     },
   },
