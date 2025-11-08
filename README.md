@@ -16,4 +16,6 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh) & [Vue](https://vuejs.or
 
 ```sh
 bun create @kevinmarrec/app
+# OR
+bunx @kevinmarrec/create-app
 ```
