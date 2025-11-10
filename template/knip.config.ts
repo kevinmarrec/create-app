@@ -14,9 +14,6 @@ export default {
       drizzle: {
         config: 'src/database/drizzle/config.ts',
       },
-      ignoreDependencies: [
-        'pino-pretty',
-      ],
     },
     'app': {
       entry: ['src/main.ts'],
