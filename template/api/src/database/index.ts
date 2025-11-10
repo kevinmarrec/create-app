@@ -1,8 +1,7 @@
 import { PGlite } from '@electric-sql/pglite'
 import { drizzle } from 'drizzle-orm/pglite'
 
-import { logger } from '~/api/utils/logger'
-
+import { logger } from '../utils/logger'
 import * as schema from './schema'
 
 export const db = drizzle({

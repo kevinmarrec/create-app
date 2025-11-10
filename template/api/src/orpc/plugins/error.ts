@@ -1,7 +1,7 @@
 import { onError, ORPCError } from '@orpc/server'
 import type { StandardHandlerOptions, StandardHandlerPlugin } from '@orpc/server/standard'
 
-import type { Context } from '~/api/orpc'
+import type { Context } from '../context'
 
 export class ErrorPlugin<T extends Context> implements StandardHandlerPlugin<T> {
   init(options: StandardHandlerOptions<T>): void {

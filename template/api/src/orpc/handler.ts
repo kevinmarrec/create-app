@@ -1,9 +1,6 @@
 import type { Router } from '@orpc/server'
 import { RPCHandler } from '@orpc/server/fetch'
-import {
-  RequestHeadersPlugin,
-  ResponseHeadersPlugin,
-} from '@orpc/server/plugins'
+import { RequestHeadersPlugin, ResponseHeadersPlugin } from '@orpc/server/plugins'
 
 import type { Context } from './context'
 import { ErrorPlugin } from './plugins/error'
