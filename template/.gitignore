@@ -1,4 +1,6 @@
+*.crt
 *.db*
+*.key
 *.local
 *.log
 *.sqlite
