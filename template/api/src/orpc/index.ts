@@ -1,14 +1,27 @@
-import { os } from '@orpc/server'
+import type { Router } from '@orpc/server'
+import { RPCHandler } from '@orpc/server/fetch'
+import { RequestHeadersPlugin, ResponseHeadersPlugin } from '@orpc/server/plugins'
 
 import type { Context } from './context'
-import { authMiddleware } from './middlewares/auth'
+import { ErrorPlugin } from './plugins/error'
 
-export const pub = os
-  .$context<Context>()
-  .errors({
-    UNAUTHORIZED: { status: 401 },
+export function createRpc<T extends Context>(context: T, router: Router<any, T>) {
+  const handler = new RPCHandler<T>(router, {
+    plugins: [
+      new ErrorPlugin(),
+      new RequestHeadersPlugin(),
+      new ResponseHeadersPlugin(),
+    ],
   })
 
-/** @beta */
-export const authed = pub
-  .use(authMiddleware)
+  return {
+    handler: async (req: Request) => {
+      const { matched, response } = await handler.handle(req, {
+        prefix: '/rpc',
+        context,
+      })
+
+      return matched ? response : new Response('Not found', { status: 404 })
+    },
+  }
+}

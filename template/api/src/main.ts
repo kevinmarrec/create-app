@@ -2,35 +2,21 @@ import process from 'node:process'
 
 import { createBetterAuth } from './auth'
 import { db } from './database'
-import { createRpcHandler } from './orpc/handler'
+import { createRpc } from './orpc'
 import { router } from './orpc/router'
 import { cors } from './utils/cors'
 import { logger } from './utils/logger'
 
 const auth = createBetterAuth({ db, logger })
-const rpcHandler = createRpcHandler(router)
-
-const routes = {
-  '/auth/*': cors(async (req) => {
-    return await auth.handler(req)
-  }),
-  '/rpc/*': cors(async (req) => {
-    const { matched, response } = await rpcHandler.handle(req, {
-      prefix: '/rpc',
-      context: { auth, db, logger },
-    })
-
-    if (matched)
-      return response
-
-    return new Response('Not found', { status: 404 })
-  }),
-}
+const rpc = createRpc({ auth, db, logger }, router)
 
 const server = Bun.serve({
   hostname: import.meta.env.HOST ?? '0.0.0.0',
   port: import.meta.env.PORT ?? 4000,
-  routes,
+  routes: {
+    '/auth/*': cors(auth.handler),
+    '/rpc/*': cors(rpc.handler),
+  },
   error(error) {
     logger.error(error)
     return new Response('Internal Server Error', { status: 500 })
