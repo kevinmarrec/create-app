@@ -45,9 +45,9 @@ jobs:
       - name: Check api build size
         run: |
           echo "## API" >> $GITHUB_STEP_SUMMARY
-          bun run .github/scripts/build-stats.md.ts template/api >> $GITHUB_STEP_SUMMARY
+          bun run template/.github/scripts/build-stats.md.ts template/api >> $GITHUB_STEP_SUMMARY
 
       - name: Check app build size
         run: |
           echo "## App" >> $GITHUB_STEP_SUMMARY
-          bun run .github/scripts/build-stats.md.ts template/app >> $GITHUB_STEP_SUMMARY
+          bun run template/.github/scripts/build-stats.md.ts template/app >> $GITHUB_STEP_SUMMARY
