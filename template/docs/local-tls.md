@@ -4,6 +4,12 @@ This guide provides the essential steps to install mkcert and generate trusted T
 
 Certificates are expected in `.docker/traefik/certs/`.
 
+## **Prerequisites**
+
+- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed
+- Ports 80 and 443 available on your system
+- Administrator/sudo access for installing mkcert
+
 ## **1. Install mkcert (Ubuntu/WSL)**
 
 Download, install, and clean up the executable:
@@ -45,19 +51,20 @@ Browsers like Firefox and Firefox-based Zen Browser require manual import into t
    - **WSL for Windows Host Applications:** Use wslpath to get the Windows-formatted path.
      ```sh
      wslpath -w "$(mkcert -CAROOT)/rootCA.pem"
-     # \\wsl.localhost\Ubuntu\home\user\local\share\mkcert\rootCA.pem
+     # \\wsl.localhost\Ubuntu\home\user\.local\share\mkcert\rootCA.pem
      ```
 
 2. **Import:** In the browser's settings:
    - **Settings** -> **Privacy & Security**.
    - **Certificates** -> **View Certificates...**
    - **Authorities** tab -> **Import...**
-   - Select the rootCA.pem file (using the path found above).
-   - Check **"Trust this CA to identify websites"**.
+   - Select the rootCA.pem file (using the path found above)
+   - Check **"Trust this CA to identify websites"**
+   - Click **OK**
 
 ## **3. Generate the `dev.localhost` Certificate**
 
-Generate the wildcard certificate for `*.dev.localhost` and place the files where Traefik is configured to look.
+Generate the wildcard certificate for `*.dev.localhost` and place the files where Traefik is configured to look (See [`tls.yml`](../.docker/traefik/dynamic/tls.yml)).
 
 1. **Create Directory:**
 
@@ -66,6 +73,7 @@ Generate the wildcard certificate for `*.dev.localhost` and place the files wher
    ```
 
 2. **Generate Certificate:**
+
    ```sh
    mkcert \
      -cert-file .docker/traefik/certs/dev.localhost.crt \
@@ -73,28 +81,72 @@ Generate the wildcard certificate for `*.dev.localhost` and place the files wher
      "dev.localhost" "*.dev.localhost"
    ```
 
+3. **Verify Certificate:**
+
+   ```sh
+   openssl x509 -in .docker/traefik/certs/dev.localhost.crt -text -noout | grep -A 2 "Subject Alternative Name"
+   ```
+
 ## **4. Validate Setup**
 
-Run Docker Compose to start the services:
+1. **Start Services:**
+
+   ```sh
+   docker compose up -d
+   ```
+
+2. **Test in Browser:**
+
+- Visit **https://traefik.dev.localhost** — you should see the Traefik dashboard
+- Visit **https://app.dev.localhost** — you should see your app
+- Both should load without SSL warnings
+
+## **5. Troubleshooting**
+
+### **Certificate Files Missing**
+
+If Traefik fails to start or shows TLS errors, verify the certificate files exist:
 
 ```sh
-docker compose up -d
+ls -la .docker/traefik/certs/
 ```
 
-Check **https://traefik.dev.localhost** and **https://app.dev.localhost** in your browser.
+### **Browser Shows SSL Warning**
 
-You should see the Traefik dashboard and the app running.
+- Ensure mkcert root CA is installed (`mkcert -install`)
+- For Firefox/Zen Browser, manually import the root CA (see section 2)
+- Clear browser cache and restart the browser
 
-## **5. Clean Up**
+### **Certificate Expiration**
 
-Stop and remove the services:
+mkcert certificates are valid for a long time, but if you need to regenerate:
 
-```sh
-docker compose down
-```
+1. **Remove old certificates:**
 
-Remove the certificates:
+   ```sh
+   rm .docker/traefik/certs/dev.localhost.*
+   ```
 
-```sh
-rm -rf .docker/traefik/certs
-```
+2. **Regenerate (see section 3)**
+
+## **6. Clean Up**
+
+1. **Stop Services:**
+
+   ```sh
+   docker compose down
+   ```
+
+2. **Remove Certificates (Optional):**
+
+   ```sh
+   rm -rf .docker/traefik/certs
+   ```
+
+3. **Uninstall mkcert Root CA (Optional):**
+
+   ```sh
+   mkcert -uninstall
+   ```
+
+   > **Note:** Removing the root CA will cause SSL warnings in browsers until you reinstall it or regenerate certificates.
