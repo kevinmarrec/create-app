@@ -5,15 +5,57 @@ x-common: &common
   user: 1000:1000
 
 services:
+  traefik:
+    image: traefik:v3.6
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command:
+      # General configuration
+      - --log.level=INFO
+      - --api.dashboard=true
+      # Entrypoints for HTTP and HTTPS
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.address=:80
+      # Redirect HTTP to HTTPS
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      # Providers (Docker & File for dynamic config)
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.file.directory=/etc/traefik/dynamic
+      - --providers.file.watch=true
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.traefik.rule: Host(`traefik.dev.localhost`)
+      traefik.http.routers.traefik.entrypoints: websecure
+      traefik.http.routers.traefik.tls: 'true'
+      traefik.http.routers.traefik.service: api@internal
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./.docker/traefik/dynamic:/etc/traefik/dynamic:ro # Mount the dynamic config directory
+      - ./.docker/traefik/certs:/certs:ro # Mount the certs directory
+
   api:
     <<: *common
+    depends_on:
+      - traefik
     container_name: api
     image: oven/bun:1-alpine
-    command: [sh, -c, bun --cwd api dev]
-    ports:
-      - 4000:4000
+    init: true
+    command: [bun, --cwd, api, dev]
     environment:
       - FORCE_COLOR=1
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.api.rule: Host(`api.dev.localhost`)
+      traefik.http.routers.api.entrypoints: websecure
+      traefik.http.routers.api.tls: 'true'
+      traefik.http.services.api.loadbalancer.server.port: '4000'
 
   app:
     <<: *common
@@ -21,8 +63,13 @@ services:
       - api
     container_name: app
     image: imbios/bun-node:24-alpine
-    command: [sh, -c, bun --cwd app dev --host 0.0.0.0]
-    ports:
-      - 5173:5173
+    init: true
+    command: [bun, --cwd, app, dev, --host, 0.0.0.0]
     environment:
       - FORCE_COLOR=1
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.app.rule: Host(`app.dev.localhost`)
+      traefik.http.routers.app.entrypoints: websecure
+      traefik.http.routers.app.tls: 'true'
+      traefik.http.services.app.loadbalancer.server.port: '5173'

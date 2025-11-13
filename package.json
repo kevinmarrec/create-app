@@ -39,7 +39,7 @@
     "check:unused": "knip -n",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
-    "playground": "docker compose -f playground.compose.yaml up",
+    "playground": "bun run scripts/transform-compose.ts | docker compose -f -",
     "release": "bumpp",
     "update": "bunx taze -I -rwi",
     "test": "vitest",
