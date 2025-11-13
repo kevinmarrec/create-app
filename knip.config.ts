@@ -12,7 +12,10 @@ export default {
       entry: ['*.config.ts'],
     },
     'template': {
-      entry: ['*.config.ts'],
+      entry: [
+        '.github/scripts/*.ts',
+        '*.config.ts',
+      ],
     },
     'template/api': {
       drizzle: {

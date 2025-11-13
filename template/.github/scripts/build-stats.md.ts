@@ -1,9 +1,9 @@
 import * as fs from 'node:fs'
+import path from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
 
 import { filesize } from 'filesize'
-import path from 'pathe'
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
 
