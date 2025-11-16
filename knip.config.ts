@@ -2,7 +2,8 @@ import type { KnipConfig } from 'knip'
 
 // Required for Knip to pass
 Object.assign(import.meta.env, {
-  DATABASE_URL: 'foo.db',
+  AUTH_SECRET: '',
+  DATABASE_URL: '',
 })
 
 export default {

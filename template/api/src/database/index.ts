@@ -1,11 +1,12 @@
 import { drizzle } from 'drizzle-orm/bun-sql'
 
+import { env } from '../env'
 import { logger } from '../utils/logger'
 import * as schema from './schema'
 
 export const db = drizzle({
   connection: {
-    url: import.meta.env.DATABASE_URL,
+    url: env.database.url,
   },
   casing: 'snake_case',
   schema,

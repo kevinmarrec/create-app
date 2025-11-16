@@ -96,7 +96,6 @@ services:
     init: true
     command: [bun, --cwd, api, dev]
     environment:
-      - DATABASE_URL=postgresql://user:password@postgres:5432/app
       - FORCE_COLOR=1
     labels:
       traefik.enable: 'true'

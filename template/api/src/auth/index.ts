@@ -2,10 +2,13 @@ import { betterAuth } from 'better-auth'
 import { type DB, drizzleAdapter } from 'better-auth/adapters/drizzle'
 import type { BaseLogger } from 'pino'
 
+import { env } from '../env'
+
 export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger }) {
   return betterAuth({
     basePath: '/auth',
-    trustedOrigins: import.meta.env.ALLOWED_ORIGINS.split(','),
+    secret: env.auth.secret,
+    trustedOrigins: env.cors.allowedOrigins,
     database: drizzleAdapter(db, {
       provider: 'pg',
       usePlural: true,

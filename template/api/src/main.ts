@@ -2,6 +2,7 @@ import process from 'node:process'
 
 import { createBetterAuth } from './auth'
 import { db } from './database'
+import { env } from './env'
 import { createRpc } from './orpc'
 import { router } from './orpc/router'
 import { cors } from './utils/cors'
@@ -11,8 +12,8 @@ const auth = createBetterAuth({ db, logger })
 const rpc = createRpc({ auth, db, logger }, router)
 
 const server = Bun.serve({
-  hostname: import.meta.env.HOST ?? '0.0.0.0',
-  port: import.meta.env.PORT ?? 4000,
+  hostname: env.server.host,
+  port: env.server.port,
   routes: {
     '/auth/*': cors(auth.handler),
     '/rpc/*': cors(rpc.handler),

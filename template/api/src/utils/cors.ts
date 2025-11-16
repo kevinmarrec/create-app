@@ -1,10 +1,10 @@
-export function cors(handler: (req: Request) => Promise<Response>) {
-  const allowedOrigins = import.meta.env.ALLOWED_ORIGINS.split(',')
+import { env } from '../env'
 
+export function cors(handler: (req: Request) => Promise<Response>) {
   return async (req: Request) => {
     const origin = req.headers.get('origin') ?? ''
 
-    if (!origin || !allowedOrigins.includes(origin)) {
+    if (!origin || !env.cors.allowedOrigins.includes(origin)) {
       return new Response('Origin not allowed', { status: 403 })
     }
 
