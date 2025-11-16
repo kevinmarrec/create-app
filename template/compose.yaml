@@ -27,12 +27,6 @@ services:
       - --providers.docker.exposedbydefault=false
       - --providers.file.directory=/etc/traefik/dynamic
       - --providers.file.watch=true
-    labels:
-      traefik.enable: 'true'
-      traefik.http.routers.traefik.rule: Host(`traefik.dev.localhost`)
-      traefik.http.routers.traefik.entrypoints: websecure
-      traefik.http.routers.traefik.tls: 'true'
-      traefik.http.routers.traefik.service: api@internal
     ports:
       - 80:80
       - 443:443
@@ -45,6 +39,12 @@ services:
       interval: 1s
       timeout: 1s
       retries: 10
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.traefik.rule: Host(`traefik.dev.localhost`)
+      traefik.http.routers.traefik.entrypoints: websecure
+      traefik.http.routers.traefik.tls: 'true'
+      traefik.http.routers.traefik.service: api@internal
 
   postgres:
     image: postgres:18-alpine
@@ -62,6 +62,27 @@ services:
       interval: 1s
       timeout: 1s
       retries: 10
+
+  metabase:
+    image: metabase/metabase:v0.57.x
+    container_name: metabase
+    environment:
+      - MB_DB_TYPE=h2
+      - MB_DB_FILE=/var/lib/metabase/metabase.db
+      - MB_SITE_URL=https://metabase.dev.localhost
+    volumes:
+      - metabase_data:/var/lib/metabase
+    healthcheck:
+      test: [CMD-SHELL, curl -f http://localhost:3000/api/health]
+      interval: 1s
+      timeout: 1s
+      retries: 20
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.metabase.rule: Host(`metabase.dev.localhost`)
+      traefik.http.routers.metabase.entrypoints: websecure
+      traefik.http.routers.metabase.tls: 'true'
+      traefik.http.services.metabase.loadbalancer.server.port: '3000'
 
   api:
     <<: *common
@@ -101,5 +122,10 @@ services:
       traefik.http.routers.app.tls: 'true'
       traefik.http.services.app.loadbalancer.server.port: '5173'
 
+networks:
+  default:
+    name: dev
+
 volumes:
   postgres_data:
+  metabase_data:
