@@ -1,11 +1,12 @@
-import { PGlite } from '@electric-sql/pglite'
-import { drizzle } from 'drizzle-orm/pglite'
+import { drizzle } from 'drizzle-orm/bun-sql'
 
 import { logger } from '../utils/logger'
 import * as schema from './schema'
 
 export const db = drizzle({
-  client: new PGlite(import.meta.env.DATABASE_URL),
+  connection: {
+    url: import.meta.env.DATABASE_URL,
+  },
   casing: 'snake_case',
   schema,
   logger: {

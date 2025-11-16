@@ -13,8 +13,9 @@ services:
       - no-new-privileges:true
     command:
       # General configuration
-      - --log.level=INFO
       - --api.dashboard=true
+      - --ping=true
+      - --log.level=INFO
       # Entrypoints for HTTP and HTTPS
       - --entrypoints.websecure.address=:443
       - --entrypoints.web.address=:80
@@ -39,16 +40,42 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./.docker/traefik/dynamic:/etc/traefik/dynamic:ro # Mount the dynamic config directory
       - ./.docker/traefik/certs:/certs:ro # Mount the certs directory
+    healthcheck:
+      test: [CMD-SHELL, traefik healthcheck --ping]
+      interval: 1s
+      timeout: 1s
+      retries: 10
+
+  postgres:
+    image: postgres:18-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=app
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, "psql postgresql://user:password@postgres:5432/app -c 'SELECT 1' 2> /dev/null"]
+      interval: 1s
+      timeout: 1s
+      retries: 10
 
   api:
     <<: *common
     depends_on:
-      - traefik
+      traefik:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     container_name: api
     image: oven/bun:1-alpine
     init: true
     command: [bun, --cwd, api, dev]
     environment:
+      - DATABASE_URL=postgresql://user:password@postgres:5432/app
       - FORCE_COLOR=1
     labels:
       traefik.enable: 'true'
@@ -73,3 +100,6 @@ services:
       traefik.http.routers.app.entrypoints: websecure
       traefik.http.routers.app.tls: 'true'
       traefik.http.services.app.loadbalancer.server.port: '5173'
+
+volumes:
+  postgres_data:
