@@ -41,7 +41,7 @@ services:
       - ./.docker/traefik/dynamic:/etc/traefik/dynamic:ro # Mount the dynamic config directory
       - ./.docker/traefik/certs:/certs:ro # Mount the certs directory
     healthcheck:
-      test: [CMD-SHELL, "traefik healthcheck --ping"]
+      test: [CMD-SHELL, traefik healthcheck --ping]
       interval: 1s
       timeout: 1s
       retries: 10
