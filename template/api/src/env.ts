@@ -7,7 +7,7 @@ const schema = v.object({
   cors: v.object({
     allowedOrigins: v.pipe(
       v.optional(v.string(), ''),
-      v.transform(input => input.split(',')),
+      v.transform(input => input.split(',').filter(Boolean)),
     ),
   }),
   database: v.object({

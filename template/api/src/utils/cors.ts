@@ -2,9 +2,9 @@ import { env } from '../env'
 
 export function cors(handler: (req: Request) => Promise<Response>) {
   return async (req: Request) => {
-    const origin = req.headers.get('origin') ?? ''
+    const origin = req.headers.get('origin')
 
-    if (!origin || !env.cors.allowedOrigins.includes(origin)) {
+    if (origin && !env.cors.allowedOrigins.includes(origin)) {
       return new Response('Origin not allowed', { status: 403 })
     }
 
@@ -19,7 +19,10 @@ export function cors(handler: (req: Request) => Promise<Response>) {
     }
 
     response.headers.append('Access-Control-Allow-Credentials', 'true')
-    response.headers.append('Access-Control-Allow-Origin', origin)
+
+    if (origin) {
+      response.headers.append('Access-Control-Allow-Origin', origin)
+    }
 
     return response
   }
