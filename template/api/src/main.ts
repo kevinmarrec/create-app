@@ -15,6 +15,7 @@ const server = Bun.serve({
   hostname: env.server.host,
   port: env.server.port,
   routes: {
+    '/health': () => new Response('OK', { status: 200 }),
     '/auth/*': cors(auth.handler),
     '/rpc/*': cors(rpc.handler),
   },
