@@ -1,0 +1,313 @@
+# Project Template
+
+A full-stack application template with a Vue.js frontend, Bun-based API backend, PostgreSQL database, and Docker Compose setup for local development.
+
+## Overview
+
+This template provides a modern full-stack application structure with:
+
+- **Frontend (app)**: Vue 3 application with Vite, UnoCSS, TypeScript, and TanStack Query
+- **Backend (api)**: Bun-based API server with oRPC, Better Auth, and Drizzle ORM
+- **Database**: PostgreSQL with Drizzle migrations
+- **Infrastructure**: Docker Compose with Traefik reverse proxy, PostgreSQL, and Metabase
+
+## Prerequisites
+
+- [Bun](https://bun.sh/) (v1.3.2 or later)
+- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+- [Node.js LTS](https://nodejs.org/en/download/) (for compatibility)
+
+## Project Structure
+
+```
+template/
+├── api/                   # Backend API server
+│   ├── src/
+│   │   ├── auth/            # Authentication setup (Better Auth)
+│   │   ├── database/        # Database schema and migrations (Drizzle)
+│   │   ├── orpc/            # Router definitions (oRPC)
+│   │   ├── env.ts           # Environment variable loading and validation (Valibot)
+│   │   └── main.ts          # API entry point
+│   └── package.json
+├── app/                   # Frontend Vue application
+│   ├── src/
+│   │   ├── components/      # Vue components
+│   │   ├── composables/     # Vue composables (auth, etc.)
+│   │   ├── lib/             # Library utilities (oRPC client)
+│   │   └── main.ts          # App entry point
+│   └── package.json
+├── compose.yaml              # Docker Compose configuration
+└── package.json              # Root workspace configuration
+```
+
+## Getting Started
+
+### 1. Install Dependencies
+
+```bash
+bun install
+```
+
+### 2. Set Up Environment Variables
+
+> **Note**: If `.env.development` (API) or `.env` (App) files already exist in the template, you may skip this step. Otherwise, create them as described below.
+
+#### API Environment Variables
+
+Create a `.env.development` file in the `api/` directory with the following variables:
+
+```bash
+# api/.env.development
+AUTH_SECRET=your-secret-key-here
+DATABASE_URL=postgresql://user:password@postgres:5432/app
+ALLOWED_ORIGINS=https://app.dev.localhost
+LOG_LEVEL=info
+HOST=0.0.0.0
+PORT=4000
+```
+
+**Required variables:**
+
+- `AUTH_SECRET` - Secret key for authentication encryption
+- `DATABASE_URL` - PostgreSQL connection string
+
+**Optional variables:**
+
+- `ALLOWED_ORIGINS` - Comma-separated list of allowed CORS origins (default: empty)
+- `LOG_LEVEL` - Logging level: `fatal`, `error`, `warn`, `info`, `debug`, `trace`, or `silent` (default: `info`)
+- `HOST` - Server host (default: `0.0.0.0`)
+- `PORT` - Server port (default: `4000`)
+
+#### App Environment Variables
+
+Create a `.env` file in the `app/` directory with the following variables:
+
+```bash
+# app/.env
+VITE_API_URL=https://api.dev.localhost
+```
+
+**Required variables:**
+
+- `VITE_API_URL` - API base URL for the frontend
+
+### 3. Set Up Local TLS Certificates
+
+To access the HTTPS URLs (`https://*.dev.localhost`), you need to set up trusted local TLS certificates using [mkcert](https://github.com/FiloSottile/mkcert).
+
+See the [Local TLS Setup Guide](docs/local-tls.md) for detailed instructions on installing mkcert and generating certificates.
+
+### 4. Start Docker Services
+
+Start all services (Traefik, PostgreSQL, Metabase, API, and App):
+
+```bash
+docker compose up -d
+```
+
+This will start:
+
+- **Traefik** at `https://traefik.dev.localhost` (reverse proxy dashboard)
+- **PostgreSQL** on port `5432`
+- **Metabase** at `https://metabase.dev.localhost` (BI tool)
+- **API** at `https://api.dev.localhost`
+- **App** at `https://app.dev.localhost`
+
+### 5. Access the Application
+
+- Frontend: https://app.dev.localhost
+- API: https://api.dev.localhost
+- Traefik Dashboard: https://traefik.dev.localhost
+- Metabase: https://metabase.dev.localhost
+
+### 6. Stopping Services
+
+To stop all Docker services:
+
+```bash
+docker compose down
+```
+
+To stop and remove volumes (⚠️ this will delete database data):
+
+```bash
+docker compose down -v
+```
+
+## Development
+
+### Running Services Locally (without Docker)
+
+You can also run the services locally without Docker. Note that you'll still need PostgreSQL running (either locally or via Docker).
+
+#### API Server
+
+```bash
+cd api
+bun run dev
+```
+
+The API will run on `http://localhost:4000` (or the port specified in `PORT`).
+
+#### Frontend App
+
+```bash
+cd app
+bun run dev
+```
+
+The app will run on `http://localhost:5173` (Vite default port).
+
+### Database Management
+
+#### Generate Migrations
+
+After modifying the database schema in `api/src/database/schema/`, generate migrations:
+
+```bash
+cd api
+bun run db:generate
+```
+
+#### Run Migrations
+
+Migrations run automatically when starting the API in dev mode. To run manually:
+
+```bash
+cd api
+bun run db:migrate
+```
+
+## Available Scripts
+
+### Root Level Scripts
+
+- `bun run check` - Run all checks (ESLint, Stylelint, unused dependencies, TypeScript)
+- `bun run lint` - Run linting (ESLint and Stylelint)
+- `bun run lint:inspect` - Open ESLint config inspector
+- `bun run update` - Update dependencies
+
+### API Scripts (`cd api`)
+
+- `bun run dev` - Start development server with hot reload
+- `bun run build` - Build production binary
+- `bun run db:generate` - Generate database migrations
+- `bun run db:migrate` - Run database migrations
+
+### App Scripts (`cd app`)
+
+- `bun run dev` - Start development server with HMR (Hot Module Replacement)
+- `bun run build` - Build for production (static site)
+- `bun run build:analyze` - Build with bundle analyzer
+- `bun run preview` - Preview production build
+
+## Docker Compose Services
+
+### Traefik
+
+Reverse proxy and load balancer that handles:
+
+- HTTPS termination
+- SSL certificate management (requires certificates in `.docker/traefik/certs/`)
+- Routing to services based on hostnames
+- Dashboard accessible at https://traefik.dev.localhost
+
+### PostgreSQL
+
+Database service with:
+
+- Default database: `app`
+- Default user: `user`
+- Default password: `password`
+- Port: `5432`
+- Persistent volume: `postgres_data`
+
+### Metabase
+
+Business intelligence tool for data visualization and analytics with:
+
+- Persistent volume: `metabase_data`
+- Accessible via Traefik at https://metabase.dev.localhost (runs on port `3000` internally)
+
+### API
+
+Backend API service running Bun with:
+
+- Hot reload enabled
+- Automatic database migrations on startup
+- Health check endpoint: `/health`
+- Auth endpoints: `/auth/*`
+- RPC endpoints: `/rpc/*`
+- Accessible via Traefik at https://api.dev.localhost (runs on port `4000` internally)
+
+### App
+
+Frontend Vue application with:
+
+- Vite dev server
+- Hot module replacement
+- Accessible via Traefik at https://app.dev.localhost (runs on port `5173` internally)
+
+## Environment Variables
+
+For detailed environment variable setup, see [Set Up Environment Variables](#2-set-up-environment-variables) in the Getting Started section.
+
+**Quick reference:**
+
+- **API** (`.env.development`): `AUTH_SECRET` (required), `DATABASE_URL` (required), `ALLOWED_ORIGINS`, `LOG_LEVEL`, `HOST`, `PORT`
+- **App** (`.env`): `VITE_API_URL` (required)
+
+## Building for Production
+
+### Build API
+
+```bash
+cd api
+bun run build
+```
+
+This creates a compiled binary at `api/dist/api`.
+
+### Build App
+
+```bash
+cd app
+bun run build
+```
+
+This creates a static site in `app/dist/`.
+
+## Troubleshooting
+
+### Port Already in Use
+
+If ports 80, 443, or 5432 are already in use, modify the port mappings in `compose.yaml`.
+
+### SSL Certificate Warnings
+
+If you see SSL certificate warnings when accessing `https://*.dev.localhost` URLs, ensure you have completed the [Local TLS Setup Guide](docs/local-tls.md) to generate trusted certificates using mkcert. The certificates must be placed in `.docker/traefik/certs/` for Traefik to use them.
+
+**Note**: Without proper certificates, Traefik may fail to start or services may not be accessible via HTTPS.
+
+### Service Logs
+
+To view logs for a specific service:
+
+```bash
+docker compose logs -f <service-name>
+```
+
+For example:
+
+- `docker compose logs -f api` - View API logs
+- `docker compose logs -f app` - View app logs
+- `docker compose logs -f traefik` - View Traefik logs
+
+## Tech Stack
+
+- **Runtime**: Bun
+- **Language**: TypeScript
+- **Frontend**: Vue 3, Vite, UnoCSS, TanStack Query
+- **Backend**: Bun, oRPC, Better Auth, Drizzle ORM
+- **Database**: PostgreSQL
+- **Infrastructure**: Docker Compose, Traefik
