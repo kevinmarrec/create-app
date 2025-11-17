@@ -13,7 +13,7 @@ This template provides a modern full-stack application structure with:
 
 ## Prerequisites
 
-- [Bun](https://bun.sh/) (v1.3.2 or later)
+- [Bun](https://bun.sh/) (v1.3 or later)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Node.js LTS](https://nodejs.org/en/download/) (for compatibility)
 
