@@ -10,6 +10,7 @@ const link = new RPCLink({
     globalThis.fetch(request, {
       ...init,
       credentials: 'include',
+      signal: AbortSignal.timeout(30_000),
     }),
 })
 
