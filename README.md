@@ -19,3 +19,5 @@ bun create @kevinmarrec/app
 # OR
 bunx @kevinmarrec/create-app
 ```
+
+After scaffolding, see the generated `README.md` in your project root for detailed setup instructions, including environment configuration, Docker setup, and development workflows.
