@@ -111,8 +111,8 @@ This will generate the certificates in `.docker/traefik/certs/` and install the 
 >
 > 1. Find the root CA file path:
 >    ```bash
->    echo "$(mkcert -CAROOT)/rootCA.pem"
->    # /home/user/.local/share/mkcert/rootCA.pem
+>    echo "wslpath -w $(mkcert -CAROOT)/rootCA.pem"
+>    # \\wsl.localhost\Ubuntu\home\user\.local\share\mkcert\rootCA.pem
 >    ```
 > 2. Import the root CA file into your browser trust store:
 >    - **Settings** -> **Privacy & Security**.
