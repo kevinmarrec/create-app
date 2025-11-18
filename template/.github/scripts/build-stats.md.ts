@@ -7,45 +7,21 @@ import { filesize } from 'filesize'
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
 
-interface FileStats {
-  file: string
-  size: number
-}
-
 async function getFileStats(directory: string) {
-  const fileStats: FileStats[] = []
-
-  for (const file of await glob(['**/*'], { cwd: directory })) {
-    const size = fs.statSync(path.join(directory, file)).size
-    fileStats.push({
+  const fileStats = await Promise.all(
+    (await glob(['**/*'], { cwd: directory })).map(async file => ({
       file,
-      size,
-    })
-  }
+      size: fs.statSync(path.join(directory, file)).size,
+    })),
+  )
 
   fileStats.sort((a, b) => {
-    // Sort so that files starting with 'assets/' come first
-    if (a.file.startsWith('assets/') && !b.file.startsWith('assets/')) return -1
-    if (!a.file.startsWith('assets/') && b.file.startsWith('assets/')) return 1
-
-    // Within that, files ending with '.js' come first
-    if (a.file.endsWith('.js') && !b.file.endsWith('.js')) return -1
-    if (!a.file.endsWith('.js') && b.file.endsWith('.js')) return 1
-
-    // Otherwise sort alphabetically
-    return a.file.localeCompare(b.file)
+    const scoreA = (a.file.startsWith('assets/') ? 2 : 0) + (a.file.endsWith('.js') ? 1 : 0)
+    const scoreB = (b.file.startsWith('assets/') ? 2 : 0) + (b.file.endsWith('.js') ? 1 : 0)
+    return scoreB - scoreA || a.file.localeCompare(b.file)
   })
 
   return fileStats
-}
-
-async function generateFileStatsMarkdown(directory: string) {
-  const fileStats = await getFileStats(directory)
-  return [
-    '| File | Size |',
-    '| :--- | ---: |',
-    ...fileStats.map(file => `| ${file.file} | ${filesize(file.size)} |`),
-  ].join('\n')
 }
 
 async function main() {
@@ -61,7 +37,12 @@ async function main() {
 
   await x('bun', ['run', 'build'], { nodeOptions: { cwd: directory } })
 
-  const markdownTable = await generateFileStatsMarkdown(path.join(directory, 'dist'))
+  const fileStats = await getFileStats(path.join(directory, 'dist'))
+  const markdownTable = [
+    '| File | Size |',
+    '| :--- | ---: |',
+    ...fileStats.map(file => `| ${file.file} | ${filesize(file.size)} |`),
+  ].join('\n')
   process.stdout.write(`${markdownTable}\n`)
 }
 
