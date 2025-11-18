@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+
+CERTS_DIR="$(cd "$(dirname "$0")/../certs" && pwd)"
+
+if ! command -v mkcert >/dev/null 2>&1; then
+  echo "Error: mkcert is not installed." >&2
+  echo "Please install mkcert before running this script." >&2
+  echo "See https://github.com/FiloSottile/mkcert#installation for installation instructions." >&2
+  exit 1
+fi
+
+mkdir -p "$CERTS_DIR"
+
+mkcert -install 2> /dev/null
+
+mkcert -cert-file "$CERTS_DIR/dev.localhost.crt" -key-file "$CERTS_DIR/dev.localhost.key" "dev.localhost" "*.dev.localhost"

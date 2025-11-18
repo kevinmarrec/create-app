@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+CERTS_DIR="$(cd "$(dirname "$0")/../certs" && pwd)"
+
+mkcert -uninstall 2> /dev/null || true
+
+rm -f "$CERTS_DIR"/*.crt "$CERTS_DIR"/*.key 2> /dev/null || true

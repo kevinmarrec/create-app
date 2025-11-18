@@ -16,11 +16,12 @@ This template provides a modern full-stack application structure with:
 - [Bun](https://bun.sh/) (v1.3 or later)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Node.js LTS](https://nodejs.org/en/download/) (for compatibility)
+- [mkcert](https://github.com/FiloSottile/mkcert) (for local TLS certificates)
 
 ## Project Structure
 
 ```
-template/
+project/
 ├── api/                   # Backend API server
 │   ├── src/
 │   │   ├── auth/            # Authentication setup (Better Auth)
@@ -95,9 +96,33 @@ VITE_API_URL=https://api.dev.localhost
 
 To access the HTTPS URLs (`https://*.dev.localhost`), you need to set up trusted local TLS certificates using [mkcert](https://github.com/FiloSottile/mkcert).
 
-See the [Local TLS Setup Guide](docs/local-tls.md) for detailed instructions on installing mkcert and generating certificates.
+Check their [installation guide](https://github.com/FiloSottile/mkcert#installation) for detailed instructions on installing mkcert.
 
-### 4. Start Docker Services
+Then, run the following command to generate the certificates:
+
+```bash
+.docker/traefik/bin/install_cert
+```
+
+This will generate the certificates in `.docker/traefik/certs/` and install the mkcert root CA into your system trust store.
+
+> [!IMPORTANT]
+> If your system is running on WSL and you are using Firefox or Zen Browser, **you must import the mkcert root CA into your browser trust store.**
+>
+> 1. Find the root CA file path:
+>    ```bash
+>    echo "$(mkcert -CAROOT)/rootCA.pem"
+>    # /home/user/.local/share/mkcert/rootCA.pem
+>    ```
+> 2. Import the root CA file into your browser trust store:
+>    - **Settings** -> **Privacy & Security**.
+>    - **Certificates** -> **View Certificates...**
+>    - **Authorities** tab -> **Import...**
+>    - Select the rootCA.pem file (using the path found above)
+>    - Check **"Trust this CA to identify websites"**
+>    - Click **OK**
+
+### 4. Start Docker Services and Access the Application
 
 Start all services (Traefik, PostgreSQL, Metabase, API, and App):
 
@@ -105,22 +130,14 @@ Start all services (Traefik, PostgreSQL, Metabase, API, and App):
 docker compose up -d
 ```
 
-This will start:
-
-- **Traefik** at `https://traefik.dev.localhost` (reverse proxy dashboard)
-- **PostgreSQL** on port `5432`
-- **Metabase** at `https://metabase.dev.localhost` (BI tool)
-- **API** at `https://api.dev.localhost`
-- **App** at `https://app.dev.localhost`
-
-### 5. Access the Application
+Once the services are running, you can access:
 
 - Frontend: https://app.dev.localhost
 - API: https://api.dev.localhost
 - Traefik Dashboard: https://traefik.dev.localhost
 - Metabase: https://metabase.dev.localhost
 
-### 6. Stopping Services
+### 5. Stopping Services
 
 To stop all Docker services:
 
@@ -285,7 +302,7 @@ If ports 80, 443, or 5432 are already in use, modify the port mappings in `compo
 
 ### SSL Certificate Warnings
 
-If you see SSL certificate warnings when accessing `https://*.dev.localhost` URLs, ensure you have completed the [Local TLS Setup Guide](docs/local-tls.md) to generate trusted certificates using mkcert. The certificates must be placed in `.docker/traefik/certs/` for Traefik to use them.
+If you see SSL certificate warnings when accessing `https://*.dev.localhost` URLs, ensure you have completed the [Local TLS Setup](#3-set-up-local-tls-certificates) to generate trusted certificates using mkcert.
 
 **Note**: Without proper certificates, Traefik may fail to start or services may not be accessible via HTTPS.
 
