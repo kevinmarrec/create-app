@@ -38,6 +38,8 @@ jobs:
   template-size:
     name: Analyze template build size
     runs-on: ubuntu-latest
+    if: |
+      !startsWith(github.event.head_commit.message, 'chore: release')
     steps:
       - name: Setup Bun
         uses: kevinmarrec/workflows/setup-bun@v1
