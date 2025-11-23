@@ -6,11 +6,6 @@ import { useAuth, useContent, useHead, useI18n } from '~/app/composables'
 const { t } = useI18n()
 useHead({
   title: () => t('title'),
-  link: [{
-    rel: 'preconnect',
-    href: new URL(import.meta.env.VITE_API_URL).origin,
-    crossorigin: '',
-  }],
 })
 
 const { user, signIn, signUp, signOut } = useAuth()
