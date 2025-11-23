@@ -16,6 +16,7 @@
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
     "check:types": "vue-tsc --noEmit",
     "check:unused": "knip -n",
+    "dev": "docker compose",
     "lint": "bun run check:eslint && bun run check:stylelint",
     "lint:inspect": "bunx @eslint/config-inspector",
     "update": "bunx taze -I -rwi"

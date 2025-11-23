@@ -199,6 +199,7 @@ bun run db:migrate
 
 ### Root Level Scripts
 
+- `bun run dev` - Alias for `docker compose`
 - `bun run check` - Run all checks (ESLint, Stylelint, unused dependencies, TypeScript)
 - `bun run lint` - Run linting (ESLint and Stylelint)
 - `bun run lint:inspect` - Open ESLint config inspector
