@@ -17,8 +17,8 @@ transformed = transformed.replace(
 
 // 2. Change traefik volume paths to include template/ prefix
 transformed = transformed.replace(
-  /- \.\/\.docker\/traefik\//g,
-  '- ./template/.docker/traefik/',
+  /- \.\/\.docker\//g,
+  '- ./template/.docker/',
 )
 
 // Output the transformed content to stdout
