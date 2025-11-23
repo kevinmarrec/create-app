@@ -121,6 +121,25 @@ services:
       traefik.http.routers.app.tls: 'true'
       traefik.http.services.app.loadbalancer.server.port: '5173'
 
+  studio:
+    depends_on:
+      traefik:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    container_name: studio
+    image: ghcr.io/drizzle-team/gateway:latest
+    environment:
+      - MASTERPASS=foobar
+    volumes:
+      - studio_data:/app
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.studio.rule: Host(`studio.dev.localhost`)
+      traefik.http.routers.studio.entrypoints: websecure
+      traefik.http.routers.studio.tls: 'true'
+      traefik.http.services.studio.loadbalancer.server.port: '4983'
+
 networks:
   default:
     name: dev
@@ -128,3 +147,4 @@ networks:
 volumes:
   postgres_data:
   metabase_data:
+  studio_data:
