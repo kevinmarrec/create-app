@@ -9,7 +9,8 @@ This template provides a modern full-stack application structure with:
 - **Frontend (app)**: Vue 3 application with Vite, UnoCSS, TypeScript, and TanStack Query
 - **Backend (api)**: Bun-based API server with oRPC, Better Auth, and Drizzle ORM
 - **Database**: PostgreSQL with Drizzle migrations
-- **Infrastructure**: Docker Compose with Traefik reverse proxy, PostgreSQL, and Metabase
+- **Infrastructure**: Docker Compose with Traefik reverse proxy
+- **Development Tools**: Metabase (business intelligence), Drizzle Studio (database management), Umami (analytics), and Mailpit (email testing)
 
 ## Prerequisites
 
@@ -124,7 +125,7 @@ This will generate the certificates in `.docker/traefik/certs/` and install the 
 
 ### 4. Start Docker Services and Access the Application
 
-Start all services (Traefik, PostgreSQL, Metabase, API, and App):
+Start all services:
 
 ```bash
 docker compose up -d
@@ -136,6 +137,9 @@ Once the services are running, you can access:
 - API: https://api.dev.localhost
 - Traefik Dashboard: https://traefik.dev.localhost
 - Metabase: https://metabase.dev.localhost
+- Drizzle Studio: https://studio.dev.localhost
+- Umami Analytics: https://analytics.dev.localhost
+- Mailpit: https://mail.dev.localhost
 
 ### 5. Stopping Services
 
@@ -265,6 +269,35 @@ Frontend Vue application with:
 - Vite dev server
 - Hot module replacement
 - Accessible via Traefik at https://app.dev.localhost (runs on port `5173` internally)
+
+### Studio (Drizzle Studio)
+
+Database management and visualization tool with:
+
+- Visual database browser and query editor
+- Database schema exploration
+- Master password: `foobar` (configured via `MASTERPASS` environment variable)
+- Persistent volume: `studio_data`
+- Accessible via Traefik at https://studio.dev.localhost (runs on port `4983` internally)
+
+### Analytics (Umami)
+
+Privacy-focused web analytics platform with:
+
+- Website analytics and visitor tracking
+- PostgreSQL database: `analytics`
+- Persistent data storage
+- Accessible via Traefik at https://analytics.dev.localhost (runs on port `3000` internally)
+
+### Mailpit
+
+Email testing tool for development with:
+
+- SMTP server for capturing outgoing emails
+- Web interface for viewing and testing emails
+- REST API (available at `/api/v1/`) for accessing, searching, deleting, and sending messages
+- Useful for testing email functionality without sending real emails
+- Accessible via Traefik at https://mail.dev.localhost (runs on port `8025` internally)
 
 ## Environment Variables
 
