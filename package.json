@@ -57,14 +57,14 @@
     "@kevinmarrec/stylelint-config": "^1.5.7",
     "@kevinmarrec/tsconfig": "^1.5.7",
     "@types/bun": "^1.3.3",
-    "@vitest/coverage-v8": "^4.0.13",
+    "@vitest/coverage-v8": "^4.0.14",
     "bumpp": "^10.3.1",
     "eslint": "^9.39.1",
-    "knip": "^5.70.1",
+    "knip": "^5.70.2",
     "stylelint": "^16.26.0",
-    "tsdown": "^0.16.6",
+    "tsdown": "^0.16.7",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.13",
+    "vitest": "^4.0.14",
     "vue-tsc": "^3.1.5"
   }
 }
