@@ -162,6 +162,19 @@ services:
       traefik.http.routers.analytics.tls: 'true'
       traefik.http.services.analytics.loadbalancer.server.port: '3000'
 
+  mailpit:
+    depends_on:
+      traefik:
+        condition: service_healthy
+    container_name: mailpit
+    image: axllent/mailpit:v1.27
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.mailpit.rule: Host(`mail.dev.localhost`)
+      traefik.http.routers.mailpit.entrypoints: websecure
+      traefik.http.routers.mailpit.tls: 'true'
+      traefik.http.services.mailpit.loadbalancer.server.port: '8025'
+
 networks:
   default:
     name: dev
