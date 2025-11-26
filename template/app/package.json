@@ -21,7 +21,7 @@
     "vue": "^3.5.25"
   },
   "devDependencies": {
-    "@kevinmarrec/unocss-config": "^1.5.7",
+    "@kevinmarrec/unocss-config": "^1.5.8",
     "@kevinmarrec/vite-plugin-dark-mode": "^1.1.2",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unhead/addons": "^2.0.19",

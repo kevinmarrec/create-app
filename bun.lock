@@ -12,9 +12,9 @@
       },
       "devDependencies": {
         "@faker-js/faker": "^10.1.0",
-        "@kevinmarrec/eslint-config": "^1.5.7",
-        "@kevinmarrec/stylelint-config": "^1.5.7",
-        "@kevinmarrec/tsconfig": "^1.5.7",
+        "@kevinmarrec/eslint-config": "^1.5.8",
+        "@kevinmarrec/stylelint-config": "^1.5.8",
+        "@kevinmarrec/tsconfig": "^1.5.8",
         "@types/bun": "^1.3.3",
         "@vitest/coverage-v8": "^4.0.14",
         "bumpp": "^10.3.1",
@@ -30,9 +30,9 @@
     "template": {
       "name": "project",
       "devDependencies": {
-        "@kevinmarrec/eslint-config": "^1.5.7",
-        "@kevinmarrec/stylelint-config": "^1.5.7",
-        "@kevinmarrec/tsconfig": "^1.5.7",
+        "@kevinmarrec/eslint-config": "^1.5.8",
+        "@kevinmarrec/stylelint-config": "^1.5.8",
+        "@kevinmarrec/tsconfig": "^1.5.8",
         "eslint": "^9.39.1",
         "filesize": "^11.0.13",
         "knip": "^5.70.2",
@@ -75,7 +75,7 @@
         "vue": "^3.5.25",
       },
       "devDependencies": {
-        "@kevinmarrec/unocss-config": "^1.5.7",
+        "@kevinmarrec/unocss-config": "^1.5.8",
         "@kevinmarrec/vite-plugin-dark-mode": "^1.1.2",
         "@modyfi/vite-plugin-yaml": "^1.1.1",
         "@unhead/addons": "^2.0.19",
@@ -326,13 +326,13 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@kevinmarrec/eslint-config": ["@kevinmarrec/eslint-config@1.5.7", "", { "dependencies": { "@antfu/eslint-config": "^6.2.0", "@unocss/eslint-plugin": "^66.5.7", "defu": "^6.1.4", "eslint-flat-config-utils": "^2.1.4", "eslint-plugin-format": "^1.0.2", "eslint-plugin-vuejs-accessibility": "^2.4.1", "tinyglobby": "^0.2.15" }, "peerDependencies": { "eslint": ">=9.20.0" } }, "sha512-1lnXjpZbNbsW6PXz26hY5pg/wl2by65hKVc0vZYuVfPi1Iq1jyNGyw3QLprd0rMoYmJ4hmH+gajUCfuSNKt+2Q=="],
+    "@kevinmarrec/eslint-config": ["@kevinmarrec/eslint-config@1.5.8", "", { "dependencies": { "@antfu/eslint-config": "^6.2.0", "@unocss/eslint-plugin": "^66.5.9", "defu": "^6.1.4", "eslint-flat-config-utils": "^2.1.4", "eslint-plugin-format": "^1.0.2", "eslint-plugin-vuejs-accessibility": "^2.4.1", "tinyglobby": "^0.2.15" }, "peerDependencies": { "eslint": ">=9.20.0" } }, "sha512-dUDLrm1TtKhPQqcMqmIWrGXRd7fkLVfqEidKLwtFspC9xVWYQg9Jfbj8PZmwd3CV7jHbCje4fOVUlm4J2cu7hg=="],
 
-    "@kevinmarrec/stylelint-config": ["@kevinmarrec/stylelint-config@1.5.7", "", { "dependencies": { "stylelint-config-html": "^1.1.0", "stylelint-config-recess-order": "^7.4.0", "stylelint-config-recommended-scss": "^16.0.2", "stylelint-order": "^7.0.0", "stylelint-plugin-use-baseline": "^1.1.1" }, "peerDependencies": { "stylelint": ">=16.18.0" } }, "sha512-SEM107lXwaSsKAdYBb1+PI3mPaaQMOgLFMe1f4/tnaS5oNvpfWsDe874PF7qs2zl9OgSQTHq0/5SLzYY769Frg=="],
+    "@kevinmarrec/stylelint-config": ["@kevinmarrec/stylelint-config@1.5.8", "", { "dependencies": { "stylelint-config-html": "^1.1.0", "stylelint-config-recess-order": "^7.4.0", "stylelint-config-recommended-scss": "^16.0.2", "stylelint-order": "^7.0.0", "stylelint-plugin-use-baseline": "^1.1.2" }, "peerDependencies": { "stylelint": ">=16.18.0" } }, "sha512-quwFOXuHemrFvlPyEw79Mwdccy7WV5+U+ZiTwN0X3BqrX3AVAnA3htpM+JtwuIY9trfEsnWEztKmui6LtpCirg=="],
 
-    "@kevinmarrec/tsconfig": ["@kevinmarrec/tsconfig@1.5.7", "", {}, "sha512-mUROAi6XdBn25bd7Adr+IeMRnaqLQPrtVWILOPdUzbYSV+Z2abT7efvzP6vARFhTdFpKaticjOJ4oXQ6gaebhA=="],
+    "@kevinmarrec/tsconfig": ["@kevinmarrec/tsconfig@1.5.8", "", {}, "sha512-DXHQx3UKU7pQGeMsufDS4geDBmP1C776ka3d5ADjCRjyi8ryZ2GVi2GKmzh+OpOH2jaueT0JDVurk7+I3xxfVg=="],
 
-    "@kevinmarrec/unocss-config": ["@kevinmarrec/unocss-config@1.5.7", "", { "dependencies": { "@unocss/core": "^66.5.7", "@unocss/preset-icons": "^66.5.7", "@unocss/preset-web-fonts": "^66.5.7", "@unocss/preset-wind4": "^66.5.7", "@unocss/transformer-directives": "^66.5.7", "@unocss/transformer-variant-group": "^66.5.7" }, "peerDependencies": { "unocss": ">=66.5.0" } }, "sha512-KnoBxK0+nFHPbArsNjZ6GKvoK5+eRYg9ii+MZD6CF5eGB2pQSbizUOVKDLDPzEjHXtEVeQZkOIkHVlh3pdTWhg=="],
+    "@kevinmarrec/unocss-config": ["@kevinmarrec/unocss-config@1.5.8", "", { "dependencies": { "@unocss/core": "^66.5.9", "@unocss/preset-icons": "^66.5.9", "@unocss/preset-web-fonts": "^66.5.9", "@unocss/preset-wind4": "^66.5.9", "@unocss/transformer-directives": "^66.5.9", "@unocss/transformer-variant-group": "^66.5.9" }, "peerDependencies": { "unocss": ">=66.5.0" } }, "sha512-CuvzMS6gcUKnW9oVFe9cqWGLuPMpLlCWl4m2pTH/X4jt7XrJ70BJKPNF5HX42X1SJRyCnjTrBQ02kUva8a8aZA=="],
 
     "@kevinmarrec/vite-plugin-dark-mode": ["@kevinmarrec/vite-plugin-dark-mode@1.1.2", "", { "peerDependencies": { "vite": ">=7.0.0" } }, "sha512-nJyqgSrF2uFIM+KB737Mw6w6kqsA95aV1aRnCDSxeJ0H6EjWvkmbpLVIv0sN0DMb2Uq9YpOYTFyqeYZ3gRj66Q=="],
 
@@ -1652,7 +1652,7 @@
 
     "stylelint-order": ["stylelint-order@7.0.0", "", { "dependencies": { "postcss": "^8.5.3", "postcss-sorting": "^9.1.0" }, "peerDependencies": { "stylelint": "^16.18.0" } }, "sha512-rSWxx0KscYfxU02wEskKXES9lkRzuuONMMNkZ7SUc6uiF3tDKm7e+sE0Ax/SBlG4TUf1sp1R6f3/SlsPGmzthg=="],
 
-    "stylelint-plugin-use-baseline": ["stylelint-plugin-use-baseline@1.1.1", "", { "dependencies": { "css-tree": "^3.1.0", "is-plain-object": "^5.0.0", "postcss": "^8.5.5", "postcss-value-parser": "^4.2.0" }, "peerDependencies": { "stylelint": "^16.0.2" } }, "sha512-vlheyjEOBVSbM2pxbwFPDuGC6bOAps+iAgIpLgZeGZ+QDHAMp9G3N9k6LhynIXu6+5wKNN9fz72DtbShYRblgQ=="],
+    "stylelint-plugin-use-baseline": ["stylelint-plugin-use-baseline@1.1.2", "", { "dependencies": { "css-tree": "^3.1.0", "is-plain-object": "^5.0.0", "postcss": "^8.5.5", "postcss-value-parser": "^4.2.0" }, "peerDependencies": { "stylelint": "^16.0.2" } }, "sha512-D0B3RoataL8Do8weuz2aFl1KBPNYP6CxyFXaH7Y/Nyb1Ybhc5Vq0tAWeJvu082yf3ek/8L5ubEM9by4tn2lhqg=="],
 
     "stylelint-scss": ["stylelint-scss@6.12.1", "", { "dependencies": { "css-tree": "^3.0.1", "is-plain-object": "^5.0.0", "known-css-properties": "^0.36.0", "mdn-data": "^2.21.0", "postcss-media-query-parser": "^0.2.3", "postcss-resolve-nested-selector": "^0.1.6", "postcss-selector-parser": "^7.1.0", "postcss-value-parser": "^4.2.0" }, "peerDependencies": { "stylelint": "^16.0.2" } }, "sha512-UJUfBFIvXfly8WKIgmqfmkGKPilKB4L5j38JfsDd+OCg2GBdU0vGUV08Uw82tsRZzd4TbsUURVVNGeOhJVF7pA=="],
 
