@@ -6,7 +6,7 @@ x-common: &common
 
 services:
   traefik:
-    image: traefik:v3.6
+    image: traefik:v3.6.2
     container_name: traefik
     restart: unless-stopped
     security_opt:
@@ -47,7 +47,7 @@ services:
       traefik.http.routers.traefik.service: api@internal
 
   postgres:
-    image: postgres:18-alpine
+    image: postgres:18.1-alpine
     container_name: postgres
     environment:
       - POSTGRES_USER=user
@@ -64,7 +64,7 @@ services:
       retries: 20
 
   metabase:
-    image: metabase/metabase:v0.57.x
+    image: metabase/metabase:v0.57.4
     container_name: metabase
     environment:
       - MB_DB_TYPE=h2
@@ -92,7 +92,7 @@ services:
       postgres:
         condition: service_healthy
     container_name: api
-    image: oven/bun:1-alpine
+    image: oven/bun:1.3.3-alpine
     init: true
     command: [bun, --cwd, api, dev]
     environment:
@@ -109,7 +109,7 @@ services:
     depends_on:
       - api
     container_name: app
-    image: imbios/bun-node:24-alpine
+    image: imbios/bun-node:1.3.3-24-alpine
     init: true
     command: [bun, --cwd, app, dev, --host, 0.0.0.0]
     environment:
@@ -128,7 +128,7 @@ services:
       postgres:
         condition: service_healthy
     container_name: studio
-    image: ghcr.io/drizzle-team/gateway:latest
+    image: ghcr.io/drizzle-team/gateway:1.1.1
     environment:
       - MASTERPASS=foobar
     volumes:
@@ -147,7 +147,7 @@ services:
       postgres:
         condition: service_healthy
     container_name: analytics
-    image: umamisoftware/umami:3
+    image: umamisoftware/umami:3.0.1
     environment:
       - DATABASE_URL=postgresql://user:password@postgres:5432/analytics
     healthcheck:
@@ -167,7 +167,7 @@ services:
       traefik:
         condition: service_healthy
     container_name: mailpit
-    image: axllent/mailpit:v1.27
+    image: axllent/mailpit:v1.28.0
     labels:
       traefik.enable: 'true'
       traefik.http.routers.mailpit.rule: Host(`mail.dev.localhost`)
