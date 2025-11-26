@@ -60,9 +60,9 @@ Create a `.env.development` file in the `api/` directory with the following vari
 
 ```bash
 # api/.env.development
+ALLOWED_ORIGINS=https://app.dev.localhost
 AUTH_SECRET=your-secret-key-here
 DATABASE_URL=postgresql://user:password@postgres:5432/app
-ALLOWED_ORIGINS=https://app.dev.localhost
 LOG_LEVEL=info
 HOST=0.0.0.0
 PORT=4000
@@ -70,12 +70,12 @@ PORT=4000
 
 **Required variables:**
 
+- `ALLOWED_ORIGINS` - Comma-separated list of allowed CORS origins (must start with `https://`)
 - `AUTH_SECRET` - Secret key for authentication encryption
 - `DATABASE_URL` - PostgreSQL connection string
 
 **Optional variables:**
 
-- `ALLOWED_ORIGINS` - Comma-separated list of allowed CORS origins (default: empty)
 - `LOG_LEVEL` - Logging level: `fatal`, `error`, `warn`, `info`, `debug`, `trace`, or `silent` (default: `info`)
 - `HOST` - Server host (default: `0.0.0.0`)
 - `PORT` - Server port (default: `4000`)
@@ -87,11 +87,15 @@ Create a `.env` file in the `app/` directory with the following variables:
 ```bash
 # app/.env
 VITE_API_URL=https://api.dev.localhost
+VITE_ANALYTICS_URL=https://analytics.dev.localhost
+VITE_ANALYTICS_WEBSITE_ID=your-website-id-here
 ```
 
 **Required variables:**
 
 - `VITE_API_URL` - API base URL for the frontend
+- `VITE_ANALYTICS_URL` - Analytics service URL (e.g., Umami instance)
+- `VITE_ANALYTICS_WEBSITE_ID` - Website ID for analytics tracking
 
 ### 3. Set Up Local TLS Certificates
 
@@ -305,8 +309,8 @@ For detailed environment variable setup, see [Set Up Environment Variables](#2-s
 
 **Quick reference:**
 
-- **API** (`.env.development`): `AUTH_SECRET` (required), `DATABASE_URL` (required), `ALLOWED_ORIGINS`, `LOG_LEVEL`, `HOST`, `PORT`
-- **App** (`.env`): `VITE_API_URL` (required)
+- **API** (`.env.development`): `ALLOWED_ORIGINS` (required), `AUTH_SECRET` (required), `DATABASE_URL` (required), `LOG_LEVEL`, `HOST`, `PORT`
+- **App** (`.env`): `VITE_API_URL` (required), `VITE_ANALYTICS_URL` (required), `VITE_ANALYTICS_WEBSITE_ID` (required)
 
 ## Building for Production
 

@@ -6,60 +6,80 @@ import unhead from '@unhead/addons/vite'
 import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
 import unocss from 'unocss/vite'
-import { defineConfig } from 'vite'
+import * as v from 'valibot'
+import { defineConfig, type PluginOption } from 'vite'
+import valibot from 'vite-plugin-valibot-env'
 import devtools from 'vite-plugin-vue-devtools'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default defineConfig(({ command, mode }) => ({
-  build: {
-    modulePreload: {
-      polyfill: false,
-    },
-    sourcemap: mode === 'analyze',
-  },
-  builder: {
-    async buildApp(builder) {
-      if (builder.config.mode === 'static') {
-        const { build } = await import('vite-ssg/node')
-        await build(builder.config.ssgOptions)
-        process.exit(0)
-      }
+export const envSchema = v.object({
+  VITE_API_URL: v.pipe(v.string(), v.nonEmpty(), v.readonly()),
+  VITE_ANALYTICS_URL: v.pipe(v.string(), v.nonEmpty(), v.readonly()),
+  VITE_ANALYTICS_WEBSITE_ID: v.pipe(v.string(), v.nonEmpty(), v.readonly()),
+})
 
-      await builder.build(builder.environments.client)
-    },
-  },
-  plugins: [
+declare global {
+  interface ViteConfigEnv extends v.InferOutput<typeof envSchema> {}
+}
+
+export default defineConfig(({ command, mode }) => {
+  const plugins: PluginOption[] = [
+    darkMode(),
+    devtools({
+      componentInspector: {
+        toggleComboKey: 'alt-s',
+      },
+    }),
+    tsconfigPaths(),
+    unhead(),
+    unocss(),
+    valibot(envSchema),
     vue({
       features: {
         optionsAPI: command !== 'build',
       },
     }),
     yaml(),
-    darkMode(),
-    unocss(),
-    unhead(),
-    tsconfigPaths(),
-    devtools({
-      componentInspector: {
-        toggleComboKey: 'alt-s',
-      },
-    }),
-    mode === 'analyze' && visualizer({
+  ]
+
+  if (mode === 'analyze') {
+    plugins.push(visualizer({
       filename: 'node_modules/.vite/stats.html',
       brotliSize: true,
       gzipSize: true,
       open: true,
       sourcemap: true,
-    }),
-  ],
-  ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
-    beastiesOptions: {
-      reduceInlineStyles: false,
+    }))
+  }
+
+  return {
+    build: {
+      modulePreload: {
+        polyfill: false,
+      },
+      sourcemap: mode === 'analyze',
     },
-  },
-  ssr: {
-    noExternal: ['@kevinmarrec/vue-i18n'],
-  },
-}))
+    builder: {
+      async buildApp(builder) {
+        if (builder.config.mode === 'static') {
+          const { build } = await import('vite-ssg/node')
+          await build(builder.config.ssgOptions)
+          process.exit(0)
+        }
+
+        await builder.build(builder.environments.client)
+      },
+    },
+    plugins,
+    ssgOptions: {
+      script: 'async',
+      formatting: 'minify',
+      beastiesOptions: {
+        reduceInlineStyles: false,
+      },
+    },
+    ssr: {
+      noExternal: ['@kevinmarrec/vue-i18n'],
+    },
+  }
+})
