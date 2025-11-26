@@ -1,16 +1,18 @@
 # Project Template
 
-A full-stack application template with a Vue.js frontend, Bun-based API backend, PostgreSQL database, and Docker Compose setup for local development.
+A full-stack application template with Vue.js frontend, Bun-based API backend, and PostgreSQL database.
 
-## Overview
+## Tech Stack
 
-This template provides a modern full-stack application structure with:
-
-- **Frontend (app)**: Vue 3 application with Vite, UnoCSS, TypeScript, and TanStack Query
-- **Backend (api)**: Bun-based API server with oRPC, Better Auth, and Drizzle ORM
-- **Database**: PostgreSQL with Drizzle migrations
-- **Infrastructure**: Docker Compose with Traefik reverse proxy
-- **Development Tools**: Metabase (business intelligence), Drizzle Studio (database management), Umami (analytics), and Mailpit (email testing)
+- **Runtime**: [Bun](https://bun.sh/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Frontend**: [Vue 3](https://vuejs.org/) | [Vite](https://vitejs.dev/) | [UnoCSS](https://unocss.dev/) | [TanStack Query](https://tanstack.com/query/latest)
+- **Backend**: [Bun](https://bun.sh/) | [oRPC](https://orpc.dev/) | [Better Auth](https://www.better-auth.com/) | [Drizzle ORM](https://orm.drizzle.team/)
+- **Validation**: [Valibot](https://valibot.dev/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/) (with [Drizzle](https://orm.drizzle.team/) migrations)
+- **Infrastructure**: [Docker Compose](https://docs.docker.com/compose/) | [Traefik](https://traefik.io/)
+- **Code Quality Tools**: [ESLint](https://eslint.org/) | [Stylelint](https://stylelint.io/) | [Knip](https://knip.dev/)
+- **Development Services**: [Metabase](https://www.metabase.com/) | [Drizzle Studio](https://gateway.drizzle.team/) | [Umami](https://umami.is/) | [Mailpit](https://mailpit.axllent.org/)
 
 ## Prerequisites
 
@@ -136,7 +138,7 @@ This will generate the certificates in `.docker/traefik/certs/` and install the 
 Start all services:
 
 ```bash
-docker compose up -d
+bun run dev up -d
 ```
 
 Once the services are running, you can access:
@@ -154,13 +156,13 @@ Once the services are running, you can access:
 To stop all Docker services:
 
 ```bash
-docker compose down
+bun run dev down
 ```
 
 To stop and remove volumes (⚠️ this will delete database data):
 
 ```bash
-docker compose down -v
+bun run dev down -v
 ```
 
 ## Development
@@ -191,7 +193,7 @@ The app will run on `http://localhost:5173` (Vite default port).
 
 #### Generate Migrations
 
-After modifying the database schema in `api/src/database/schema/`, generate migrations:
+After modifying the database schema in `api/src/database/schema/`:
 
 ```bash
 cd api
@@ -211,7 +213,7 @@ bun run db:migrate
 
 ### Root Level Scripts
 
-- `bun run dev` - Alias for `docker compose`
+- `bun run dev` - Shortcut for `docker compose` (use `bun run dev up -d` to start services)
 - `bun run check` - Run all checks (ESLint, Stylelint, unused dependencies, TypeScript)
 - `bun run lint` - Run linting (ESLint and Stylelint)
 - `bun run lint:inspect` - Open ESLint config inspector
@@ -219,7 +221,7 @@ bun run db:migrate
 
 ### API Scripts (`cd api`)
 
-- `bun run dev` - Start development server with hot reload
+- `bun run dev` - Start development server with hot reload (automatically runs migrations and uses pino-pretty for logging)
 - `bun run build` - Build production binary
 - `bun run db:generate` - Generate database migrations
 - `bun run db:migrate` - Run database migrations
@@ -235,86 +237,74 @@ bun run db:migrate
 
 ### Traefik
 
-Reverse proxy and load balancer that handles:
+Reverse proxy and load balancer that handles HTTPS termination, SSL certificate management, and routing to services based on hostnames.
 
-- HTTPS termination
-- SSL certificate management (requires certificates in `.docker/traefik/certs/`)
-- Routing to services based on hostnames
-- Dashboard accessible at https://traefik.dev.localhost
+- Dashboard: https://traefik.dev.localhost
+- Certificates: `.docker/traefik/certs/`
 
 ### PostgreSQL
 
-Database service with:
+Database service:
 
-- Default database: `app`
-- Default user: `user`
-- Default password: `password`
-- Port: `5432`
+- Connection: `postgresql://user:password@postgres:5432/app`
+- Port: `5432` (exposed to host)
 - Persistent volume: `postgres_data`
 
 ### Metabase
 
-Business intelligence tool for data visualization and analytics with:
+Business intelligence tool for data visualization and analytics:
 
+- Accessible at https://metabase.dev.localhost
 - Persistent volume: `metabase_data`
-- Accessible via Traefik at https://metabase.dev.localhost (runs on port `3000` internally)
 
 ### API
 
-Backend API service running Bun with:
+Backend API service running Bun with hot reload enabled and automatic database migrations on startup:
 
-- Hot reload enabled
-- Automatic database migrations on startup
-- Health check endpoint: `/health`
-- Auth endpoints: `/auth/*`
-- RPC endpoints: `/rpc/*`
-- Accessible via Traefik at https://api.dev.localhost (runs on port `4000` internally)
+- Accessible at https://api.dev.localhost
+- Endpoints:
+  - `/health` - Health check
+  - `/auth/*` - Authentication (Better Auth)
+  - `/rpc/*` - RPC endpoints (oRPC)
 
 ### App
 
-Frontend Vue application with:
+Frontend Vue application with Vite dev server and HMR (Hot Module Replacement):
 
-- Vite dev server
-- Hot module replacement
-- Accessible via Traefik at https://app.dev.localhost (runs on port `5173` internally)
+- Accessible at https://app.dev.localhost
 
 ### Studio (Drizzle Studio)
 
-Database management and visualization tool with:
+Database management and visualization tool:
 
-- Visual database browser and query editor
-- Database schema exploration
-- Master password: `foobar` (configured via `MASTERPASS` environment variable)
+- Accessible at https://studio.dev.localhost
+- Master password: `foobar`
 - Persistent volume: `studio_data`
-- Accessible via Traefik at https://studio.dev.localhost (runs on port `4983` internally)
 
 ### Analytics (Umami)
 
-Privacy-focused web analytics platform with:
+Privacy-focused web analytics platform:
 
-- Website analytics and visitor tracking
-- PostgreSQL database: `analytics`
+- Accessible at https://analytics.dev.localhost
+- Uses PostgreSQL database: `analytics`
 - Persistent data storage
-- Accessible via Traefik at https://analytics.dev.localhost (runs on port `3000` internally)
 
 ### Mailpit
 
-Email testing tool for development with:
+Email and SMTP testing tool with API for developers:
 
-- SMTP server for capturing outgoing emails
-- Web interface for viewing and testing emails
-- REST API (available at `/api/v1/`) for accessing, searching, deleting, and sending messages
-- Useful for testing email functionality without sending real emails
-- Accessible via Traefik at https://mail.dev.localhost (runs on port `8025` internally)
+- Accessible at https://mail.dev.localhost
+- Web interface for viewing and testing captured emails
+- REST API at `/api/v1/` for accessing, searching, deleting, and sending messages
 
 ## Environment Variables
 
-For detailed environment variable setup, see [Set Up Environment Variables](#2-set-up-environment-variables) in the Getting Started section.
+See [Set Up Environment Variables](#2-set-up-environment-variables) for detailed setup instructions.
 
 **Quick reference:**
 
-- **API** (`.env.development`): `ALLOWED_ORIGINS` (required), `AUTH_SECRET` (required), `DATABASE_URL` (required), `LOG_LEVEL`, `HOST`, `PORT`
-- **App** (`.env`): `VITE_API_URL` (required), `VITE_ANALYTICS_URL` (required), `VITE_ANALYTICS_WEBSITE_ID` (required)
+- **API** (`api/.env.development`): `ALLOWED_ORIGINS`, `AUTH_SECRET`, `DATABASE_URL` (required); `LOG_LEVEL`, `HOST`, `PORT` (optional)
+- **App** (`app/.env`): `VITE_API_URL`, `VITE_ANALYTICS_URL`, `VITE_ANALYTICS_WEBSITE_ID` (required)
 
 ## Building for Production
 
@@ -353,20 +343,11 @@ If you see SSL certificate warnings when accessing `https://*.dev.localhost` URL
 To view logs for a specific service:
 
 ```bash
-docker compose logs -f <service-name>
+bun run dev logs -f <service-name>
 ```
 
 For example:
 
-- `docker compose logs -f api` - View API logs
-- `docker compose logs -f app` - View app logs
-- `docker compose logs -f traefik` - View Traefik logs
-
-## Tech Stack
-
-- **Runtime**: Bun
-- **Language**: TypeScript
-- **Frontend**: Vue 3, Vite, UnoCSS, TanStack Query
-- **Backend**: Bun, oRPC, Better Auth, Drizzle ORM
-- **Database**: PostgreSQL
-- **Infrastructure**: Docker Compose, Traefik
+- `bun run dev logs -f api` - View API logs
+- `bun run dev logs -f app` - View app logs
+- `bun run dev logs -f traefik` - View Traefik logs
