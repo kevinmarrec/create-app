@@ -19,7 +19,7 @@ export const envSchema = v.object({
 })
 
 declare global {
-  interface ViteConfigEnv extends v.InferOutput<typeof envSchema> {}
+  interface ViteEnv extends v.InferOutput<typeof envSchema> {}
 }
 
 export default defineConfig(({ command, mode }) => {
