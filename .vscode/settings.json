@@ -52,6 +52,10 @@
     "vue"
   ],
 
+  "files.associations": {
+    "**/template/.docker/*/service.yaml": "dockercompose"
+  },
+
   "material-icon-theme.folders.associations": {
     "orpc": "context"
   },

@@ -56,6 +56,10 @@
     "orpc": "context"
   },
 
+  "files.associations": {
+    "**/.docker/*/service.yaml": "dockercompose"
+  },
+
   "javascript.format.semicolons": "remove",
   "javascript.preferences.quoteStyle": "single",
   "typescript.format.semicolons": "remove",
