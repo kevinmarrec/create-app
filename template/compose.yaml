@@ -1,3 +1,11 @@
+include:
+  - path: .docker/traefik/service.yaml
+  - path: .docker/postgres/service.yaml
+  - path: .docker/metabase/service.yaml
+  - path: .docker/studio/service.yaml
+  - path: .docker/analytics/service.yaml
+  - path: .docker/mailpit/service.yaml
+
 x-common: &common
   volumes:
     - ./:/code
@@ -5,95 +13,17 @@ x-common: &common
   user: 1000:1000
 
 services:
-  traefik:
-    image: traefik:v3.6.2
-    container_name: traefik
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    command:
-      # General configuration
-      - --api.dashboard=true
-      - --ping=true
-      - --log.level=INFO
-      # Entrypoints for HTTP and HTTPS
-      - --entrypoints.websecure.address=:443
-      - --entrypoints.web.address=:80
-      # Redirect HTTP to HTTPS
-      - --entrypoints.web.http.redirections.entrypoint.to=websecure
-      - --entrypoints.web.http.redirections.entrypoint.scheme=https
-      # Providers (Docker & File for dynamic config)
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --providers.file.directory=/etc/traefik/dynamic
-      - --providers.file.watch=true
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./.docker/traefik/dynamic:/etc/traefik/dynamic:ro # Mount the dynamic config directory
-      - ./.docker/traefik/certs:/certs:ro # Mount the certs directory
-    healthcheck:
-      test: [CMD-SHELL, traefik healthcheck --ping]
-      interval: 1s
-      timeout: 1s
-      retries: 20
-    labels:
-      traefik.enable: 'true'
-      traefik.http.routers.traefik.rule: Host(`traefik.dev.localhost`)
-      traefik.http.routers.traefik.entrypoints: websecure
-      traefik.http.routers.traefik.tls: 'true'
-      traefik.http.routers.traefik.service: api@internal
-
-  postgres:
-    image: postgres:18.1-alpine
-    container_name: postgres
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./.docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: [CMD-SHELL, "psql postgresql://user:password@postgres:5432/app -c 'SELECT 1' 2> /dev/null"]
-      interval: 1s
-      timeout: 1s
-      retries: 20
-
-  metabase:
-    image: metabase/metabase:v0.57.4
-    container_name: metabase
-    environment:
-      - MB_DB_TYPE=h2
-      - MB_DB_FILE=/var/lib/metabase/metabase.db
-      - MB_SITE_URL=https://metabase.dev.localhost
-    volumes:
-      - metabase_data:/var/lib/metabase
-    healthcheck:
-      test: [CMD-SHELL, curl -f http://localhost:3000/api/health]
-      interval: 1s
-      timeout: 1s
-      retries: 20
-    labels:
-      traefik.enable: 'true'
-      traefik.http.routers.metabase.rule: Host(`metabase.dev.localhost`)
-      traefik.http.routers.metabase.entrypoints: websecure
-      traefik.http.routers.metabase.tls: 'true'
-      traefik.http.services.metabase.loadbalancer.server.port: '3000'
 
   api:
     <<: *common
+    image: oven/bun:1.3.3-alpine
+    container_name: api
+    init: true
     depends_on:
       traefik:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    container_name: api
-    image: oven/bun:1.3.3-alpine
-    init: true
     command: [bun, --cwd, api, dev]
     environment:
       - FORCE_COLOR=1
@@ -106,11 +36,11 @@ services:
 
   app:
     <<: *common
+    image: imbios/bun-node:1.3.3-24-alpine
+    container_name: app
+    init: true
     depends_on:
       - api
-    container_name: app
-    image: imbios/bun-node:1.3.3-24-alpine
-    init: true
     command: [bun, --cwd, app, dev, --host, 0.0.0.0]
     environment:
       - FORCE_COLOR=1
@@ -121,65 +51,7 @@ services:
       traefik.http.routers.app.tls: 'true'
       traefik.http.services.app.loadbalancer.server.port: '5173'
 
-  studio:
-    depends_on:
-      traefik:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
-    container_name: studio
-    image: ghcr.io/drizzle-team/gateway:1.1.1
-    environment:
-      - MASTERPASS=foobar
-    volumes:
-      - studio_data:/app
-    labels:
-      traefik.enable: 'true'
-      traefik.http.routers.studio.rule: Host(`studio.dev.localhost`)
-      traefik.http.routers.studio.entrypoints: websecure
-      traefik.http.routers.studio.tls: 'true'
-      traefik.http.services.studio.loadbalancer.server.port: '4983'
-
-  analytics:
-    depends_on:
-      traefik:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
-    container_name: analytics
-    image: umamisoftware/umami:3.0.1
-    environment:
-      - DATABASE_URL=postgresql://user:password@postgres:5432/analytics
-    healthcheck:
-      test: [CMD-SHELL, curl -f http://localhost:3000]
-      interval: 1s
-      timeout: 1s
-      retries: 20
-    labels:
-      traefik.enable: 'true'
-      traefik.http.routers.analytics.rule: Host(`analytics.dev.localhost`)
-      traefik.http.routers.analytics.entrypoints: websecure
-      traefik.http.routers.analytics.tls: 'true'
-      traefik.http.services.analytics.loadbalancer.server.port: '3000'
-
-  mailpit:
-    depends_on:
-      traefik:
-        condition: service_healthy
-    container_name: mailpit
-    image: axllent/mailpit:v1.28.0
-    labels:
-      traefik.enable: 'true'
-      traefik.http.routers.mailpit.rule: Host(`mail.dev.localhost`)
-      traefik.http.routers.mailpit.entrypoints: websecure
-      traefik.http.routers.mailpit.tls: 'true'
-      traefik.http.services.mailpit.loadbalancer.server.port: '8025'
 
 networks:
   default:
     name: dev
-
-volumes:
-  postgres_data:
-  metabase_data:
-  studio_data:
