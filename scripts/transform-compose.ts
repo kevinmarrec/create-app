@@ -6,8 +6,8 @@ const composePath = join(import.meta.dir, '..', 'template', 'compose.yaml')
 const composeFile = Bun.file(composePath)
 const composeContent = await composeFile.text()
 
-const tramsformed =
-  composeContent
+const tramsformed
+  = composeContent
     .replaceAll('working_dir: /code', 'working_dir: /code/template')
     .replaceAll('.docker', 'template/.docker')
 

@@ -51,7 +51,6 @@ services:
       traefik.http.routers.app.tls: 'true'
       traefik.http.services.app.loadbalancer.server.port: '5173'
 
-
 networks:
   default:
     name: dev
