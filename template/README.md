@@ -33,6 +33,7 @@ project/
 │   │   └── main.ts          # API entry point
 │   └── package.json
 ├── app/                   # Frontend Vue application
+│   ├── public/             # Public static assets
 │   ├── src/
 │   │   ├── components/      # Vue components
 │   │   ├── composables/     # Vue composables (auth, etc.)
