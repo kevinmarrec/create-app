@@ -28,8 +28,8 @@ const schema = v.object({
     host: v.optional(v.string(), '0.0.0.0'),
     port: v.pipe(
       v.optional(v.string(), '4000'),
-      v.decimal(),
-      v.transform(input => Number(input)),
+      v.digits(),
+      v.toNumber(),
     ),
   }),
 })
