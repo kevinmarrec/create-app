@@ -39,8 +39,10 @@
     "markdown",
     "json",
     "jsonc",
-    "yaml"
+    "yaml",
+    "dockercompose"
   ],
+
   "css.validate": false,
   "scss.validate": false,
 
