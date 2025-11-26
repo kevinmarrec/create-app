@@ -1,11 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>kevinmarrec/config//packages/renovate/default"],
-  "packageRules": [
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["imbios/bun-node"],
-      "allowedVersions": "<25"
-    }
-  ]
+  "extends": ["github>kevinmarrec/config//packages/renovate/default"]
 }

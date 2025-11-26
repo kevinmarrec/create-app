@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:18.1-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [CMD-SHELL, "psql postgresql://user:password@postgres:5432/app -c 'SELECT 1' 2> /dev/null"]
+      interval: 1s
+      timeout: 1s
+      retries: 20
+
+volumes:
+  postgres_data:

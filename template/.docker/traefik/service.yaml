@@ -1,0 +1,41 @@
+services:
+  traefik:
+    image: traefik:v3.6.2
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command:
+      # General configuration
+      - --api.dashboard=true
+      - --ping=true
+      - --log.level=INFO
+      # Entrypoints for HTTP and HTTPS
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.address=:80
+      # Redirect HTTP to HTTPS
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      # Providers (Docker & File for dynamic config)
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.file.directory=/etc/traefik/dynamic
+      - --providers.file.watch=true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./dynamic:/etc/traefik/dynamic:ro # Mount the dynamic config directory
+      - ./certs:/certs:ro # Mount the certs directory
+    healthcheck:
+      test: [CMD-SHELL, traefik healthcheck --ping]
+      interval: 1s
+      timeout: 1s
+      retries: 20
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.traefik.rule: Host(`traefik.dev.localhost`)
+      traefik.http.routers.traefik.entrypoints: websecure
+      traefik.http.routers.traefik.tls: 'true'
+      traefik.http.routers.traefik.service: api@internal

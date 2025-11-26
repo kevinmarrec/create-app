@@ -39,8 +39,10 @@
     "markdown",
     "json",
     "jsonc",
-    "yaml"
+    "yaml",
+    "dockercompose"
   ],
+
   "css.validate": false,
   "scss.validate": false,
 
@@ -49,6 +51,10 @@
     "scss",
     "vue"
   ],
+
+  "files.associations": {
+    "**/template/.docker/*/service.yaml": "dockercompose"
+  },
 
   "material-icon-theme.folders.associations": {
     "orpc": "context"

@@ -1,0 +1,22 @@
+services:
+  analytics:
+    image: umamisoftware/umami:3.0.1
+    container_name: analytics
+    depends_on:
+      traefik:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://user:password@postgres:5432/analytics
+    healthcheck:
+      test: [CMD-SHELL, curl -f http://localhost:3000]
+      interval: 1s
+      timeout: 1s
+      retries: 20
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.analytics.rule: Host(`analytics.dev.localhost`)
+      traefik.http.routers.analytics.entrypoints: websecure
+      traefik.http.routers.analytics.tls: 'true'
+      traefik.http.services.analytics.loadbalancer.server.port: '3000'

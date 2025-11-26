@@ -39,7 +39,8 @@
     "markdown",
     "json",
     "jsonc",
-    "yaml"
+    "yaml",
+    "dockercompose"
   ],
 
   "css.validate": false,
@@ -53,6 +54,10 @@
 
   "material-icon-theme.folders.associations": {
     "orpc": "context"
+  },
+
+  "files.associations": {
+    "**/.docker/*/service.yaml": "dockercompose"
   },
 
   "javascript.format.semicolons": "remove",

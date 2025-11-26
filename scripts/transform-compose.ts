@@ -3,23 +3,12 @@
 import { join } from 'node:path'
 
 const composePath = join(import.meta.dir, '..', 'template', 'compose.yaml')
-const file = Bun.file(composePath)
-const composeContent = await file.text()
+const composeFile = Bun.file(composePath)
+const composeContent = await composeFile.text()
 
-// Transform the compose.yaml for playground usage
-let transformed = composeContent
+const tramsformed
+  = composeContent
+    .replaceAll('working_dir: /code', 'working_dir: /code/template')
+    .replaceAll('.docker', 'template/.docker')
 
-// 1. Change working_dir from /code to /code/template (in x-common anchor)
-transformed = transformed.replace(
-  /working_dir: \/code$/m,
-  'working_dir: /code/template',
-)
-
-// 2. Change traefik volume paths to include template/ prefix
-transformed = transformed.replace(
-  /- \.\/\.docker\//g,
-  '- ./template/.docker/',
-)
-
-// Output the transformed content to stdout
-await Bun.write(Bun.stdout, transformed)
+await Bun.write(Bun.stdout, tramsformed)
