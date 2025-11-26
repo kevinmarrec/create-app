@@ -2,8 +2,9 @@ import type { KnipConfig } from 'knip'
 
 // Required for Knip to pass
 Object.assign(import.meta.env, {
-  AUTH_SECRET: '',
-  DATABASE_URL: '',
+  ALLOWED_ORIGINS: 'https://foo.bar',
+  AUTH_SECRET: 'foo',
+  DATABASE_URL: 'postgresql://foo:bar@localhost:5432/foo',
 })
 
 export default {

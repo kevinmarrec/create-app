@@ -2,16 +2,29 @@ import * as v from 'valibot'
 
 const schema = v.object({
   auth: v.object({
-    secret: v.string(),
+    secret: v.pipe(
+      v.string(),
+      v.nonEmpty(),
+    ),
   }),
   cors: v.object({
     allowedOrigins: v.pipe(
-      v.optional(v.string(), ''),
+      v.string(),
+      v.nonEmpty(),
       v.transform(input => input.split(',').filter(Boolean)),
+      v.array(v.pipe(
+        v.string(),
+        v.trim(),
+        v.startsWith('https://'),
+      )),
     ),
   }),
   database: v.object({
-    url: v.string(),
+    url: v.pipe(
+      v.string(),
+      v.nonEmpty(),
+      v.startsWith('postgresql://'),
+    ),
   }),
   log: v.object({
     level: v.optional(v.union([
