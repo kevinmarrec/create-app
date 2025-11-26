@@ -28,6 +28,7 @@ project/
 │   │   ├── auth/            # Authentication setup (Better Auth)
 │   │   ├── database/        # Database schema and migrations (Drizzle)
 │   │   ├── orpc/            # Router definitions (oRPC)
+│   │   ├── utils/           # Utility functions (CORS, logger, etc.)
 │   │   ├── env.ts           # Environment variable loading and validation (Valibot)
 │   │   └── main.ts          # API entry point
 │   └── package.json
@@ -36,6 +37,8 @@ project/
 │   │   ├── components/      # Vue components
 │   │   ├── composables/     # Vue composables (auth, etc.)
 │   │   ├── lib/             # Library utilities (oRPC client)
+│   │   ├── locales/         # Internationalization files (i18n)
+│   │   ├── App.vue          # Main Vue component
 │   │   └── main.ts          # App entry point
 │   └── package.json
 ├── compose.yaml              # Docker Compose configuration
