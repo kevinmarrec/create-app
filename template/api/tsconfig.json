@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "@kevinmarrec/tsconfig",
   "compilerOptions": {
     "lib": ["ESNext"]
   }

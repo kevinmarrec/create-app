@@ -21,6 +21,7 @@
     "vue": "^3.5.25"
   },
   "devDependencies": {
+    "@kevinmarrec/tsconfig": "^1.5.8",
     "@kevinmarrec/unocss-config": "^1.5.8",
     "@kevinmarrec/vite-plugin-dark-mode": "^1.1.2",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
@@ -28,6 +29,7 @@
     "@vitejs/plugin-vue": "^6.0.2",
     "beasties": "^0.3.5",
     "rollup-plugin-visualizer": "^6.0.5",
+    "typescript": "~5.9.3",
     "valibot": "^1.2.0",
     "vite": "^7.2.4",
     "vite-plugin-valibot-env": "^1.0.1",
