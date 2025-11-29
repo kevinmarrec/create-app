@@ -15,7 +15,7 @@
     "@tanstack/query-core": "^5.90.11",
     "@tanstack/vue-query": "^5.92.0",
     "@unhead/vue": "^2.0.19",
-    "@vueuse/core": "^14.0.0",
+    "@vueuse/core": "^14.1.0",
     "better-auth": "^1.4.3",
     "unocss": "^66.5.9",
     "vue": "^3.5.25"
