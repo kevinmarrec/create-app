@@ -30,14 +30,13 @@ export async function run() {
 
   // Help
   if (options.help) {
-    process.stdout.write(`\
-Usage: create-app [OPTIONS...] [DIRECTORY]
-
-Options:
-  -f, --force     Create the project even if the directory is not empty.
-  -h, --help      Display this help message.
-  -v, --version       Display the version number of this CLI.
-`)
+    process.stdout.write(
+      'Usage: create-app [OPTIONS...] [DIRECTORY]\n\n'
+      + 'Options:\n'
+      + '  -f, --force     Create the project even if the directory is not empty.\n'
+      + '  -h, --help      Display this help message.\n'
+      + '  -v, --version   Display the version number of this CLI.\n',
+    )
     process.exit(0)
   }
 
@@ -53,7 +52,7 @@ Options:
 
   // Project name
 
-  let projectName = positionals[0] || await text({
+  let projectName = positionals[0]?.trim() || await text({
     message: 'Project name',
     placeholder: 'my-app',
     validate: (value) => {
@@ -71,8 +70,8 @@ Options:
   const cwd = process.cwd()
   const targetDir = resolve(cwd, projectName)
 
-  // Overwrite check
-  const warnOverwrite = !(await fs.emptyCheck(targetDir) || options.force)
+  // Overwrite check (skip if force flag is set)
+  const warnOverwrite = !options.force && !await fs.emptyCheck(targetDir)
 
   if (warnOverwrite) {
     await log.warn(`${targetDir === cwd ? 'Current directory' : `Target directory ${c.blue(targetDir)}`} is not empty`)
