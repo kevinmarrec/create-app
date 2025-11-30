@@ -6,10 +6,6 @@
   "engines": {
     "node": "lts/*"
   },
-  "workspaces": [
-    "api",
-    "app"
-  ],
   "scripts": {
     "check": "bun run check:eslint && bun run check:stylelint && bun run check:unused && bun run check:types",
     "check:eslint": "eslint . --cache",
