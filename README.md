@@ -20,7 +20,7 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh/) & [Vue](https://vuejs.o
 - [oRPC](https://orpc.dev/) for API layer
 - [Better Auth](https://www.better-auth.com/) for authentication
 - [Pino](https://getpino.io/) for logging
-- [Drizzle ORM](https://orm.drizzle.team/) for database management
+- [Drizzle ORM](https://orm.drizzle.team/) as SQL-first TypeScript ORM
 - [Valibot](https://valibot.dev/) for validation
 - [PostgreSQL](https://www.postgresql.org/) as database
 - [Docker Compose](https://docs.docker.com/compose/) & [Traefik](https://traefik.io/) for infrastructure
@@ -30,7 +30,7 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh/) & [Vue](https://vuejs.o
 - [ESLint](https://eslint.org/) & [Stylelint](https://stylelint.io/) for linting
 - [Knip](https://knip.dev/) for detecting unused dependencies, exports, and files
 - [Metabase](https://www.metabase.com/) for Business Intelligence (BI)
-- [Drizzle Studio](https://gateway.drizzle.team/) for database management
+- [Drizzle Studio](https://gateway.drizzle.team/) for database management (web GUI)
 - [Umami](https://umami.is/) for web analytics
 - [Mailpit](https://mailpit.axllent.org/) for email testing
 

@@ -18,7 +18,7 @@ A full-stack application template with Vue.js frontend, Bun-based API backend, a
 - [oRPC](https://orpc.dev/) for API layer
 - [Better Auth](https://www.better-auth.com/) for authentication
 - [Pino](https://getpino.io/) for logging
-- [Drizzle ORM](https://orm.drizzle.team/) for database management
+- [Drizzle ORM](https://orm.drizzle.team/) as SQL-first TypeScript ORM
 - [Valibot](https://valibot.dev/) for validation
 - [PostgreSQL](https://www.postgresql.org/) as database
 - [Docker Compose](https://docs.docker.com/compose/) & [Traefik](https://traefik.io/) for infrastructure
@@ -28,7 +28,7 @@ A full-stack application template with Vue.js frontend, Bun-based API backend, a
 - [ESLint](https://eslint.org/) & [Stylelint](https://stylelint.io/) for linting
 - [Knip](https://knip.dev/) for detecting unused dependencies, exports, and files
 - [Metabase](https://www.metabase.com/) for Business Intelligence (BI)
-- [Drizzle Studio](https://gateway.drizzle.team/) for database management
+- [Drizzle Studio](https://gateway.drizzle.team/) for database management (web GUI)
 - [Umami](https://umami.is/) for web analytics
 - [Mailpit](https://mailpit.axllent.org/) for email testing
 
