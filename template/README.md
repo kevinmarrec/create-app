@@ -4,15 +4,33 @@ A full-stack application template with Vue.js frontend, Bun-based API backend, a
 
 ## Tech Stack
 
-- **Runtime**: [Bun](https://bun.sh/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Frontend**: [Vue 3](https://vuejs.org/) | [Vite](https://vitejs.dev/) | [UnoCSS](https://unocss.dev/) | [TanStack Query](https://tanstack.com/query/latest)
-- **Backend**: [Bun](https://bun.sh/) | [oRPC](https://orpc.dev/) | [Better Auth](https://www.better-auth.com/) | [Drizzle ORM](https://orm.drizzle.team/)
-- **Validation**: [Valibot](https://valibot.dev/)
-- **Database**: [PostgreSQL](https://www.postgresql.org/) (with [Drizzle](https://orm.drizzle.team/) migrations)
-- **Infrastructure**: [Docker Compose](https://docs.docker.com/compose/) | [Traefik](https://traefik.io/)
-- **Code Quality Tools**: [ESLint](https://eslint.org/) | [Stylelint](https://stylelint.io/) | [Knip](https://knip.dev/)
-- **Development Services**: [Metabase](https://www.metabase.com/) | [Drizzle Studio](https://gateway.drizzle.team/) | [Umami](https://umami.is/) | [Mailpit](https://mailpit.axllent.org/)
+### Core Stack
+
+- [Bun](https://bun.sh/) as package manager & runtime
+- [TypeScript](https://www.typescriptlang.org/) as the language
+- [Vue 3](https://vuejs.org/) as frontend framework
+- [Vite](https://vitejs.dev/) as build tool
+- [Vite SSG](https://github.com/antfu-collective/vite-ssg) for static site generation
+- [UnoCSS](https://unocss.dev/) for styling
+- [TanStack Query](https://tanstack.com/query/latest) for data fetching
+- [Unhead](https://unhead.unjs.io/) for head management
+- [Vue I18n](https://github.com/kevinmarrec/vue-i18n) for internationalization
+- [oRPC](https://orpc.dev/) for API layer
+- [Better Auth](https://www.better-auth.com/) for authentication
+- [Pino](https://getpino.io/) for logging
+- [Drizzle ORM](https://orm.drizzle.team/) for database management
+- [Valibot](https://valibot.dev/) for validation
+- [PostgreSQL](https://www.postgresql.org/) as database
+- [Docker Compose](https://docs.docker.com/compose/) & [Traefik](https://traefik.io/) for infrastructure
+
+### Development Tools
+
+- [ESLint](https://eslint.org/) & [Stylelint](https://stylelint.io/) for linting
+- [Knip](https://knip.dev/) for detecting unused dependencies, exports, and files
+- [Metabase](https://www.metabase.com/) for Business Intelligence (BI)
+- [Drizzle Studio](https://gateway.drizzle.team/) for database management
+- [Umami](https://umami.is/) for web analytics
+- [Mailpit](https://mailpit.axllent.org/) for email testing
 
 ## Prerequisites
 
