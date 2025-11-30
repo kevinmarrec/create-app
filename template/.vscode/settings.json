@@ -52,14 +52,6 @@
     "vue"
   ],
 
-  "material-icon-theme.folders.associations": {
-    "orpc": "context"
-  },
-
-  "files.associations": {
-    "**/.docker/*/service.yaml": "dockercompose"
-  },
-
   "javascript.format.semicolons": "remove",
   "javascript.preferences.quoteStyle": "single",
   "typescript.format.semicolons": "remove",
@@ -67,6 +59,14 @@
 
   "vue.inlayHints.inlineHandlerLeading": true,
   "vue.inlayHints.missingProps": true,
+
+  "files.associations": {
+    "**/.docker/*/service.yaml": "dockercompose"
+  },
+
+  "material-icon-theme.folders.associations": {
+    "orpc": "context"
+  },
 
   // i18n Ally
   "i18n-ally.enabledFrameworks": ["vue"],
