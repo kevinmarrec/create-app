@@ -1,5 +1,3 @@
-import process from 'node:process'
-
 import { createBetterAuth } from './auth'
 import { db } from './database'
 import { env } from './env'
@@ -7,9 +5,11 @@ import { createRpc } from './orpc'
 import { router } from './orpc/router'
 import { cors } from './utils/cors'
 import { logger } from './utils/logger'
+import { createStopper } from './utils/stopper'
 
 const auth = createBetterAuth({ db, logger })
 const rpc = createRpc({ auth, db, logger }, router)
+const stopper = createStopper({ logger })
 
 const server = Bun.serve({
   hostname: env.server.host,
@@ -25,15 +25,6 @@ const server = Bun.serve({
   },
 })
 
+stopper.bind(server)
+
 logger.info(`Listening on ${server.url}`)
-
-// Graceful Shutdown
-
-async function gracefulShutdown() {
-  logger.info('Gracefully shutting down...')
-  await server.stop()
-  process.exit(0)
-}
-
-process.on('SIGINT', gracefulShutdown)
-process.on('SIGTERM', gracefulShutdown)
