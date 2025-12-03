@@ -131,6 +131,8 @@ This generates certificates in `.docker/traefik/certs/` and installs the root CA
 
 ```bash
 bun run dev up -d
+# or
+bun run dev up --wait
 ```
 
 **Services:**
