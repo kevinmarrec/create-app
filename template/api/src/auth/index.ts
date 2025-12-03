@@ -14,8 +14,8 @@ export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger })
       usePlural: true,
     }),
     logger: {
+      level: 'info',
       log: (level, message) => {
-        if (level === 'error') return
         logger[level](message)
       },
     },
