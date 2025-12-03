@@ -1,10 +1,10 @@
 import { betterAuth } from 'better-auth'
 import { type DB, drizzleAdapter } from 'better-auth/adapters/drizzle'
-import type { BaseLogger } from 'pino'
+import type { Logger } from 'pino'
 
 import { env } from '../env'
 
-export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger }) {
+export function createBetterAuth({ db, logger }: { db: DB, logger: Logger }) {
   return betterAuth({
     basePath: '/auth',
     secret: env.auth.secret,
@@ -16,7 +16,7 @@ export function createBetterAuth({ db, logger }: { db: DB, logger: BaseLogger })
     logger: {
       level: 'info',
       log: (level, message) => {
-        logger[level](message)
+        logger[level](`[Auth] ${message}`)
       },
     },
     emailAndPassword: {
