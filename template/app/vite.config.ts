@@ -45,6 +45,7 @@ export default defineConfig(({ command, mode }) => {
   if (mode === 'analyze') {
     plugins.push(visualizer({
       filename: 'node_modules/.vite/stats.html',
+      template: 'flamegraph',
       brotliSize: true,
       gzipSize: true,
       open: true,
