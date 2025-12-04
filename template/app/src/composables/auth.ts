@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/vue-query'
-import { createAuthClient } from 'better-auth/vue'
+import { createAuthClient, type ErrorContext } from 'better-auth/vue'
 import { computed } from 'vue'
 
 const authClient = createAuthClient({
@@ -11,13 +11,11 @@ const authClient = createAuthClient({
 
 const session = authClient.useSession()
 
-function createAuthMutation<T extends (...args: any[]) => any>(fn: T) {
+function createAuthMutation<T extends (...args: any[]) => unknown>(fn: T) {
   return useMutation({
     mutationFn: async (input: Parameters<T>[0]) => {
       return fn(input, {
-        onError: ({ error }: any) => {
-          throw error
-        },
+        onError: ({ error }: ErrorContext) => Promise.reject(error),
       })
     },
   })
