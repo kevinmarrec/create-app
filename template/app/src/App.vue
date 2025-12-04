@@ -60,20 +60,20 @@ const password = ref('')
 
             <div class="flex space-x-3">
               <button
-                :disabled="signIn.isPending.value"
+                :disabled="signIn.isLoading.value"
                 class="text-white font-medium px-4 py-2 rounded-md bg-blue-600 flex-1 transition-colors duration-200 disabled:bg-blue-400 hover:bg-blue-700"
                 @click="signIn.mutate({ email, password })"
               >
-                <span v-if="signIn.isPending.value">Signing In...</span>
+                <span v-if="signIn.isLoading.value">Signing In...</span>
                 <span v-else>Sign In</span>
               </button>
 
               <button
-                :disabled="signUp.isPending.value"
+                :disabled="signUp.isLoading.value"
                 class="text-white font-medium px-4 py-2 rounded-md bg-green-600 flex-1 transition-colors duration-200 disabled:bg-green-400 hover:bg-green-700"
                 @click="signUp.mutate({ email, password, name: 'User' })"
               >
-                <span v-if="signUp.isPending.value">Signing Up...</span>
+                <span v-if="signUp.isLoading.value">Signing Up...</span>
                 <span v-else>Sign Up</span>
               </button>
             </div>
@@ -105,11 +105,11 @@ const password = ref('')
           </div>
 
           <button
-            :disabled="signOut.isPending.value"
+            :disabled="signOut.isLoading.value"
             class="text-white font-medium px-4 py-2 rounded-md bg-red-600 w-full transition-colors duration-200 disabled:bg-red-400 hover:bg-red-700"
             @click="signOut.mutate({})"
           >
-            <span v-if="signOut.isPending.value">Signing Out...</span>
+            <span v-if="signOut.isLoading.value">Signing Out...</span>
             <span v-else>Sign Out</span>
           </button>
         </div>
