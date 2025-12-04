@@ -1,10 +1,17 @@
-import { useQuery } from '@tanstack/vue-query'
+import { useQuery } from '@pinia/colada'
 
 import { orpc } from '~/app/lib/orpc'
 
 export function useContent() {
-  const publicContent = useQuery(orpc.public.queryOptions({})).data
-  const privateContent = useQuery(orpc.private.queryOptions({})).data
+  const publicContent = useQuery({
+    key: () => ['public'],
+    query: orpc.public,
+  }).data
+
+  const privateContent = useQuery({
+    key: () => ['private'],
+    query: orpc.private,
+  }).data
 
   return {
     publicContent,

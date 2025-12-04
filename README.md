@@ -14,11 +14,11 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh/) & [Vue](https://vuejs.o
 - [Vite](https://vitejs.dev/) as build tool
 - [Vite SSG](https://github.com/antfu-collective/vite-ssg) for static site generation
 - [UnoCSS](https://unocss.dev/) for styling
-- [TanStack Query](https://tanstack.com/query/latest) for data fetching
 - [Unhead](https://unhead.unjs.io/) for head management
 - [Vue I18n](https://github.com/kevinmarrec/vue-i18n) for internationalization
 - [oRPC](https://orpc.dev/) for API layer
 - [Better Auth](https://www.better-auth.com/) for authentication
+- [Pinia Colada](https://pinia-colada.esm.dev/) for data fetching & state management
 - [Pino](https://getpino.io/) for logging
 - [Drizzle ORM](https://orm.drizzle.team/) as SQL-first TypeScript ORM
 - [Valibot](https://valibot.dev/) for validation

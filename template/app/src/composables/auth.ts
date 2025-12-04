@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/vue-query'
+import { useMutation } from '@pinia/colada'
 import { createAuthClient, type ErrorContext } from 'better-auth/vue'
 import { computed } from 'vue'
 
@@ -13,7 +13,7 @@ const session = authClient.useSession()
 
 function createAuthMutation<T extends (...args: any[]) => unknown>(fn: T) {
   return useMutation({
-    mutationFn: async (input: Parameters<T>[0]) => {
+    mutation: async (input: Parameters<T>[0]) => {
       return fn(input, {
         onError: ({ error }: ErrorContext) => Promise.reject(error),
       })
