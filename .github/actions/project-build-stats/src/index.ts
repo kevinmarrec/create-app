@@ -80,11 +80,12 @@ function formatDiff(currentSize: number, cachedSize: number): string {
   if (currentSize === 0) return '❌'
 
   const diffSize = currentSize - cachedSize
-  if (diffSize === 0) return '—'
+  if (diffSize === 0) return '↔️⚪'
 
   const diffPercent = ((diffSize / cachedSize) * 100).toFixed(2)
   const sign = diffSize > 0 ? '+' : ''
-  return `${sign}${filesize(diffSize)} (${sign}${diffPercent}%)`
+  const emoji = diffSize > 0 ? '⬆️🔴' : '⬇️🟢'
+  return `${emoji} ${sign}${filesize(diffSize)} (${sign}${diffPercent}%)`
 }
 
 function formatTotalRow(
@@ -98,10 +99,10 @@ function formatTotalRow(
 
   const totalDiff = totalCurrent - totalCached
   const diffDisplay = totalDiff === 0
-    ? '—'
+    ? '↔️⚪'
     : totalDiff > 0
-      ? `+${filesize(totalDiff)}`
-      : filesize(totalDiff)
+      ? `⬆️🔴 +${filesize(totalDiff)}`
+      : `⬇️🟢 ${filesize(totalDiff)}`
 
   return `| **Total** | **${filesize(totalCached)}** | **${filesize(totalCurrent)}** | ${diffDisplay} |`
 }
