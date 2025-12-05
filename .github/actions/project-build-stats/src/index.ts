@@ -110,7 +110,6 @@ function generateDiffTable(
   current: FileStat[],
   cached: FileStat[] | null,
   showTotal: boolean,
-  branchName: string,
 ): string {
   const hasCache = cached !== null
   const currentMap = new Map(current.map(s => [s.file, s.size]))
@@ -139,7 +138,7 @@ function generateDiffTable(
   }
 
   const header = hasCache
-    ? `| File | \`main\` | \`${branchName}\` | Diff |\n| :--- | ---: | ---: | ---: |`
+    ? `| File | \`main\` | Current | Diff |\n| :--- | ---: | ---: | ---: |`
     : '| File | Size |\n| :--- | ---: |'
 
   const table = [header, ...rows]
@@ -156,10 +155,9 @@ async function analyzeDirectory(
   options: {
     cachePath: string
     showTotal: boolean
-    branchName: string
   },
 ): Promise<{ markdown: string, hasChanges: boolean }> {
-  const { cachePath, showTotal, branchName } = options
+  const { cachePath, showTotal } = options
   // Build the project
   await x('bun', ['run', 'build'], { nodeOptions: { cwd: directory } })
 
@@ -198,7 +196,7 @@ async function analyzeDirectory(
   // Save current stats
   saveStats(currentStats, cachePath)
 
-  const markdown = generateDiffTable(currentStats, cachedStats, showTotal, branchName)
+  const markdown = generateDiffTable(currentStats, cachedStats, showTotal)
   return { markdown, hasChanges }
 }
 
@@ -284,16 +282,6 @@ async function main(): Promise<void> {
       core.info('No cache found')
     }
 
-    // Get current branch name
-    const context = github.context
-    let branchName = 'main'
-    if (context.eventName === 'pull_request' && context.payload.pull_request?.head?.ref) {
-      branchName = context.payload.pull_request.head.ref
-    }
-    else if (context.ref.startsWith('refs/heads/')) {
-      branchName = context.ref.replace('refs/heads/', '')
-    }
-
     const summaryParts: string[] = []
     let overallHasChanges = false
 
@@ -306,7 +294,6 @@ async function main(): Promise<void> {
       const { markdown, hasChanges } = await analyzeDirectory(directory, {
         cachePath,
         showTotal,
-        branchName,
       })
 
       if (hasChanges) {
