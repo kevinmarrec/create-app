@@ -260,6 +260,7 @@ async function main(): Promise<void> {
     const cachePathBase = core.getInput('cache-path') || '.github/cache/build-stats'
     const cacheKey = core.getInput('cache-key') || 'build-stats-main'
     const showTotal = core.getBooleanInput('show-total', { required: false }) ?? true
+    const prComment = core.getBooleanInput('pr-comment', { required: false }) ?? true
 
     const directories = directoriesInput.split(',').map(d => d.trim()).filter(Boolean)
 
@@ -309,8 +310,8 @@ async function main(): Promise<void> {
     // Set output
     core.setOutput('has-changes', overallHasChanges.toString())
 
-    // Comment on PR if there are changes
-    if (overallHasChanges && github.context.eventName === 'pull_request') {
+    // Comment on PR if there are changes and pr-comment is enabled
+    if (overallHasChanges && github.context.eventName === 'pull_request' && prComment) {
       await commentOnPR(fullSummary)
     }
 

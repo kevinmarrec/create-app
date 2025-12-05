@@ -16,6 +16,10 @@ inputs:
     description: Show total row in the table
     required: false
     default: 'true'
+  pr-comment:
+    description: Whether to comment on PRs with build stats changes
+    required: false
+    default: 'true'
   github-token:
     description: GitHub token for API calls (defaults to github.token)
     required: false
