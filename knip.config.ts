@@ -15,7 +15,6 @@ export default {
     },
     'template': {
       entry: [
-        '.github/scripts/*.ts',
         '*.config.ts',
       ],
     },

@@ -26,11 +26,8 @@
     "@kevinmarrec/stylelint-config": "^1.5.9",
     "@kevinmarrec/tsconfig": "^1.5.9",
     "eslint": "^9.39.1",
-    "filesize": "^11.0.13",
     "knip": "^5.71.0",
     "stylelint": "^16.26.1",
-    "tinyexec": "^1.0.2",
-    "tinyglobby": "^0.2.15",
     "typescript": "~5.9.3",
     "vue-tsc": "^3.1.5"
   }
