@@ -76,11 +76,11 @@ function saveStats(stats: FileStat[], cachePath: string): void {
 }
 
 function formatDiffSize(currentSize: number, cachedSize: number): string {
-  if (cachedSize === 0) return '—'
-  if (currentSize === 0) return '—'
+  if (cachedSize === 0) return '➖'
+  if (currentSize === 0) return '➖'
 
   const diffSize = currentSize - cachedSize
-  if (diffSize === 0) return '—'
+  if (diffSize === 0) return '➖'
 
   const diffPercent = ((diffSize / cachedSize) * 100).toFixed(2)
   const sign = diffSize > 0 ? '+' : ''
@@ -92,9 +92,9 @@ function formatDiffIndicator(currentSize: number, cachedSize: number): string {
   if (currentSize === 0) return '❌'
 
   const diffSize = currentSize - cachedSize
-  if (diffSize === 0) return '↔️⚪'
+  if (diffSize === 0) return '➖'
 
-  return diffSize > 0 ? '⬆️🔴' : '⬇️🟢'
+  return diffSize > 0 ? '🔺' : '✅'
 }
 
 function formatTotalRow(
@@ -108,15 +108,15 @@ function formatTotalRow(
 
   const totalDiff = totalCurrent - totalCached
   const diffSize = totalDiff === 0
-    ? '—'
+    ? '➖'
     : totalDiff > 0
       ? `+${filesize(totalDiff)}`
       : filesize(totalDiff)
   const diffIndicator = totalDiff === 0
-    ? '↔️⚪'
+    ? '➖'
     : totalDiff > 0
-      ? '⬆️🔴'
-      : '⬇️🟢'
+      ? '🔺'
+      : '✅'
 
   return `| **Total** | **${filesize(totalCached)}** | **${filesize(totalCurrent)}** | ${diffSize} | ${diffIndicator} |`
 }
