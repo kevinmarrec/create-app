@@ -16,7 +16,7 @@ jobs:
       !startsWith(github.event.head_commit.message, 'chore: release')
     steps:
       - name: Setup Bun
-        uses: kevinmarrec/workflows/setup-bun@v1
+        uses: kevinmarrec/workflows/setup-bun@main
 
       - name: Lint
         run: bun run lint
@@ -45,9 +45,9 @@ jobs:
       pull-requests: write
     steps:
       - name: Setup Bun
-        uses: kevinmarrec/workflows/setup-bun@v1
+        uses: kevinmarrec/workflows/setup-bun@main
 
       - name: Analyze template build stats
-        uses: ./.github/actions/project-build-stats
+        uses: kevinmarrec/workflows/project-build-stats@main
         with:
           directories: template/app,template/api

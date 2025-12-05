@@ -13,9 +13,6 @@ export default {
     '.': {
       entry: ['*.config.ts'],
     },
-    '.github/actions/project-build-stats': {
-      entry: ['src/index.ts'],
-    },
     'template': {
       entry: [
         '.github/scripts/*.ts',
