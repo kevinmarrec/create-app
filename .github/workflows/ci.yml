@@ -60,8 +60,10 @@ jobs:
           if [ -f .github/cache/build-stats/app.json ]; then
             cp .github/cache/build-stats/app.json .github/cache/build-stats/app.json.bak
           fi
-          bun run template/.github/scripts/build-stats.md.ts template/app --cache .github/cache/build-stats/app.json --total >> $GITHUB_STEP_SUMMARY
+          summary=$(bun run template/.github/scripts/build-stats.md.ts template/app --cache .github/cache/build-stats/app.json --total)
           echo "diff=$(diff .github/cache/build-stats/app.json.bak .github/cache/build-stats/app.json 2>&1 || true)" >> $GITHUB_OUTPUT
+          echo "$summary" >> $GITHUB_STEP_SUMMARY
+          echo "$summary" >> $RUNNER_TEMP/summary
 
       - name: Check api build size
         id: api-size
@@ -70,7 +72,9 @@ jobs:
           if [ -f .github/cache/build-stats/api.json ]; then
             cp .github/cache/build-stats/api.json .github/cache/build-stats/api.json.bak
           fi
-          bun run template/.github/scripts/build-stats.md.ts template/api --cache .github/cache/build-stats/api.json >> $GITHUB_STEP_SUMMARY
+          summary=$(bun run template/.github/scripts/build-stats.md.ts template/api --cache .github/cache/build-stats/api.json --total)
+          echo "$summary" >> $GITHUB_STEP_SUMMARY
+          echo "$summary" >> $RUNNER_TEMP/summary
           echo "diff=$(diff .github/cache/build-stats/api.json.bak .github/cache/build-stats/api.json 2>&1 || true)" >> $GITHUB_OUTPUT
 
       - name: Save build stats cache
@@ -84,4 +88,4 @@ jobs:
         if: github.event_name == 'pull_request' && (steps.app-size.outputs.diff != '' || steps.api-size.outputs.diff != '')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr comment ${{ github.event.pull_request.number }} --body "$(cat $GITHUB_STEP_SUMMARY)"
+        run: gh pr comment ${{ github.event.pull_request.number }} --body "$(cat $RUNNER_TEMP/summary)"
