@@ -40,16 +40,46 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       !startsWith(github.event.head_commit.message, 'chore: release')
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Setup Bun
         uses: kevinmarrec/workflows/setup-bun@v1
 
-      - name: Check api build size
-        run: |
-          echo "## API" >> $GITHUB_STEP_SUMMARY
-          bun run template/.github/scripts/build-stats.md.ts template/api >> $GITHUB_STEP_SUMMARY
+      - name: Restore build stats cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .github/cache/build-stats
+          key: build-stats-main
 
       - name: Check app build size
+        id: app-size
         run: |
           echo "## App" >> $GITHUB_STEP_SUMMARY
-          bun run template/.github/scripts/build-stats.md.ts template/app >> $GITHUB_STEP_SUMMARY
+          if [ -f .github/cache/build-stats/app.json ]; then
+            cp .github/cache/build-stats/app.json .github/cache/build-stats/app.json.bak
+          fi
+          bun run template/.github/scripts/build-stats.md.ts template/app --cache .github/cache/build-stats/app.json --total >> $GITHUB_STEP_SUMMARY
+          echo "diff=$(diff .github/cache/build-stats/app.json.bak .github/cache/build-stats/app.json || true)" >> $GITHUB_OUTPUT
+
+      - name: Check api build size
+        id: api-size
+        run: |
+          echo "## API" >> $GITHUB_STEP_SUMMARY
+          if [ -f .github/cache/build-stats/api.json ]; then
+            cp .github/cache/build-stats/api.json .github/cache/build-stats/api.json.bak
+          fi
+          bun run template/.github/scripts/build-stats.md.ts template/api --cache .github/cache/build-stats/api.json >> $GITHUB_STEP_SUMMARY
+          echo "diff=$(diff .github/cache/build-stats/api.json.bak .github/cache/build-stats/api.json || true)" >> $GITHUB_OUTPUT
+
+      - name: Save build stats cache
+        if: github.ref == 'refs/heads/main'
+        uses: actions/cache/save@v4
+        with:
+          path: .github/cache/build-stats
+          key: build-stats-main
+
+      - name: Comment PR if build size changed
+        if: github.event_name == 'pull_request' && (steps.app-size.outputs.diff != '' || steps.api-size.outputs.diff != '')
+        run: gh pr comment ${{ github.event.pull_request.number }} --body $GITHUB_STEP_SUMMARY
