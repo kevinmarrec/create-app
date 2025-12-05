@@ -26,9 +26,6 @@ export default {
     },
     'template/app': {
       entry: ['src/main.ts'],
-      ignoreDependencies: [
-        '@vueuse/core',
-      ],
     },
   },
 } satisfies KnipConfig

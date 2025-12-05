@@ -8,7 +8,7 @@ useHead({
   title: () => t('title'),
 })
 
-const { user, signIn, signUp, signOut } = useAuth()
+const { user, error, signIn, signUp, signOut } = useAuth()
 const { publicContent, privateContent } = useContent()
 
 const email = ref('')
@@ -54,8 +54,8 @@ const password = ref('')
               >
             </div>
 
-            <div v-if="signIn.error.value || signUp.error.value" class="text-sm text-red-600 dark:text-red-400">
-              {{ signIn.error.value || signUp.error.value }}
+            <div v-if="error" class="text-sm text-red-600 dark:text-red-400">
+              {{ error }}
             </div>
 
             <div class="flex space-x-3">

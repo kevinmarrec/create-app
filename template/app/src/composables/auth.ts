@@ -1,37 +1,42 @@
-import { useMutation } from '@pinia/colada'
+import { defineMutation } from '@pinia/colada'
+import { set } from '@vueuse/core'
 import { createAuthClient, type ErrorContext } from 'better-auth/vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const authClient = createAuthClient({
   baseURL: `${import.meta.env.VITE_API_URL}/auth`,
   fetchOptions: {
     credentials: 'include',
+    onError: ({ error }) => Promise.reject(error),
   },
 })
 
-const session = authClient.useSession()
+const authError = ref<ErrorContext['error'] | null>(null)
 
-function createAuthMutation<T extends (...args: any[]) => unknown>(fn: T) {
-  return useMutation({
-    mutation: async (input: Parameters<T>[0]) => {
-      return fn(input, {
-        onError: ({ error }: ErrorContext) => Promise.reject(error),
-      })
+function defineAuthMutation<TVars, TData>(mutation: (vars: TVars) => Promise<TData>) {
+  return defineMutation({
+    mutation,
+    onMutate: () => {
+      set(authError, null)
+    },
+    onSettled: (_, error) => {
+      set(authError, error)
     },
   })
 }
 
-export function useAuth() {
-  const signIn = createAuthMutation(authClient.signIn.email)
-  const signUp = createAuthMutation(authClient.signUp.email)
-  const signOut = createAuthMutation(authClient.signOut)
+const useSignIn = defineAuthMutation(authClient.signIn.email)
+const useSignUp = defineAuthMutation(authClient.signUp.email)
+const useSignOut = defineAuthMutation(authClient.signOut)
 
-  const user = computed(() => session.value.data?.user)
+export function useAuth() {
+  const session = authClient.useSession()
 
   return {
-    signIn,
-    signUp,
-    signOut,
-    user,
+    error: authError,
+    user: computed(() => session.value.data?.user),
+    signIn: useSignIn(),
+    signUp: useSignUp(),
+    signOut: useSignOut(),
   }
 }
