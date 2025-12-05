@@ -61,7 +61,7 @@ jobs:
             cp .github/cache/build-stats/app.json .github/cache/build-stats/app.json.bak
           fi
           bun run template/.github/scripts/build-stats.md.ts template/app --cache .github/cache/build-stats/app.json --total >> $GITHUB_STEP_SUMMARY
-          echo "diff=$(diff .github/cache/build-stats/app.json.bak .github/cache/build-stats/app.json || true)" >> $GITHUB_OUTPUT
+          echo "diff=$(diff .github/cache/build-stats/app.json.bak .github/cache/build-stats/app.json 2>&1 || true)" >> $GITHUB_OUTPUT
 
       - name: Check api build size
         id: api-size
@@ -71,7 +71,7 @@ jobs:
             cp .github/cache/build-stats/api.json .github/cache/build-stats/api.json.bak
           fi
           bun run template/.github/scripts/build-stats.md.ts template/api --cache .github/cache/build-stats/api.json >> $GITHUB_STEP_SUMMARY
-          echo "diff=$(diff .github/cache/build-stats/api.json.bak .github/cache/build-stats/api.json || true)" >> $GITHUB_OUTPUT
+          echo "diff=$(diff .github/cache/build-stats/api.json.bak .github/cache/build-stats/api.json 2>&1 || true)" >> $GITHUB_OUTPUT
 
       - name: Save build stats cache
         if: github.ref == 'refs/heads/main'
