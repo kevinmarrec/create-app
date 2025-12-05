@@ -30,6 +30,8 @@
   ],
 
   "eslint.validate": [
+    "github-actions-workflow",
+    "dockercompose",
     "javascript",
     "typescript",
     "vue",
@@ -39,8 +41,7 @@
     "markdown",
     "json",
     "jsonc",
-    "yaml",
-    "dockercompose"
+    "yaml"
   ],
 
   "css.validate": false,
