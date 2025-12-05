@@ -307,8 +307,14 @@ async function main(): Promise<void> {
     core.summary.addRaw(fullSummary)
     await core.summary.write()
 
+    core.startGroup('Full summary')
+    core.info(fullSummary)
+    core.endGroup()
+
     // Set output
     core.setOutput('has-changes', overallHasChanges.toString())
+
+    core.info(`Detected changes ? ${overallHasChanges ? 'yes' : 'no'}`)
 
     // Comment on PR if there are changes and pr-comment is enabled
     if (overallHasChanges && github.context.eventName === 'pull_request' && prComment) {
