@@ -102,10 +102,6 @@ const password = ref('')
             <p class="text-gray-600 mt-2 dark:text-gray-400">
               {{ privateContent }}
             </p>
-            <p class="text-gray-600 mt-2 dark:text-gray-400">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-              dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-            </p>
           </div>
 
           <button
