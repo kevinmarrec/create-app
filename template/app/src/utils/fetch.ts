@@ -1,6 +1,6 @@
 import type { BetterFetchOption } from 'better-auth/vue'
 
-export const FETCH_TIMEOUT_MS = 30_000
+const FETCH_TIMEOUT_MS = 30_000
 
 export function getFetchOptions(init?: RequestInit): RequestInit {
   return {
