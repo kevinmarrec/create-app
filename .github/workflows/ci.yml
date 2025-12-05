@@ -84,4 +84,4 @@ jobs:
         if: github.event_name == 'pull_request' && (steps.app-size.outputs.diff != '' || steps.api-size.outputs.diff != '')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr comment ${{ github.event.pull_request.number }} --body $GITHUB_STEP_SUMMARY
+        run: gh pr comment ${{ github.event.pull_request.number }} --body "$(cat $GITHUB_STEP_SUMMARY)"
