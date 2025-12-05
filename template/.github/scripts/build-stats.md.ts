@@ -92,7 +92,7 @@ function formatTotalRow(
   hasCache: boolean,
 ): string {
   if (!hasCache) {
-    return `\n| **Total** | **${filesize(totalCurrent)}** |`
+    return `| **Total** | **${filesize(totalCurrent)}** |`
   }
 
   const totalDiff = totalCurrent - totalCached
@@ -102,7 +102,7 @@ function formatTotalRow(
       ? `+${filesize(totalDiff)}`
       : filesize(totalDiff)
 
-  return `\n| **Total** | **${filesize(totalCurrent)}** | **${filesize(totalCached)}** | ${diffDisplay} |`
+  return `| **Total** | **${filesize(totalCurrent)}** | **${filesize(totalCached)}** | ${diffDisplay} |`
 }
 
 function generateDiffTable(
