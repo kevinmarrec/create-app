@@ -1,0 +1,28 @@
+name: Project Build Stats Analysis
+description: Analyze project build stats and comment on PRs with stats changes
+inputs:
+  directories:
+    description: Comma-separated list of directories to analyze (relative to workspace root)
+    required: true
+  cache-path:
+    description: Path to cache directory
+    required: false
+    default: .github/cache/build-stats
+  cache-key:
+    description: Cache key to use for restore/save
+    required: false
+    default: build-stats-main
+  show-total:
+    description: Show total row in the table
+    required: false
+    default: 'true'
+  github-token:
+    description: GitHub token for API calls (defaults to github.token)
+    required: false
+    default: ${{ github.token }}
+outputs:
+  has-changes:
+    description: Whether any build stats changes were detected
+runs:
+  using: node24
+  main: dist/index.js

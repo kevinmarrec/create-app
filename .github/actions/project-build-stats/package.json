@@ -1,0 +1,23 @@
+{
+  "name": "project-build-stats-action",
+  "type": "module",
+  "private": true,
+  "description": "GitHub Action for analyzing project build stats",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node --minify --sourcemap"
+  },
+  "dependencies": {
+    "@actions/cache": "^4.1.0",
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "filesize": "^11.0.13",
+    "tinyexec": "^1.0.2",
+    "tinyglobby": "^0.2.15"
+  },
+  "devDependencies": {
+    "@kevinmarrec/tsconfig": "^1.5.9",
+    "@types/node": "^24.10.1",
+    "typescript": "~5.9.3"
+  }
+}
