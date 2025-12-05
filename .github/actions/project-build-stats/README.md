@@ -17,6 +17,7 @@ A GitHub Action that analyzes project build stats and comments on pull requests 
 - `cache-path` (optional): Path to cache directory. Default: `.github/cache/build-stats`
 - `cache-key` (optional): Cache key to use for restore/save. Default: `build-stats-main`
 - `show-total` (optional): Show total row in the table. Default: `true`
+- `comment-on-pr` (optional): Whether to comment on PRs with build stats changes. Default: `true`
 - `github-token` (optional): GitHub token for API calls. Defaults to `${{ github.token }}` which respects the job's permissions
 
 ## Outputs

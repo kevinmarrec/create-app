@@ -16,7 +16,7 @@ inputs:
     description: Show total row in the table
     required: false
     default: 'true'
-  pr-comment:
+  comment-on-pr:
     description: Whether to comment on PRs with build stats changes
     required: false
     default: 'true'

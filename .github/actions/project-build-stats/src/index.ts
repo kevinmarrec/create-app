@@ -103,13 +103,14 @@ function formatTotalRow(
       ? `+${filesize(totalDiff)}`
       : filesize(totalDiff)
 
-  return `| **Total** | **${filesize(totalCurrent)}** | **${filesize(totalCached)}** | ${diffDisplay} |`
+  return `| **Total** | **${filesize(totalCached)}** | **${filesize(totalCurrent)}** | ${diffDisplay} |`
 }
 
 function generateDiffTable(
   current: FileStat[],
   cached: FileStat[] | null,
   showTotal: boolean,
+  branchName: string,
 ): string {
   const hasCache = cached !== null
   const currentMap = new Map(current.map(s => [s.file, s.size]))
@@ -130,7 +131,7 @@ function generateDiffTable(
 
     if (hasCache) {
       const diff = formatDiff(currentSize, cachedSize)
-      rows.push(`| ${file} | ${filesize(currentSize)} | ${filesize(cachedSize)} | ${diff} |`)
+      rows.push(`| ${file} | ${filesize(cachedSize)} | ${filesize(currentSize)} | ${diff} |`)
     }
     else {
       rows.push(`| ${file} | ${filesize(currentSize)} |`)
@@ -138,7 +139,7 @@ function generateDiffTable(
   }
 
   const header = hasCache
-    ? '| File | Current | Main | Diff |\n| :--- | ---: | ---: | ---: |'
+    ? `| File | \`main\` | \`${branchName}\` | Diff |\n| :--- | ---: | ---: | ---: |`
     : '| File | Size |\n| :--- | ---: |'
 
   const table = [header, ...rows]
@@ -152,9 +153,13 @@ function generateDiffTable(
 
 async function analyzeDirectory(
   directory: string,
-  cachePath: string,
-  showTotal: boolean,
+  options: {
+    cachePath: string
+    showTotal: boolean
+    branchName: string
+  },
 ): Promise<{ markdown: string, hasChanges: boolean }> {
+  const { cachePath, showTotal, branchName } = options
   // Build the project
   await x('bun', ['run', 'build'], { nodeOptions: { cwd: directory } })
 
@@ -193,7 +198,7 @@ async function analyzeDirectory(
   // Save current stats
   saveStats(currentStats, cachePath)
 
-  const markdown = generateDiffTable(currentStats, cachedStats, showTotal)
+  const markdown = generateDiffTable(currentStats, cachedStats, showTotal, branchName)
   return { markdown, hasChanges }
 }
 
@@ -260,7 +265,7 @@ async function main(): Promise<void> {
     const cachePathBase = core.getInput('cache-path') || '.github/cache/build-stats'
     const cacheKey = core.getInput('cache-key') || 'build-stats-main'
     const showTotal = core.getBooleanInput('show-total', { required: false }) ?? true
-    const prComment = core.getBooleanInput('pr-comment', { required: false }) ?? true
+    const prComment = core.getBooleanInput('comment-on-pr', { required: false }) ?? true
 
     const directories = directoriesInput.split(',').map(d => d.trim()).filter(Boolean)
 
@@ -279,6 +284,16 @@ async function main(): Promise<void> {
       core.info('No cache found')
     }
 
+    // Get current branch name
+    const context = github.context
+    let branchName = 'main'
+    if (context.eventName === 'pull_request' && context.payload.pull_request?.head?.ref) {
+      branchName = context.payload.pull_request.head.ref
+    }
+    else if (context.ref.startsWith('refs/heads/')) {
+      branchName = context.ref.replace('refs/heads/', '')
+    }
+
     const summaryParts: string[] = []
     let overallHasChanges = false
 
@@ -288,11 +303,11 @@ async function main(): Promise<void> {
 
       core.info(`Analyzing ${directory}...`)
 
-      const { markdown, hasChanges } = await analyzeDirectory(
-        directory,
+      const { markdown, hasChanges } = await analyzeDirectory(directory, {
         cachePath,
         showTotal,
-      )
+        branchName,
+      })
 
       if (hasChanges) {
         overallHasChanges = true
@@ -316,7 +331,7 @@ async function main(): Promise<void> {
 
     core.info(`Detected changes ? ${overallHasChanges ? 'yes' : 'no'}`)
 
-    // Comment on PR if there are changes and pr-comment is enabled
+    // Comment on PR if there are changes and comment-on-pr is enabled
     if (overallHasChanges && github.context.eventName === 'pull_request' && prComment) {
       await commentOnPR(fullSummary)
     }
