@@ -59,6 +59,7 @@ project/
 │   │   ├── composables/     # Vue composables (auth, etc.)
 │   │   ├── lib/             # Library utilities (oRPC client)
 │   │   ├── locales/         # Internationalization files (i18n)
+│   │   ├── utils/           # Utility functions (fetch, etc.)
 │   │   ├── App.vue          # Main Vue component
 │   │   └── main.ts          # App entry point
 │   └── package.json

@@ -3,12 +3,11 @@ import { set } from '@vueuse/core'
 import { createAuthClient, type ErrorContext } from 'better-auth/vue'
 import { computed, ref } from 'vue'
 
+import { betterFetchOptions as fetchOptions } from '../utils/fetch'
+
 const authClient = createAuthClient({
   baseURL: `${import.meta.env.VITE_API_URL}/auth`,
-  fetchOptions: {
-    credentials: 'include',
-    onError: ({ error }) => Promise.reject(error),
-  },
+  fetchOptions,
 })
 
 const authError = ref<ErrorContext['error'] | null>(null)
