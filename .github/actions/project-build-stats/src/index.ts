@@ -75,26 +75,17 @@ function saveStats(stats: FileStat[], cachePath: string): void {
   fs.writeFileSync(cachePath, JSON.stringify(stats, null, 2))
 }
 
-function formatDiffSize(currentSize: number, cachedSize: number): string {
-  if (cachedSize === 0) return '➖'
-  if (currentSize === 0) return '➖'
-
-  const diffSize = currentSize - cachedSize
-  if (diffSize === 0) return '➖'
-
-  const diffPercent = ((diffSize / cachedSize) * 100).toFixed(2)
-  const sign = diffSize > 0 ? '+' : ''
-  return `${sign}${filesize(diffSize)} (${sign}${diffPercent}%)`
-}
-
-function formatDiffIndicator(currentSize: number, cachedSize: number): string {
+function formatDiff(currentSize: number, cachedSize: number): string {
   if (cachedSize === 0) return '🆕'
   if (currentSize === 0) return '❌'
 
   const diffSize = currentSize - cachedSize
   if (diffSize === 0) return '➖'
 
-  return diffSize > 0 ? '🔺' : '✅'
+  const diffPercent = ((diffSize / cachedSize) * 100).toFixed(2)
+  const sign = diffSize > 0 ? '+' : ''
+  const indicator = diffSize > 0 ? '🔺' : '✅'
+  return `${sign}${filesize(diffSize)} (${sign}${diffPercent}%) ${indicator}`
 }
 
 function formatTotalRow(
@@ -107,18 +98,13 @@ function formatTotalRow(
   }
 
   const totalDiff = totalCurrent - totalCached
-  const diffSize = totalDiff === 0
+  const diffDisplay = totalDiff === 0
     ? '➖'
     : totalDiff > 0
-      ? `+${filesize(totalDiff)}`
-      : filesize(totalDiff)
-  const diffIndicator = totalDiff === 0
-    ? '➖'
-    : totalDiff > 0
-      ? '🔺'
-      : '✅'
+      ? `+${filesize(totalDiff)} 🔺`
+      : `${filesize(totalDiff)} ✅`
 
-  return `| **Total** | **${filesize(totalCached)}** | **${filesize(totalCurrent)}** | ${diffSize} | ${diffIndicator} |`
+  return `| **Total** | **${filesize(totalCached)}** | **${filesize(totalCurrent)}** | ${diffDisplay} |`
 }
 
 function generateDiffTable(
@@ -144,9 +130,8 @@ function generateDiffTable(
     totalCached += cachedSize
 
     if (hasCache) {
-      const diffSize = formatDiffSize(currentSize, cachedSize)
-      const diffIndicator = formatDiffIndicator(currentSize, cachedSize)
-      rows.push(`| ${file} | ${filesize(cachedSize)} | ${filesize(currentSize)} | ${diffSize} | ${diffIndicator} |`)
+      const diff = formatDiff(currentSize, cachedSize)
+      rows.push(`| ${file} | ${filesize(cachedSize)} | ${filesize(currentSize)} | ${diff} |`)
     }
     else {
       rows.push(`| ${file} | ${filesize(currentSize)} |`)
@@ -154,7 +139,7 @@ function generateDiffTable(
   }
 
   const header = hasCache
-    ? `| File | \`main\` | Current | Diff (size) | Diff (indicator) |\n| :--- | ---: | ---: | ---: | ---: |`
+    ? `| File | \`main\` | Current | Diff |\n| :--- | ---: | ---: | ---: |`
     : '| File | Size |\n| :--- | ---: |'
 
   const table = [header, ...rows]
