@@ -2,7 +2,7 @@
 
 import { join } from 'node:path'
 
-const composePath = join(import.meta.dir, '..', 'template', 'compose.yaml')
+const composePath = join(import.meta.dir, '..', 'template', 'compose.yml')
 const composeFile = Bun.file(composePath)
 const composeContent = await composeFile.text()
 

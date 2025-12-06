@@ -62,7 +62,7 @@
   "vue.inlayHints.missingProps": true,
 
   "files.associations": {
-    "**/.docker/*/service.yaml": "dockercompose"
+    "**/.docker/*/service.yml": "dockercompose"
   },
 
   "material-icon-theme.folders.associations": {

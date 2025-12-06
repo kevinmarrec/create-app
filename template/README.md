@@ -63,7 +63,7 @@ project/
 │   │   ├── App.vue          # Main Vue component
 │   │   └── main.ts          # App entry point
 │   └── package.json
-├── compose.yaml              # Docker Compose configuration
+├── compose.yml               # Docker Compose configuration
 └── package.json              # Root workspace configuration
 ```
 
@@ -221,7 +221,7 @@ Output: `app/dist/`
 
 ## Troubleshooting
 
-**Port conflicts:** Modify port mappings in `compose.yaml` if ports 80, 443, or 5432 are in use.
+**Port conflicts:** Modify port mappings in `compose.yml` if ports 80, 443, or 5432 are in use.
 
 **SSL warnings:** Complete [TLS setup](#3-set-up-local-tls-certificates). Without certificates, Traefik may fail to start.
 

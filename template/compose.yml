@@ -1,10 +1,10 @@
 include:
-  - path: .docker/traefik/service.yaml
-  - path: .docker/postgres/service.yaml
-  - path: .docker/metabase/service.yaml
-  - path: .docker/studio/service.yaml
-  - path: .docker/analytics/service.yaml
-  - path: .docker/mailpit/service.yaml
+  - path: .docker/traefik/service.yml
+  - path: .docker/postgres/service.yml
+  - path: .docker/metabase/service.yml
+  - path: .docker/studio/service.yml
+  - path: .docker/analytics/service.yml
+  - path: .docker/mailpit/service.yml
 
 x-common: &common
   volumes:

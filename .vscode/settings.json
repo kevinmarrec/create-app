@@ -64,7 +64,7 @@
   "vitest.rootConfig": "vitest.config.ts",
 
   "files.associations": {
-    "**/template/.docker/*/service.yaml": "dockercompose"
+    "**/template/.docker/*/service.yml": "dockercompose"
   },
 
   "material-icon-theme.folders.associations": {
