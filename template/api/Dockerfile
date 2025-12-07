@@ -3,7 +3,7 @@
 ARG TARGETARCH
 
 # Use a bun-alpine image for a fast build environment
-FROM oven/bun:1.3.3-slim AS build
+FROM oven/bun:1.3.4-slim AS build
 
 # Set the working directory inside the container
 WORKDIR /build
