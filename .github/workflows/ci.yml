@@ -35,8 +35,8 @@ jobs:
         with:
           file-coverage-mode: all
           comment-on: none
-  template-build-stats:
-    name: Analyze template build stats
+  template-build-size-diff:
+    name: Analyze template build size differences
     runs-on: ubuntu-latest
     if: |
       !startsWith(github.event.head_commit.message, 'chore: release')
@@ -50,7 +50,7 @@ jobs:
       - name: Build template
         run: bun -F ./template build
 
-      - name: Analyze template build stats
-        uses: kevinmarrec/workflows/filesize-diff@filesize-diff
+      - name: Analyze template build size differences
+        uses: kevinmarrec/workflows/filesize-diff@main
         with:
           directories: template/app/dist,template/api/dist
