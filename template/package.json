@@ -11,6 +11,7 @@
     "app"
   ],
   "scripts": {
+    "build": "bun -F ./api -F ./app build",
     "check": "bun run check:eslint && bun run check:stylelint && bun run check:unused && bun run check:types",
     "check:eslint": "eslint . --cache",
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",

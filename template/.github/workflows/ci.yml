@@ -24,8 +24,8 @@ jobs:
 
       - name: Type check
         run: bun run check:types
-  project-size:
-    name: Analyze project build size
+  project-build-size-diff:
+    name: Analyze project build size differences
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,7 +34,10 @@ jobs:
       - name: Setup Bun
         uses: kevinmarrec/workflows/setup-bun@main
 
-      - name: Analyze project build stats
-        uses: kevinmarrec/workflows/project-build-stats@main
+      - name: Build project
+        run: bun run build
+
+      - name: Analyze project build size differences
+        uses: kevinmarrec/workflows/filesize-diff@main
         with:
-          directories: template/app,template/api
+          directories: app/dist,api/dist
