@@ -47,7 +47,10 @@ jobs:
       - name: Setup Bun
         uses: kevinmarrec/workflows/setup-bun@main
 
+      - name: Build template
+        run: bun -F ./template build
+
       - name: Analyze template build stats
-        uses: kevinmarrec/workflows/project-build-stats@main
+        uses: kevinmarrec/workflows/filesize-diff@filesize-diff
         with:
-          directories: template/app,template/api
+          directories: template/app/dist,template/api/dist
