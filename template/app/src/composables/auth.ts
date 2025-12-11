@@ -1,22 +1,16 @@
 import { defineMutation } from '@pinia/colada'
 import { set } from '@vueuse/core'
-import { createAuthClient, type ErrorContext } from 'better-auth/vue'
 import { computed, ref } from 'vue'
 
-import { betterFetchOptions as fetchOptions } from '../utils/fetch'
+import { authClient, type AuthError } from '../lib/auth'
 
-const authClient = createAuthClient({
-  baseURL: `${import.meta.env.VITE_API_URL}/auth`,
-  fetchOptions,
-})
-
-const authError = ref<ErrorContext['error'] | null>(null)
+const authError = ref<AuthError>()
 
 function defineAuthMutation<TVars, TData>(mutation: (vars: TVars) => Promise<TData>) {
   return defineMutation({
     mutation,
     onMutate: () => {
-      set(authError, null)
+      set(authError, undefined)
     },
     onSettled: (_, error) => {
       set(authError, error)
