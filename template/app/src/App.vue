@@ -104,6 +104,39 @@ const password = ref('')
             </p>
           </div>
 
+          <div class="text-sm text-gray-800 mb-6 p-4 text-left rounded-lg bg-gray-50 space-y-2 dark:text-gray-100 dark:bg-gray-900">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus, justo at cursus dictum, urna eros volutpat massa, ac pharetra ex nibh eget augue.</p>
+            <p>Donec sodales erat ac nisi tristique, at hendrerit purus suscipit. Pellentesque sed faucibus justo. Cras congue convallis elit, id posuere tortor.</p>
+            <p>Maecenas euismod nibh sed dictum commodo. Fusce aliquam, turpis quis imperdiet bibendum, dolor turpis faucibus velit, et faucibus est justo ac erat.</p>
+            <p>Aenean malesuada volutpat orci, in varius dolor. Duis in tortor vitae enim feugiat cursus. Sed ultricies magna in enim dictum, ac eleifend erat cursus.</p>
+            <p>Vestibulum ut ante ac erat feugiat blandit. Suspendisse eu feugiat libero, vitae pretium nisl. Etiam ac quam leo. Proin porttitor nec arcu vitae cursus.</p>
+            <p>Curabitur sagittis, odio nec facilisis finibus, diam nisi imperdiet sapien, in dapibus orci urna at ligula. Pellentesque blandit faucibus fermentum.</p>
+            <p>Sed dictum urna at ligula convallis rhoncus. Etiam sit amet velit at urna accumsan rhoncus. Morbi facilisis augue quis est cursus dictum.</p>
+            <p>Nam sed massa posuere, posuere ipsum sit amet, finibus erat. Mauris at maximus ligula, quis molestie nibh. Sed nec risus eleifend, dictum erat a, mattis risus.</p>
+            <p>Morbi quis sollicitudin ipsum, vel pretium nulla. Etiam maximus euismod tortor a suscipit. In ut feugiat lectus, a posuere purus.</p>
+            <p>Phasellus purus nisl, dignissim non dui at, cursus ornare velit. Sed porttitor velit sit amet lacus laoreet, vitae hendrerit risus cursus.</p>
+            <p>Cras posuere, velit nec cursus ullamcorper, turpis nisi gravida ligula, non dictum lacus erat at dolor. Maecenas accumsan lectus at ligula hendrerit dictum.</p>
+            <p>Phasellus non nulla ac neque pretium dictum. Nullam fermentum scelerisque leo, nec viverra tellus malesuada eu.</p>
+            <p>Mauris nec metus tortor. Praesent facilisis magna in erat malesuada, sed dictum ipsum dictum. Duis euismod dui eget eleifend pharetra.</p>
+            <p>Aenean pulvinar, nunc at ultricies imperdiet, dolor lacus facilisis lacus, a dignissim arcu sem vitae massa. Aenean soldales sapien eu orci finibus, ac pulvinar nisi laoreet.</p>
+            <p>Duis a magna metus. Fusce eleifend consequat leo in feugiat. Nam sit amet volutpat lectus.</p>
+            <p>Integer vitae neque bibendum, dictum justo a, faucibus ex. Aliquam erat volutpat. Etiam ullamcorper erat in ex efficitur gravida.</p>
+            <p>Pellentesque et lacus facilisis, luctus orci at, aliquet nisi. Morbi maximus, sapien nec imperdiet scelerisque, ex sem congue nunc, eu cursus velit lectus ac nulla.</p>
+            <p>Morbi rhoncus elit et tortor posuere, a sodales dolor pellentesque. Quisque condimentum massa nec velit fermentum, nec consectetur mauris volutpat.</p>
+            <p>Maecenas ipsum mauris, sodales eu commodo eu, ullamcorper sed ipsum. Suspendisse commodo nisi nisl, ac porta justo pharetra vitae.</p>
+            <p>Fusce elementum nisl nisi, at laoreet nunc accumsan at. Praesent sed magna non augue hendrerit accumsan.</p>
+            <p>Curabitur fermentum dolor ac nisi ullamcorper tempor. Etiam feugiat porta dapibus. Vivamus feugiat id nulla id egestas.</p>
+            <p>Nam laoreet magna sem, eu tincidunt massa gravida at. Sed varius elementum facilisis.</p>
+            <p>Pellentesque tempor volutpat tortor, at laoreet lacus bibendum id. Proin porta mollis lacus, vitae ullamcorper augue mattis a.</p>
+            <p>Praesent pulvinar amet dapibus rhoncus. Ut convallis magna vitae sem viverra, sed ultricies massa bibendum.</p>
+            <p>Etiam a turpis mauris. Proin efficitur nisi ac augue consequat, nec bibendum magna dictum.</p>
+            <p>Sed mollis posuere molestie. Quisque vitae mauris id metus cursus maximus sit amet sit amet arcu.</p>
+            <p>Aliquam rutrum interdum varius. Vivamus dictum volutpat nunc, id cursus nulla sodales eget.</p>
+            <p>Morbi gravida dictum enim, eget sagittis dolor eleifend in. In ut nisi porttitor, aliquet massa at, porttitor urna.</p>
+            <p>Aliquam erat volutpat. Nulla facilisi. Phasellus malesuada, arcu eu gravida auctor, turpis velit maximus dui, ultrices dictum lacus risus ut urna.</p>
+            <p>Curabitur sapien mi, fermentum nec convallis nec, pharetra sit amet justo. Etiam tincidunt ex nec lectus pulvinar, ut dictum velit rutrum.</p>
+          </div>
+
           <button
             :disabled="signOut.isLoading.value"
             class="text-white font-medium px-4 py-2 rounded-md bg-red-600 w-full transition-colors duration-200 disabled:bg-red-400 hover:bg-red-700"
