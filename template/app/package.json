@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@kevinmarrec/vue-i18n": "^1.1.5",
-    "@orpc/client": "^1.12.2",
-    "@pinia/colada": "^0.18.0",
+    "@orpc/client": "^1.12.3",
+    "@pinia/colada": "^0.18.1",
     "@unhead/vue": "^2.0.19",
     "@vueuse/core": "^14.1.0",
-    "better-auth": "^1.4.5",
+    "better-auth": "^1.4.6",
     "pinia": "^3.0.4",
     "unocss": "^66.5.10",
     "vue": "^3.5.25"
@@ -25,7 +25,7 @@
     "@kevinmarrec/vite-plugin-dark-mode": "^1.1.5",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unhead/addons": "^2.0.19",
-    "@vitejs/plugin-vue": "^6.0.2",
+    "@vitejs/plugin-vue": "^6.0.3",
     "beasties": "^0.3.5",
     "rollup-plugin-visualizer": "^6.0.5",
     "typescript": "~5.9.3",
