@@ -51,6 +51,6 @@ jobs:
         run: bun -F ./template build
 
       - name: Analyze template build size differences
-        uses: kevinmarrec/workflows/filesize-diff@v2
+        uses: kevinmarrec/workflows/filesize-diff@filesize-v2
         with:
           directories: template/app/dist,template/api/dist
