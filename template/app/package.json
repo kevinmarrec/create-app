@@ -34,6 +34,6 @@
     "vite-plugin-valibot-env": "^1.0.1",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vite-ssg": "^28.2.2",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^6.0.1"
   }
 }
