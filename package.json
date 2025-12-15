@@ -1,7 +1,7 @@
 {
   "name": "@kevinmarrec/create-app",
   "type": "module",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "packageManager": "bun@1.3.4",
   "description": "CLI that scaffolds an opinionated Bun & Vue fullstack application.",
   "author": "Kevin Marrec <kevin@marrec.io>",
