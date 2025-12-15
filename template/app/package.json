@@ -9,7 +9,7 @@
     "preview": "vite preview --open"
   },
   "dependencies": {
-    "@kevinmarrec/vue-i18n": "^1.1.5",
+    "@kevinmarrec/vue-i18n": "^1.2.0",
     "@orpc/client": "^1.12.3",
     "@pinia/colada": "^0.18.1",
     "@unhead/vue": "^2.0.19",
@@ -20,9 +20,9 @@
     "vue": "^3.5.25"
   },
   "devDependencies": {
-    "@kevinmarrec/tsconfig": "^1.5.9",
-    "@kevinmarrec/unocss-config": "^1.5.9",
-    "@kevinmarrec/vite-plugin-dark-mode": "^1.1.5",
+    "@kevinmarrec/tsconfig": "^1.6.0",
+    "@kevinmarrec/unocss-config": "^1.6.0",
+    "@kevinmarrec/vite-plugin-dark-mode": "^1.2.0",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unhead/addons": "^2.0.19",
     "@vitejs/plugin-vue": "^6.0.3",

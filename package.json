@@ -21,9 +21,7 @@
     "template/api",
     "template/app"
   ],
-  "bin": {
-    "create-app": "dist/index.js"
-  },
+  "bin": "./dist/index.mjs",
   "files": [
     "dist",
     "template",
@@ -31,7 +29,7 @@
     "template/.npmrc"
   ],
   "scripts": {
-    "build": "tsdown --no-fixed-extension",
+    "build": "tsdown",
     "check": "bun run check:eslint && bun run check:stylelint && bun run check:unused && bun run check:types",
     "check:eslint": "eslint . --cache",
     "check:stylelint": "stylelint '**/*.{css,scss,vue}' --ignorePath .gitignore --cache",
@@ -53,9 +51,9 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
-    "@kevinmarrec/eslint-config": "^1.5.9",
-    "@kevinmarrec/stylelint-config": "^1.5.9",
-    "@kevinmarrec/tsconfig": "^1.5.9",
+    "@kevinmarrec/eslint-config": "^1.6.0",
+    "@kevinmarrec/stylelint-config": "^1.6.0",
+    "@kevinmarrec/tsconfig": "^1.6.0",
     "@types/bun": "^1.3.4",
     "@vitest/coverage-v8": "^4.0.15",
     "bumpp": "^10.3.2",
