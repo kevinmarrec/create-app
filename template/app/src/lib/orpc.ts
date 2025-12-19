@@ -1,5 +1,6 @@
 import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
+import { createORPCVueColadaUtils } from '@orpc/vue-colada'
 
 import type { Router, RouterClient } from '~/api/orpc/router'
 
@@ -10,4 +11,6 @@ const link = new RPCLink({
   fetch: (request, init) => globalThis.fetch(request, getFetchOptions(init)),
 })
 
-export const orpc = createORPCClient<RouterClient<Router>>(link)
+export const client = createORPCClient<RouterClient<Router>>(link)
+
+export const orpc = createORPCVueColadaUtils(client)
