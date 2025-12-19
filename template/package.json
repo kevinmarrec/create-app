@@ -2,7 +2,7 @@
   "name": "project",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.3.4",
+  "packageManager": "bun@1.3.5",
   "engines": {
     "node": "lts/*"
   },
