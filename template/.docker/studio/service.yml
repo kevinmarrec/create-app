@@ -1,6 +1,6 @@
 services:
   studio:
-    image: ghcr.io/drizzle-team/gateway:1.1.1
+    image: ghcr.io/drizzle-team/gateway:1.2.0
     container_name: studio
     depends_on:
       traefik:

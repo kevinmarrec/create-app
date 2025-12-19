@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@kevinmarrec/vue-i18n": "^1.2.0",
-    "@orpc/client": "^1.12.3",
-    "@pinia/colada": "^0.18.1",
+    "@orpc/client": "^1.13.0",
+    "@pinia/colada": "^0.19.1",
     "@unhead/vue": "^2.0.19",
     "@vueuse/core": "^14.1.0",
     "better-auth": "^1.4.7",
     "pinia": "^3.0.4",
     "unocss": "^66.5.10",
-    "vue": "^3.5.25"
+    "vue": "^3.5.26"
   },
   "devDependencies": {
     "@kevinmarrec/tsconfig": "^1.6.0",
@@ -34,6 +34,6 @@
     "vite-plugin-valibot-env": "^1.0.1",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vite-ssg": "^28.2.2",
-    "vite-tsconfig-paths": "^6.0.1"
+    "vite-tsconfig-paths": "^6.0.3"
   }
 }
