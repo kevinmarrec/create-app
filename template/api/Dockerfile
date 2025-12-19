@@ -1,6 +1,6 @@
 ARG TARGETARCH
 
-FROM oven/bun:1.3.4-slim AS build
+FROM oven/bun:1.3.5-slim AS build
 
 WORKDIR /build
 
