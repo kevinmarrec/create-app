@@ -58,11 +58,11 @@
     "@vitest/coverage-v8": "^4.0.16",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.2",
-    "knip": "^5.75.2",
+    "knip": "^5.76.1",
     "stylelint": "^16.26.1",
     "tsdown": "^0.18.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16",
-    "vue-tsc": "^3.1.8"
+    "vue-tsc": "^3.2.0"
   }
 }

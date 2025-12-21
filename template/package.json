@@ -27,9 +27,9 @@
     "@kevinmarrec/stylelint-config": "^1.6.0",
     "@kevinmarrec/tsconfig": "^1.6.0",
     "eslint": "^9.39.2",
-    "knip": "^5.75.2",
+    "knip": "^5.76.1",
     "stylelint": "^16.26.1",
     "typescript": "~5.9.3",
-    "vue-tsc": "^3.1.8"
+    "vue-tsc": "^3.2.0"
   }
 }
