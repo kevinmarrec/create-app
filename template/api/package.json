@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
-    "@orpc/server": "^1.13.0",
-    "better-auth": "^1.4.7",
+    "@orpc/server": "^1.13.1",
+    "better-auth": "^1.4.9",
     "drizzle-orm": "^0.45.1",
     "pino": "^10.1.0",
     "valibot": "^1.2.0"
