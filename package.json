@@ -50,19 +50,19 @@
     "tinyexec": "^1.0.2"
   },
   "devDependencies": {
-    "@faker-js/faker": "^10.1.0",
-    "@kevinmarrec/eslint-config": "^1.6.0",
-    "@kevinmarrec/stylelint-config": "^1.6.0",
-    "@kevinmarrec/tsconfig": "^1.6.0",
+    "@faker-js/faker": "^10.2.0",
+    "@kevinmarrec/eslint-config": "^1.7.0",
+    "@kevinmarrec/stylelint-config": "^1.7.0",
+    "@kevinmarrec/tsconfig": "^1.7.0",
     "@types/bun": "^1.3.5",
     "@vitest/coverage-v8": "^4.0.16",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.2",
-    "knip": "^5.78.0",
+    "knip": "^5.80.1",
     "stylelint": "^16.26.1",
-    "tsdown": "^0.18.3",
+    "tsdown": "^0.18.4",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16",
-    "vue-tsc": "^3.2.1"
+    "vue-tsc": "^3.2.2"
   }
 }
