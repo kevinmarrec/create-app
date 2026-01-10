@@ -13,7 +13,7 @@
     "@orpc/server": "^1.13.2",
     "better-auth": "^1.4.10",
     "drizzle-orm": "^0.45.1",
-    "pino": "^10.1.0",
+    "pino": "^10.1.1",
     "valibot": "^1.2.0"
   },
   "devDependencies": {
