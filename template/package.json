@@ -2,7 +2,7 @@
   "name": "project",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.3.5",
+  "packageManager": "bun@1.3.6",
   "engines": {
     "node": "lts/*"
   },
@@ -23,12 +23,12 @@
     "update": "bunx taze -I -rwi"
   },
   "devDependencies": {
-    "@kevinmarrec/eslint-config": "^1.8.1",
-    "@kevinmarrec/stylelint-config": "^1.8.1",
-    "@kevinmarrec/tsconfig": "^1.8.1",
+    "@kevinmarrec/eslint-config": "^1.9.0",
+    "@kevinmarrec/stylelint-config": "^1.9.0",
+    "@kevinmarrec/tsconfig": "^1.9.0",
     "eslint": "^9.39.2",
     "knip": "^5.81.0",
-    "stylelint": "^16.26.1",
+    "stylelint": "^17.0.0",
     "typescript": "~5.9.3",
     "vue-tsc": "^3.2.2"
   }
