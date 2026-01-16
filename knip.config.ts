@@ -5,6 +5,7 @@ Object.assign(import.meta.env, {
   ALLOWED_ORIGINS: 'https://foo.bar',
   AUTH_SECRET: 'foo',
   DATABASE_URL: 'postgresql://foo:bar@localhost:5432/foo',
+  SERVER_URL: 'https://foo.bar',
 })
 
 export default {

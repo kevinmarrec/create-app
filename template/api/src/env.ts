@@ -44,6 +44,11 @@ const schema = v.object({
       v.digits(),
       v.toNumber(),
     ),
+    url: v.pipe(
+      v.string(),
+      v.trim(),
+      v.startsWith('https://'),
+    ),
   }),
 })
 
@@ -63,6 +68,7 @@ const parsed = v.safeParse(schema, {
   server: {
     host: import.meta.env.HOST,
     port: import.meta.env.PORT,
+    url: import.meta.env.SERVER_URL,
   },
 })
 

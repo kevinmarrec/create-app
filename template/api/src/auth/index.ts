@@ -6,6 +6,7 @@ import { env } from '../env'
 
 export function createBetterAuth({ db, logger }: { db: DB, logger: Logger }) {
   return betterAuth({
+    baseURL: env.server.url,
     basePath: '/auth',
     secret: env.auth.secret,
     trustedOrigins: env.cors.allowedOrigins,
