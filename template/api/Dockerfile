@@ -1,6 +1,6 @@
-ARG TARGETARCH
+FROM --platform=$BUILDPLATFORM oven/bun:1.3.6-slim AS build
 
-FROM oven/bun:1.3.6-slim AS build
+ARG TARGETARCH
 
 WORKDIR /build
 
@@ -12,7 +12,7 @@ RUN bun install --filter api --frozen-lockfile
 
 COPY api/ ./api/
 
-RUN bun --cwd api build --target bun-linux-$TARGETARCH-modern
+RUN bun -F ./api build --target bun-linux-$TARGETARCH-modern
 
 FROM gcr.io/distroless/base-debian13:nonroot AS runner
 
