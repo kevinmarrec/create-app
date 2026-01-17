@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "bun@1.3.6",
   "engines": {
-    "node": "lts/*"
+    "node": ">=24"
   },
   "workspaces": [
     "api",
