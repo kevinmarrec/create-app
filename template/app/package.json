@@ -15,7 +15,7 @@
     "@pinia/colada": "^0.21.1",
     "@unhead/vue": "^2.1.2",
     "@vueuse/core": "^14.1.0",
-    "better-auth": "^1.4.13",
+    "better-auth": "^1.4.14",
     "pinia": "^3.0.4",
     "unocss": "^66.6.0",
     "vue": "^3.5.26"
