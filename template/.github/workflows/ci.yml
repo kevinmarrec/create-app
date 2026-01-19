@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Bun
-        uses: kevinmarrec/workflows/setup-bun@d3f17c8080607c298835edd289f12859d070d3b0 # main
+        uses: kevinmarrec/workflows/setup-bun@952a9c0dbc673a0cf2c7329cf242df2b66b4686d # main
 
       - name: Lint
         run: bun run lint
@@ -32,12 +32,12 @@ jobs:
       pull-requests: write
     steps:
       - name: Setup Bun
-        uses: kevinmarrec/workflows/setup-bun@d3f17c8080607c298835edd289f12859d070d3b0 # main
+        uses: kevinmarrec/workflows/setup-bun@952a9c0dbc673a0cf2c7329cf242df2b66b4686d # main
 
       - name: Build project
         run: bun run build
 
       - name: Analyze project build size differences
-        uses: kevinmarrec/workflows/filesize-diff@d3f17c8080607c298835edd289f12859d070d3b0 # main
+        uses: kevinmarrec/workflows/filesize-diff@952a9c0dbc673a0cf2c7329cf242df2b66b4686d # main
         with:
           directories: app/dist,api/dist
