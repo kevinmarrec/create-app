@@ -54,7 +54,7 @@
     "@kevinmarrec/eslint-config": "^1.10.0",
     "@kevinmarrec/stylelint-config": "^1.10.0",
     "@kevinmarrec/tsconfig": "^1.10.0",
-    "@types/bun": "^1.3.6",
+    "@types/bun": "^1.3.7",
     "@vitest/coverage-v8": "^4.0.18",
     "bumpp": "^10.4.0",
     "eslint": "^9.39.2",
@@ -63,6 +63,6 @@
     "tsdown": "^0.20.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18",
-    "vue-tsc": "^3.2.3"
+    "vue-tsc": "^3.2.4"
   }
 }
