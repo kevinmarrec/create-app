@@ -56,7 +56,7 @@ export async function run() {
     message: 'Project name',
     placeholder: 'my-app',
     validate: (value) => {
-      if (!value.trim())
+      if (!value?.trim())
         return 'Project name cannot be empty'
     },
   })
