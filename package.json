@@ -44,7 +44,7 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@clack/prompts": "^0.11.0",
+    "@clack/prompts": "^1.0.0",
     "ansis": "^4.2.0",
     "pathe": "^2.0.3",
     "tinyexec": "^1.0.2"
