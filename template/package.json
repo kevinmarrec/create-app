@@ -30,6 +30,6 @@
     "knip": "^5.82.1",
     "stylelint": "^17.0.0",
     "typescript": "~5.9.3",
-    "vue-tsc": "^3.2.3"
+    "vue-tsc": "^3.2.4"
   }
 }
