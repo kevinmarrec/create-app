@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM oven/bun:1.3.8-slim AS build
+FROM --platform=$BUILDPLATFORM oven/bun:1.3.9-slim AS build
 
 ARG TARGETARCH
 
