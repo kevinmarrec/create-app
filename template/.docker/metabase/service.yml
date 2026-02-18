@@ -1,5 +1,6 @@
 services:
   metabase:
+    profiles: [metabase]
     image: metabase/metabase:v0.58.7
     container_name: metabase
     depends_on:

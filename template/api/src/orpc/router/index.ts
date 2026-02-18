@@ -1,5 +1,4 @@
 import { os } from '@orpc/server'
-import * as v from 'valibot'
 
 import type { Context } from '../context'
 import { authMiddleware } from '../middlewares/auth'
@@ -17,15 +16,9 @@ const authed = pub
 
 export const router = {
   public: pub
-    .input(v.any())
-    .handler(async () => {
-      return 'public'
-    }),
+    .handler(async () => 'public'),
   private: authed
-    .input(v.any())
-    .handler(async () => {
-      return 'private'
-    }),
+    .handler(async () => 'private'),
 }
 
 export type Router = typeof router

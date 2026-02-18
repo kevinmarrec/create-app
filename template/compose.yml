@@ -36,7 +36,7 @@ services:
 
   app:
     <<: *common
-    image: imbios/bun-node:1.3.9-24.13.0-alpine
+    image: imbios/bun-node:1.3.9-24.13.1-alpine
     container_name: app
     init: true
     depends_on:

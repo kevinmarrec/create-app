@@ -1,5 +1,4 @@
 import { defineMutation } from '@pinia/colada'
-import { set } from '@vueuse/core'
 import { computed, ref } from 'vue'
 
 import { authClient, type AuthError } from '../lib/auth'
@@ -10,10 +9,10 @@ function defineAuthMutation<TVars, TData>(mutation: (vars: TVars) => Promise<TDa
   return defineMutation({
     mutation,
     onMutate: () => {
-      set(authError, undefined)
+      authError.value = undefined
     },
     onSettled: (_, error) => {
-      set(authError, error)
+      authError.value = error as AuthError
     },
   })
 }

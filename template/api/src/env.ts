@@ -27,14 +27,14 @@ const schema = v.object({
     ),
   }),
   log: v.object({
-    level: v.optional(v.union([
-      v.literal('fatal'),
-      v.literal('error'),
-      v.literal('warn'),
-      v.literal('info'),
-      v.literal('debug'),
-      v.literal('trace'),
-      v.literal('silent'),
+    level: v.optional(v.picklist([
+      'fatal',
+      'error',
+      'warn',
+      'info',
+      'debug',
+      'trace',
+      'silent',
     ]), 'info'),
   }),
   server: v.object({

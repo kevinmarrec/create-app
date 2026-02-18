@@ -20,7 +20,8 @@ export default {
       },
     },
     'app': {
-      entry: ['src/main.ts'],
+      // Remove this when using VueUse
+      ignoreDependencies: ['@vueuse/core'],
     },
   },
 } satisfies KnipConfig

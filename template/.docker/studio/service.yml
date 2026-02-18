@@ -1,5 +1,6 @@
 services:
   studio:
+    profiles: [studio]
     image: ghcr.io/drizzle-team/gateway:1.2.0
     container_name: studio
     depends_on:

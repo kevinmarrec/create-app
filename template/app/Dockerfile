@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM imbios/bun-node:1.3.9-24.13.0-alpine AS build
+FROM --platform=$BUILDPLATFORM imbios/bun-node:1.3.9-24.13.1-alpine AS build
 
 ARG TARGETARCH
 

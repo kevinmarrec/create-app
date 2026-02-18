@@ -15,9 +15,7 @@ export default {
       entry: ['*.config.ts'],
     },
     'template': {
-      entry: [
-        '*.config.ts',
-      ],
+      entry: ['*.config.ts'],
     },
     'template/api': {
       drizzle: {
@@ -25,7 +23,7 @@ export default {
       },
     },
     'template/app': {
-      entry: ['src/main.ts'],
+      ignoreDependencies: ['@vueuse/core'],
     },
   },
 } satisfies KnipConfig

@@ -5,11 +5,10 @@ import { createRpc } from './orpc'
 import { router } from './orpc/router'
 import { cors } from './utils/cors'
 import { logger } from './utils/logger'
-import { createStopper } from './utils/stopper'
+import { bindGracefulShutdown } from './utils/stopper'
 
 const auth = createBetterAuth({ db, logger })
 const rpc = createRpc({ auth, db, logger }, router)
-const stopper = createStopper({ logger })
 
 const server = Bun.serve({
   hostname: env.server.host,
@@ -25,6 +24,6 @@ const server = Bun.serve({
   },
 })
 
-stopper.bind(server)
+bindGracefulShutdown(server, logger)
 
 logger.info(`Listening on ${server.url}`)
