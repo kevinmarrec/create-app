@@ -1,3 +1,9 @@
 {
-  "extends": "@kevinmarrec/tsconfig"
+  "extends": "@kevinmarrec/tsconfig",
+  "compilerOptions": {
+    "paths": {
+      "~/api/*": ["./api/src/*"],
+      "~/app/*": ["./app/src/*"]
+    }
+  }
 }
