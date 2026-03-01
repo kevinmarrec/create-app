@@ -5,5 +5,12 @@
     "managerFilePatterns": [
       "/^template\\/\\.docker\\/[^/]*\\/service\\.ya?ml$/"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["imbios/bun-node"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>\\d+)\\.(?<build>\\d+\\.\\d+)-alpine$"
+    }
+  ]
 }
