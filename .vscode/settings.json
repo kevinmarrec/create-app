@@ -69,5 +69,12 @@
 
   "material-icon-theme.folders.associations": {
     "orpc": "context"
-  }
+  },
+
+  "json.schemas": [
+    {
+      "fileMatch": ["renovate.json"],
+      "url": "https://docs.renovatebot.com/renovate-schema.json"
+    }
+  ]
 }

@@ -1,5 +1,4 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>kevinmarrec/config//packages/renovate/default"],
   "docker-compose": {
     "managerFilePatterns": [
