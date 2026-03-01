@@ -41,7 +41,7 @@ A full-stack application template with Vue.js frontend, Bun-based API backend, a
 
 ## Project Structure
 
-```
+```sh
 project/
 ├── api/                   # Backend API server
 │   ├── src/

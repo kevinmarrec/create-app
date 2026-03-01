@@ -32,7 +32,7 @@ export default defineConfig(({ command, mode }) => {
     }),
     tsconfigPaths(),
     unhead(),
-    unocss(),
+    unocss(`${import.meta.dirname}/uno.config.ts`),
     valibot(envSchema),
     vue({
       features: {
