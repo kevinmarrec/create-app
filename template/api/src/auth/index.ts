@@ -1,5 +1,5 @@
-import { betterAuth } from 'better-auth'
-import { type DB, drizzleAdapter } from 'better-auth/adapters/drizzle'
+import { type DB, drizzleAdapter } from '@better-auth/drizzle-adapter'
+import { betterAuth } from 'better-auth/minimal'
 import type { Logger } from 'pino'
 
 import { env } from '../env'
