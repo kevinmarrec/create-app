@@ -38,6 +38,8 @@ CLI that scaffolds an opinionated [Bun](https://bun.sh/) & [Vue](https://vuejs.o
 
 > Requires [Bun](https://bun.sh/) v1.3 _or later_.
 
+By default, the CLI scaffolds from its built-in opinionated template:
+
 ```sh
 bun create @kevinmarrec/app
 # OR
@@ -45,3 +47,25 @@ bunx @kevinmarrec/create-app
 ```
 
 After scaffolding, see the generated `README.md` in your project root for detailed setup instructions, including environment configuration, Docker setup, and development workflows.
+
+### Custom Template
+
+You can use the `--template` (`-t`) option to scaffold from any external git repository instead of the default template:
+
+```sh
+# GitHub shorthand
+bun create @kevinmarrec/app -t user/repo
+
+# HTTPS URL
+bun create @kevinmarrec/app -t https://github.com/user/repo.git
+
+# SSH URL
+bun create @kevinmarrec/app -t git@github.com:user/repo.git
+
+# Subdirectory of a repository
+bun create @kevinmarrec/app -t user/repo#path/to/template
+```
+
+The repository is cloned with `--depth 1` (shallow clone) and its contents are copied into the target directory.
+
+Use `#subdir` to scaffold from a specific subdirectory within the repository.
