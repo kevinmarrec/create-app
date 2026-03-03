@@ -149,7 +149,8 @@ describe('run', () => {
 
     await run()
 
-    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Cloned template'))
+    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Cloned'))
+    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('user/repo'))
     expect(await exists(resolveProjectPath('package.json'))).toBe(true)
     expect(await exists(resolveProjectPath('.git'))).toBe(false)
   })

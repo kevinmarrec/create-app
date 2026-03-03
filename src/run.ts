@@ -92,12 +92,12 @@ export async function run() {
 
   await tasks([{
     title: options.template
-      ? `Cloning template and scaffolding project in ${c.blue(targetDir)}`
+      ? `Cloning ${c.blue(options.template)} into ${c.blue(targetDir)}`
       : `Scaffolding project in ${c.blue(targetDir)}`,
     task: async () => {
       await scaffold(targetDir, options.template)
       return options.template
-        ? `Cloned template and scaffolded project in ${c.blue(targetDir)}`
+        ? `Cloned ${c.blue(options.template)} and scaffolded project in ${c.blue(targetDir)}`
         : `Scaffolded project in ${c.blue(targetDir)}`
     },
   }])
@@ -114,11 +114,11 @@ export async function run() {
   maybeCancel(shouldInstall)
 
   await tasks([{
-    title: 'Installing with bun',
+    title: 'Installing dependencies',
     enabled: shouldInstall,
     task: async () => {
       await x('bun', ['install', '--cwd', targetDir, '--force'])
-      return 'Installed with bun'
+      return 'Installed dependencies'
     },
   }])
 
