@@ -133,6 +133,47 @@ describe('run', () => {
     expect(await exists(resolveProjectPath('package.json'))).toBe(true)
   })
 
+  it('create-app --template user/repo [DIRECTORY]', async () => {
+    process.argv[2] = '--template'
+    process.argv[3] = 'user/repo'
+    process.argv[4] = projectName
+
+    mocks.x.mockImplementation(async (cmd: string, args: string[]) => {
+      if (cmd === 'git' && args[0] === 'clone') {
+        const targetPath = args[args.length - 1]
+        await fs.mkdir(targetPath, { recursive: true })
+        await fs.writeFile(join(targetPath, 'package.json'), '{}')
+        await fs.mkdir(join(targetPath, '.git'))
+      }
+    })
+
+    await run()
+
+    expect(stdoutSpy).toHaveBeenCalledWith(expect.stringContaining('Cloned template'))
+    expect(await exists(resolveProjectPath('package.json'))).toBe(true)
+    expect(await exists(resolveProjectPath('.git'))).toBe(false)
+  })
+
+  it('create-app --template user/repo#subdir [DIRECTORY]', async () => {
+    process.argv[2] = '--template'
+    process.argv[3] = 'user/repo#my-template'
+    process.argv[4] = projectName
+
+    mocks.x.mockImplementation(async (cmd: string, args: string[]) => {
+      if (cmd === 'git' && args[0] === 'clone') {
+        const targetPath = args[args.length - 1]
+        await fs.mkdir(join(targetPath, 'my-template'), { recursive: true })
+        await fs.writeFile(join(targetPath, 'my-template', 'package.json'), '{}')
+        await fs.mkdir(join(targetPath, '.git'))
+      }
+    })
+
+    await run()
+
+    expect(await exists(resolveProjectPath('package.json'))).toBe(true)
+    expect(await exists(resolveProjectPath('.git'))).toBe(false)
+  })
+
   it('create-app --help', async () => {
     process.argv[2] = '--help'
 

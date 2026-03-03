@@ -24,6 +24,7 @@ export async function run() {
     options: {
       force: { type: 'boolean', short: 'f' },
       help: { type: 'boolean', short: 'h' },
+      template: { type: 'string', short: 't' },
       version: { type: 'boolean', short: 'v' },
     },
   })
@@ -33,9 +34,10 @@ export async function run() {
     process.stdout.write(
       'Usage: create-app [OPTIONS...] [DIRECTORY]\n\n'
       + 'Options:\n'
-      + '  -f, --force     Create the project even if the directory is not empty.\n'
-      + '  -h, --help      Display this help message.\n'
-      + '  -v, --version   Display the version number of this CLI.\n',
+      + '  -f, --force              Create the project even if the directory is not empty.\n'
+      + '  -h, --help               Display this help message.\n'
+      + '  -t, --template <repo>    Use a custom template from a git repository (supports #subdir).\n'
+      + '  -v, --version            Display the version number of this CLI.\n',
     )
     process.exit(0)
   }
@@ -89,10 +91,14 @@ export async function run() {
   // Scaffold project
 
   await tasks([{
-    title: `Scaffolding project in ${c.blue(targetDir)}`,
+    title: options.template
+      ? `Cloning template and scaffolding project in ${c.blue(targetDir)}`
+      : `Scaffolding project in ${c.blue(targetDir)}`,
     task: async () => {
-      await scaffold(targetDir)
-      return `Scaffolded project in ${c.blue(targetDir)}`
+      await scaffold(targetDir, options.template)
+      return options.template
+        ? `Cloned template and scaffolded project in ${c.blue(targetDir)}`
+        : `Scaffolded project in ${c.blue(targetDir)}`
     },
   }])
 
