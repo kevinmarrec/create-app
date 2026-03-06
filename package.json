@@ -60,7 +60,7 @@
     "eslint": "^9.39.3",
     "knip": "^5.85.0",
     "stylelint": "^17.4.0",
-    "tsdown": "^0.20.3",
+    "tsdown": "^0.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18",
     "vue-tsc": "^3.2.5"
