@@ -15,9 +15,9 @@
     "@pinia/colada": "^0.21.7",
     "@unhead/vue": "^2.1.10",
     "@vueuse/core": "^14.2.1",
-    "better-auth": "^1.5.2",
+    "better-auth": "^1.5.4",
     "pinia": "^3.0.4",
-    "unocss": "^66.6.4",
+    "unocss": "^66.6.6",
     "vue": "^3.5.29"
   },
   "devDependencies": {
