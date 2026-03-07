@@ -12,7 +12,7 @@
     "@kevinmarrec/vue-i18n": "^1.2.2",
     "@orpc/client": "^1.13.6",
     "@orpc/vue-colada": "^1.13.6",
-    "@pinia/colada": "^0.21.7",
+    "@pinia/colada": "^1.0.0",
     "@unhead/vue": "^2.1.10",
     "@vueuse/core": "^14.2.1",
     "better-auth": "^1.5.4",
