@@ -5,6 +5,8 @@ import { x } from 'tinyexec'
 
 import fs from './fs'
 
+const GITHUB_SHORTHAND_RE = /^[^/\s]+\/[^/\s]+$/
+
 interface TemplateInfo {
   url: string
   subdir?: string
@@ -28,7 +30,7 @@ function resolveTemplateUrl(repo: string): string {
     return repo
   }
 
-  if (/^[^/\s]+\/[^/\s]+$/.test(repo)) {
+  if (GITHUB_SHORTHAND_RE.test(repo)) {
     return `https://github.com/${repo}.git`
   }
 

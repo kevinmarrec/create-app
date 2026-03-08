@@ -140,7 +140,7 @@ describe('run', () => {
 
     mocks.x.mockImplementation(async (cmd: string, args: string[]) => {
       if (cmd === 'git' && args[0] === 'clone') {
-        const targetPath = args[args.length - 1]
+        const targetPath = args.at(-1)!
         await fs.mkdir(targetPath, { recursive: true })
         await fs.writeFile(join(targetPath, 'package.json'), '{}')
         await fs.mkdir(join(targetPath, '.git'))
@@ -162,7 +162,7 @@ describe('run', () => {
 
     mocks.x.mockImplementation(async (cmd: string, args: string[]) => {
       if (cmd === 'git' && args[0] === 'clone') {
-        const targetPath = args[args.length - 1]
+        const targetPath = args.at(-1)!
         await fs.mkdir(join(targetPath, 'my-template'), { recursive: true })
         await fs.writeFile(join(targetPath, 'my-template', 'package.json'), '{}')
         await fs.mkdir(join(targetPath, '.git'))
