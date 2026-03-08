@@ -12,14 +12,14 @@
       },
       "devDependencies": {
         "@faker-js/faker": "^10.3.0",
-        "@kevinmarrec/eslint-config": "^1.12.1",
-        "@kevinmarrec/stylelint-config": "^1.12.1",
-        "@kevinmarrec/tsconfig": "^1.12.1",
+        "@kevinmarrec/eslint-config": "^1.13.0",
+        "@kevinmarrec/stylelint-config": "^1.13.0",
+        "@kevinmarrec/tsconfig": "^1.13.0",
         "@types/bun": "^1.3.10",
         "@vitest/coverage-v8": "^4.0.18",
         "bumpp": "^10.4.1",
         "eslint": "^9.39.4",
-        "knip": "^5.85.0",
+        "knip": "^5.86.0",
         "stylelint": "^17.4.0",
         "tsdown": "^0.21.0",
         "typescript": "^5.9.3",
@@ -30,11 +30,11 @@
     "template": {
       "name": "project",
       "devDependencies": {
-        "@kevinmarrec/eslint-config": "^1.12.1",
-        "@kevinmarrec/stylelint-config": "^1.12.1",
-        "@kevinmarrec/tsconfig": "^1.12.1",
+        "@kevinmarrec/eslint-config": "^1.13.0",
+        "@kevinmarrec/stylelint-config": "^1.13.0",
+        "@kevinmarrec/tsconfig": "^1.13.0",
         "eslint": "^9.39.4",
-        "knip": "^5.85.0",
+        "knip": "^5.86.0",
         "stylelint": "^17.4.0",
         "typescript": "~5.9.3",
         "vue-tsc": "^3.2.5",
@@ -52,7 +52,7 @@
         "valibot": "^1.2.0",
       },
       "devDependencies": {
-        "@kevinmarrec/tsconfig": "^1.12.1",
+        "@kevinmarrec/tsconfig": "^1.13.0",
         "@types/bun": "^1.3.10",
         "drizzle-kit": "^0.31.9",
         "pg": "^8.20.0",
@@ -63,7 +63,7 @@
     "template/app": {
       "name": "app",
       "dependencies": {
-        "@kevinmarrec/vue-i18n": "^1.2.2",
+        "@kevinmarrec/vue-i18n": "^1.2.3",
         "@orpc/client": "^1.13.6",
         "@orpc/vue-colada": "^1.13.6",
         "@pinia/colada": "^1.0.0",
@@ -75,8 +75,8 @@
         "vue": "^3.5.29",
       },
       "devDependencies": {
-        "@kevinmarrec/tsconfig": "^1.12.1",
-        "@kevinmarrec/unocss-config": "^1.12.1",
+        "@kevinmarrec/tsconfig": "^1.13.0",
+        "@kevinmarrec/unocss-config": "^1.13.0",
         "@kevinmarrec/vite-plugin-dark-mode": "^1.2.2",
         "@modyfi/vite-plugin-yaml": "^1.1.1",
         "@unhead/addons": "^2.1.10",
@@ -358,13 +358,13 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@kevinmarrec/eslint-config": ["@kevinmarrec/eslint-config@1.12.1", "", { "dependencies": { "@antfu/eslint-config": "^7.6.1", "@unocss/eslint-plugin": "^66.6.4", "defu": "^6.1.4", "eslint-flat-config-utils": "^3.0.1", "eslint-plugin-format": "^2.0.1", "eslint-plugin-vuejs-accessibility": "^2.5.0", "tinyglobby": "^0.2.15" }, "peerDependencies": { "eslint": ">=9.20.0" } }, "sha512-lT923bHFeTqs7jSZg6XMK6tvsEKN29g9MK5gNxZr+HmxhwJWSb7vQbaAqvpBVWWvMZsg2ljq3KxV72pQaw+5yg=="],
+    "@kevinmarrec/eslint-config": ["@kevinmarrec/eslint-config@1.13.0", "", { "dependencies": { "@antfu/eslint-config": "^7.7.0", "@unocss/eslint-plugin": "^66.6.6", "defu": "^6.1.4", "eslint-flat-config-utils": "^3.0.1", "eslint-plugin-format": "^2.0.1", "eslint-plugin-vuejs-accessibility": "^2.5.0", "tinyglobby": "^0.2.15" }, "peerDependencies": { "eslint": ">=9.20.0" } }, "sha512-924t9Cpbo2TuUm24loFYOjymS6Du4YxQSm3xnhCQ1eA5PgawLFYNI7KIXAyEZPYMlikjXw6lbJ05/+XsQ1i7JQ=="],
 
-    "@kevinmarrec/stylelint-config": ["@kevinmarrec/stylelint-config@1.12.1", "", { "dependencies": { "stylelint-config-html": "^1.1.0", "stylelint-config-recess-order": "^7.6.1", "stylelint-config-recommended-scss": "^17.0.0", "stylelint-order": "^7.0.1", "stylelint-plugin-use-baseline": "^1.2.6" }, "peerDependencies": { "stylelint": ">=17.0.0" } }, "sha512-x7FvVGD/AAZvciWzw86h4qz0Evaxy9txT6sDTZVDTXJpq4IWS0N8w4uipYWataY0vM4FG0V6ZNLA5yUSl/+6EA=="],
+    "@kevinmarrec/stylelint-config": ["@kevinmarrec/stylelint-config@1.13.0", "", { "dependencies": { "stylelint-config-html": "^1.1.0", "stylelint-config-recess-order": "^7.6.1", "stylelint-config-recommended-scss": "^17.0.0", "stylelint-order": "^7.0.1", "stylelint-plugin-use-baseline": "^1.2.6" }, "peerDependencies": { "stylelint": ">=17.0.0" } }, "sha512-uqNbTdGHiFet1awTqO4r+WtJu+MB2P0ryo7aHOmg7LkyQEtQYmCNlLA3kMESFAs+nYCLzRnCodnGxBtIIZbgLg=="],
 
-    "@kevinmarrec/tsconfig": ["@kevinmarrec/tsconfig@1.12.1", "", {}, "sha512-PJryCShE16BfOOQLUitMFaJ3Dnu5FbrGEW8v0L7wSvBx45mQXGNV8va6Tik3hi4tLsIy6RInv6/3fgA2R9C3Mg=="],
+    "@kevinmarrec/tsconfig": ["@kevinmarrec/tsconfig@1.13.0", "", {}, "sha512-fAv5XyQKrPauWtZ0it5r46OvvvOGdQscHoI8Dn8AYsvVKsFbZ10MX3iRIPb8nNDvXkTa35sAVy27A4LSi2TBeg=="],
 
-    "@kevinmarrec/unocss-config": ["@kevinmarrec/unocss-config@1.12.1", "", { "dependencies": { "@unocss/core": "^66.6.4", "@unocss/preset-icons": "^66.6.4", "@unocss/preset-web-fonts": "^66.6.4", "@unocss/preset-wind4": "^66.6.4", "@unocss/transformer-directives": "^66.6.4", "@unocss/transformer-variant-group": "^66.6.4" }, "peerDependencies": { "unocss": ">=66.6.0" } }, "sha512-+cFSJsn8Yjn8MnqPtinAibOxeS790WfWYN5GcX0uWopwG3sYgRyJ9xxsigLAj7fM6BtOEYiGXVcjC2ZzxRtMFA=="],
+    "@kevinmarrec/unocss-config": ["@kevinmarrec/unocss-config@1.13.0", "", { "dependencies": { "@unocss/core": "^66.6.6", "@unocss/preset-icons": "^66.6.6", "@unocss/preset-web-fonts": "^66.6.6", "@unocss/preset-wind4": "^66.6.6", "@unocss/transformer-directives": "^66.6.6", "@unocss/transformer-variant-group": "^66.6.6" }, "peerDependencies": { "unocss": ">=66.6.0" } }, "sha512-5PIivkW8ln14ZcXVXnHwVLa7UEl7Vp6G9aKV5+i6GvWdtjBmL+0/765McSOzYBHkTVzweqoF3dDqnyxunmQ+Aw=="],
 
     "@kevinmarrec/vite-plugin-dark-mode": ["@kevinmarrec/vite-plugin-dark-mode@1.2.2", "", { "peerDependencies": { "vite": ">=7.0.0" } }, "sha512-6SC52vTxLGrtUSJYKPvjOZVbPoPb2fA5rNNE4CEKBuCHCdB+umjhIgWfrhgAKQ2LY+9mRy+Gm9Jpt1AogQyLsw=="],
 
