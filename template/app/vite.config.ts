@@ -10,7 +10,6 @@ import * as v from 'valibot'
 import { defineConfig, type PluginOption } from 'vite'
 import valibot from 'vite-plugin-valibot-env'
 import devtools from 'vite-plugin-vue-devtools'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export const envSchema = v.object({
   VITE_API_URL: v.pipe(v.string(), v.nonEmpty(), v.readonly()),
@@ -30,7 +29,6 @@ export default defineConfig(({ command, mode }) => {
         toggleComboKey: 'alt-s',
       },
     }),
-    tsconfigPaths(),
     unhead(),
     unocss(`${import.meta.dirname}/uno.config.ts`),
     valibot(envSchema),
@@ -72,6 +70,9 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     plugins,
+    resolve: {
+      tsconfigPaths: true,
+    },
     ssgOptions: {
       script: 'async',
       formatting: 'minify',
