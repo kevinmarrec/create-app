@@ -24,6 +24,9 @@ export async function scaffold(root: string, template?: string) {
     }
   }
   else {
-    await fs.cp(join(import.meta.dirname, '../template'), root, { recursive: true })
+    await fs.cp(join(import.meta.dirname, '../template'), root, {
+      recursive: true,
+      filter: src => !ignorePredicate(basename(src)),
+    })
   }
 }

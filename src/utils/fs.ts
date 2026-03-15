@@ -3,7 +3,7 @@ import fs from 'node:fs/promises'
 
 import { resolve } from 'pathe'
 
-const IGNORED_FILES = new Set(['.git'])
+const IGNORED_FILES = new Set(['.git', 'node_modules'])
 export const ignorePredicate = (filename: string) => IGNORED_FILES.has(filename)
 
 async function empty(dir: string) {
