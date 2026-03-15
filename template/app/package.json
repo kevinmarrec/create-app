@@ -28,7 +28,7 @@
     "@unhead/addons": "^2.1.12",
     "@vitejs/plugin-vue": "^6.0.5",
     "beasties": "^0.4.1",
-    "rollup-plugin-visualizer": "^7.0.1",
+    "sonda": "^0.11.1",
     "typescript": "~5.9.3",
     "valibot": "^1.2.0",
     "vite": "^8.0.0",

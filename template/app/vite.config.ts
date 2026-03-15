@@ -4,7 +4,7 @@ import darkMode from '@kevinmarrec/vite-plugin-dark-mode'
 import yaml from '@modyfi/vite-plugin-yaml'
 import unhead from '@unhead/addons/vite'
 import vue from '@vitejs/plugin-vue'
-import { visualizer } from 'rollup-plugin-visualizer'
+import sonda from 'sonda/vite'
 import unocss from 'unocss/vite'
 import * as v from 'valibot'
 import { defineConfig, type PluginOption } from 'vite'
@@ -41,13 +41,12 @@ export default defineConfig(({ command, mode }) => {
   ]
 
   if (mode === 'analyze') {
-    plugins.push(visualizer({
+    plugins.push(sonda({
       filename: 'node_modules/.vite/stats.html',
-      template: 'flamegraph',
-      brotliSize: true,
-      gzipSize: true,
+      brotli: true,
+      gzip: true,
       open: true,
-      sourcemap: true,
+
     }))
   }
 
