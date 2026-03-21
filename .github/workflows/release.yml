@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     name: Release
-    uses: kevinmarrec/workflows/.github/workflows/release.yml@de8a61d9c90d7dff252b9d40c7a0edb8b362bbca # main
+    uses: kevinmarrec/workflows/.github/workflows/release.yml@df3f012b48666bfb006608cec9b9cb842b39eb50 # main
     with:
       publish: true
       workflow-cleanup: ci.yml
