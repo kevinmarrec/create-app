@@ -26,7 +26,7 @@
     "@kevinmarrec/eslint-config": "^1.13.1",
     "@kevinmarrec/stylelint-config": "^1.13.1",
     "@kevinmarrec/tsconfig": "^1.13.1",
-    "eslint": "^9.39.4",
+    "eslint": "^10.1.0",
     "knip": "^6.0.1",
     "stylelint": "^17.5.0",
     "typescript": "~5.9.3",
