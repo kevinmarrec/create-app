@@ -14,7 +14,7 @@ COPY app/ ./app/
 
 RUN bun -F ./app build
 
-FROM nginx:1.29.6-alpine AS serve
+FROM nginx:1.29.7-alpine AS serve
 
 COPY --from=build --chown=nonroot:nonroot /build/app/dist/ /usr/share/nginx/html
 
