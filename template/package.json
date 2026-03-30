@@ -29,7 +29,7 @@
     "eslint": "^10.1.0",
     "knip": "^6.1.0",
     "stylelint": "^17.6.0",
-    "typescript": "~5.9.3",
+    "typescript": "~6.0.2",
     "vue-tsc": "^3.2.6"
   }
 }
