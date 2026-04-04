@@ -12,17 +12,17 @@
     "@kevinmarrec/vue-i18n": "^1.5.0",
     "@orpc/client": "^1.13.13",
     "@orpc/vue-colada": "^1.13.13",
-    "@pinia/colada": "^1.0.0",
+    "@pinia/colada": "^1.1.0",
     "@unhead/vue": "^2.1.12",
     "@vueuse/core": "^14.2.1",
     "better-auth": "^1.5.6",
     "pinia": "^3.0.4",
     "unocss": "^66.6.7",
-    "vue": "^3.5.31"
+    "vue": "^3.5.32"
   },
   "devDependencies": {
-    "@kevinmarrec/tsconfig": "^1.14.0",
-    "@kevinmarrec/unocss-config": "^1.14.0",
+    "@kevinmarrec/tsconfig": "^1.15.0",
+    "@kevinmarrec/unocss-config": "^1.15.0",
     "@kevinmarrec/vite-plugin-dark-mode": "^1.4.0",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@unhead/addons": "^2.1.12",
