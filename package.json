@@ -44,21 +44,21 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@clack/prompts": "^1.1.0",
+    "@clack/prompts": "^1.2.0",
     "ansis": "^4.2.0",
     "pathe": "^2.0.3",
     "tinyexec": "^1.0.4"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
-    "@kevinmarrec/eslint-config": "^1.14.0",
-    "@kevinmarrec/stylelint-config": "^1.14.0",
-    "@kevinmarrec/tsconfig": "^1.14.0",
+    "@kevinmarrec/eslint-config": "^1.15.0",
+    "@kevinmarrec/stylelint-config": "^1.15.0",
+    "@kevinmarrec/tsconfig": "^1.15.0",
     "@types/bun": "^1.3.11",
     "@vitest/coverage-v8": "^4.1.2",
     "bumpp": "^11.0.1",
-    "eslint": "^10.1.0",
-    "knip": "^6.1.0",
+    "eslint": "^10.2.0",
+    "knip": "^6.3.0",
     "stylelint": "^17.6.0",
     "tsdown": "^0.21.7",
     "typescript": "^6.0.2",
