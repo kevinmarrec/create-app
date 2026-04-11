@@ -1,7 +1,7 @@
 services:
   metabase:
     profiles: [metabase]
-    image: metabase/metabase:v0.59.5
+    image: metabase/metabase:v0.59.6
     container_name: metabase
     depends_on:
       traefik:
