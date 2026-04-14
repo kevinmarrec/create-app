@@ -13,7 +13,7 @@
     "@orpc/client": "^1.13.14",
     "@orpc/vue-colada": "^1.13.14",
     "@pinia/colada": "^1.1.0",
-    "@unhead/vue": "^2.1.13",
+    "@unhead/vue": "^3.0.4",
     "@vueuse/core": "^14.2.1",
     "better-auth": "^1.6.2",
     "pinia": "^3.0.4",
