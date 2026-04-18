@@ -1,7 +1,7 @@
 services:
   analytics:
     profiles: [analytics]
-    image: umamisoftware/umami:3.0.3
+    image: umamisoftware/umami:3.1.0
     container_name: analytics
     depends_on:
       traefik:
