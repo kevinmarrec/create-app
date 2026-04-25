@@ -16,7 +16,7 @@ jobs:
       !startsWith(github.event.head_commit.message, 'chore: release')
     steps:
       - name: Setup Bun
-        uses: kevinmarrec/workflows/setup-bun@728966ab82a97d6f2c8c81cad7a2df87b0052418 # main
+        uses: kevinmarrec/workflows/setup-bun@00ba73dd1a648f4774af302138dde1fae36cb653 # main
 
       - name: Lint
         run: bun run lint
@@ -45,12 +45,12 @@ jobs:
       pull-requests: write
     steps:
       - name: Setup Bun
-        uses: kevinmarrec/workflows/setup-bun@728966ab82a97d6f2c8c81cad7a2df87b0052418 # main
+        uses: kevinmarrec/workflows/setup-bun@00ba73dd1a648f4774af302138dde1fae36cb653 # main
 
       - name: Build template
         run: bun -F ./template build
 
       - name: Analyze template build size differences
-        uses: kevinmarrec/workflows/filesize-diff@728966ab82a97d6f2c8c81cad7a2df87b0052418 # main
+        uses: kevinmarrec/workflows/filesize-diff@00ba73dd1a648f4774af302138dde1fae36cb653 # main
         with:
           directories: template/app/dist,template/api/dist
