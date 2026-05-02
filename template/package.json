@@ -23,12 +23,12 @@
     "update": "bunx taze -I -rwi"
   },
   "devDependencies": {
-    "@kevinmarrec/eslint-config": "^1.17.0",
-    "@kevinmarrec/stylelint-config": "^1.17.0",
-    "@kevinmarrec/tsconfig": "^1.17.0",
-    "eslint": "^10.2.1",
-    "knip": "^6.7.0",
-    "stylelint": "^17.9.0",
+    "@kevinmarrec/eslint-config": "^1.17.1",
+    "@kevinmarrec/stylelint-config": "^1.17.1",
+    "@kevinmarrec/tsconfig": "^1.17.1",
+    "eslint": "^10.3.0",
+    "knip": "^6.11.0",
+    "stylelint": "^17.9.1",
     "typescript": "~6.0.3",
     "vue-tsc": "^3.2.7"
   }
