@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM imbios/bun-node:1.3.13-24.15.0-alpine AS build
+FROM --platform=$BUILDPLATFORM imbios/bun-node:1.3.14-24.16.0-alpine AS build
 
 ARG TARGETARCH
 
@@ -14,7 +14,7 @@ COPY app/ ./app/
 
 RUN bun -F ./app build
 
-FROM nginx:1.30.0-alpine AS serve
+FROM nginx:1.31.1-alpine AS serve
 
 COPY --from=build --chown=nonroot:nonroot /build/app/dist/ /usr/share/nginx/html
 
